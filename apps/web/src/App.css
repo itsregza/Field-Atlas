@@ -334,27 +334,40 @@
   min-height: 36px;
   padding: 0 12px;
   border-radius: 10px;
-  color: var(--ink);
+  color: #1f2418;
   text-decoration: none;
   font: 650 12px / 1 var(--sans);
   letter-spacing: 0.02em;
   text-transform: none;
 }
 
-.site-nav__drop-menu a:hover {
+.site-nav__drop-menu a:hover,
+.site-nav__drop-menu a:focus-visible {
+  color: #1f2418;
   background: color-mix(in srgb, var(--sand) 40%, #fff);
 }
 
 .site-nav__drop-soon {
-  color: var(--faint);
+  color: #85887a;
   cursor: default;
 }
 
 .site-nav__drop-soon small {
-  color: var(--faint);
+  color: #85887a;
   font: 700 9px / 1 var(--sans);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.home-page--bleed .site-nav__drop-menu a,
+.home-page--bleed .site-nav__drop-menu a:hover,
+.home-page--bleed .site-nav__drop-menu a:focus-visible,
+.home-page--bleed .site-nav__drop-menu a.active {
+  color: #1f2418;
+}
+
+.home-page--bleed .site-nav__drop-soon {
+  color: #85887a;
 }
 
 .home-page--bleed .site-nav__drop-btn {
@@ -1676,12 +1689,12 @@ a:focus-visible {
 }
 
 .home-page--bleed .brand small,
-.home-page--bleed .site-nav a {
+.home-page--bleed .site-nav > a {
   color: rgb(247 242 230 / 78%);
 }
 
-.home-page--bleed .site-nav a.active,
-.home-page--bleed .site-nav a:hover {
+.home-page--bleed .site-nav > a.active,
+.home-page--bleed .site-nav > a:hover {
   color: #f7f2e6;
 }
 
