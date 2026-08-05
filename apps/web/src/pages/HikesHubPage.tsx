@@ -2,7 +2,7 @@ import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 
 import { SiteHeader } from '../components/SiteHeader'
 import { areas } from '../data/areas'
 import { getPeakById } from '../data/areaPeaks'
-import { getHikesForPeak, searchHikes, type Hike } from '../data/hikes'
+import { getHikesForPeak, searchHikes } from '../data/hikes'
 
 function readPeakParam() {
   return new URLSearchParams(window.location.search).get('peak') ?? ''
