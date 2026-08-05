@@ -10069,6 +10069,40 @@ button.text-link {
   font: 600 13px / 1.4 var(--sans);
 }
 
+.ops-search {
+  display: block;
+  margin: 0 0 14px;
+}
+
+.ops-search input {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--sand) 28%, #fff);
+  font: 500 14px / 1.2 var(--sans);
+  outline: none;
+}
+
+.ops-search input:focus {
+  border-color: color-mix(in srgb, var(--moss) 45%, var(--line));
+  background: #fff;
+}
+
+.ops-user-link {
+  color: var(--moss);
+  text-decoration: none;
+  font-weight: 650;
+}
+
+.ops-user-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .ops-table-wrap {
   overflow-x: auto;
 }
