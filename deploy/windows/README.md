@@ -89,3 +89,6 @@ Then restart the API window / service.
 - DB file: `apps\api\data\fieldatlas.db` — back this up
 - Uploads: `apps\api\uploads` — back this up
 - Local PC: keep using `npm run dev` + `npm run dev:api` as now
+- Owner ops panel: set matching `ADMIN_PATH` / `ADMIN_EMAILS` in `apps\api\.env`
+  and `VITE_OPS_PATH` in `apps\web\.env.local`, rebuild, bookmark the secret URL.
+  Docs/OpenAPI are disabled (`/docs`, `/openapi.json` return nothing useful).

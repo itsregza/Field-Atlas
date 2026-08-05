@@ -296,3 +296,65 @@ export function apiUnfollow(handle: string) {
     { method: 'DELETE' },
   )
 }
+
+export function opsPath() {
+  return (
+    (import.meta.env.VITE_OPS_PATH as string | undefined)?.replace(
+      /^\/+|\/+$/g,
+      '',
+    ) || ''
+  )
+}
+
+export type OpsSummary = {
+  users: number
+  posts: number
+  likes: number
+  comments: number
+  publicProfiles: number
+}
+
+export type OpsUser = {
+  id: string
+  email: string
+  name: string
+  handle: string | null
+  isPublic: boolean
+  createdAt: string | null
+}
+
+export type OpsPost = {
+  id: string
+  body: string
+  imageUrl: string
+  peakName: string | null
+  authorName: string
+  authorHandle: string | null
+  authorEmail: string
+  createdAt: string | null
+}
+
+function opsBase() {
+  const path = opsPath()
+  if (!path) throw new ApiError(404, 'Not found')
+  return `/${path}`
+}
+
+export function apiOpsSummary() {
+  return request<OpsSummary>(`${opsBase()}/summary`)
+}
+
+export function apiOpsUsers() {
+  return request<{ users: OpsUser[] }>(`${opsBase()}/users`)
+}
+
+export function apiOpsPosts() {
+  return request<{ posts: OpsPost[] }>(`${opsBase()}/posts`)
+}
+
+export function apiOpsDeletePost(id: string) {
+  return request<{ ok: boolean }>(
+    `${opsBase()}/posts/${encodeURIComponent(id)}`,
+    { method: 'DELETE' },
+  )
+}

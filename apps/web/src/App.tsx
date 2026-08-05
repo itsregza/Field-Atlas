@@ -35,6 +35,8 @@ import { TrackerPage } from './pages/TrackerPage'
 import { UnfinishedPeaksPage } from './pages/UnfinishedPeaksPage'
 import { WeatherPage } from './pages/WeatherPage'
 import { NotFoundPage } from './pages/NotFoundPage'
+import { OpsPage } from './pages/OpsPage'
+import { opsPath } from './data/api'
 import './App.css'
 
 function redirect(to: string) {
@@ -169,6 +171,9 @@ function App() {
       </ChecklistAuthGate>
     )
   }
+
+  const secret = opsPath()
+  if (secret && path === `/${secret}`) return <OpsPage />
 
   if (path === '/' || path === '') return <HomePage />
 

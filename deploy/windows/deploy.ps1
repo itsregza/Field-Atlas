@@ -67,23 +67,36 @@ if (-not (Test-Path $EnvFile)) {
 Set-Location $Root
 if (-not $env:VITE_API_URL) { $env:VITE_API_URL = "/api" }
 
-# Load MapTiler key from apps/web/.env* if not already set in the shell
-if (-not $env:VITE_MAPTILER_KEY) {
+# Load Vite env from apps/web/.env* if not already set in the shell
+function Import-WebEnv([string]$Key) {
+  if (Get-Item "env:$Key" -ErrorAction SilentlyContinue) {
+    $current = (Get-Item "env:$Key").Value
+    if ($current) { return }
+  }
   foreach ($name in @(".env.production.local", ".env.local", ".env.production", ".env")) {
     $candidate = Join-Path $Web $name
     if (-not (Test-Path $candidate)) { continue }
     Get-Content $candidate | ForEach-Object {
-      if ($_ -match '^\s*VITE_MAPTILER_KEY\s*=\s*(.+)\s*$') {
-        $env:VITE_MAPTILER_KEY = $Matches[1].Trim().Trim('"').Trim("'")
+      if ($_ -match ("^\s*" + [regex]::Escape($Key) + "\s*=\s*(.+)\s*$")) {
+        Set-Item -Path "env:$Key" -Value ($Matches[1].Trim().Trim('"').Trim("'"))
       }
     }
-    if ($env:VITE_MAPTILER_KEY) { break }
+    $val = (Get-Item "env:$Key" -ErrorAction SilentlyContinue).Value
+    if ($val) { return }
   }
 }
 
+if (-not $env:VITE_API_URL) { $env:VITE_API_URL = "/api" }
+Import-WebEnv "VITE_MAPTILER_KEY"
+Import-WebEnv "VITE_OPS_PATH"
+
 if (-not $env:VITE_MAPTILER_KEY) {
   Write-Host "WARNING: VITE_MAPTILER_KEY not set - maps may fail."
-  Write-Host "Put it in apps\web\.env or run: `$env:VITE_MAPTILER_KEY = 'your_key'"
+  Write-Host "Put it in apps\web\.env.local or run: `$env:VITE_MAPTILER_KEY = 'your_key'"
+}
+
+if (-not $env:VITE_OPS_PATH) {
+  Write-Host "NOTE: VITE_OPS_PATH not set - owner ops panel will be hidden in this build."
 }
 
 npm run build -w web
