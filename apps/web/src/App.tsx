@@ -1,7 +1,8 @@
+import { useState } from 'react'
 import { areas } from './data/areas'
 import { ChecklistAuthGate } from './components/ChecklistAuthGate'
 import { MobileAppGate } from './components/MobileAppGate'
-import { isMobileDevice } from './lib/device'
+import { isMobileDevice, shouldShowMobileAppGate } from './lib/device'
 import { TrackersDirectoryPage } from './pages/AreaPage'
 import { AccountPage } from './pages/AuthPage'
 import { SettingsPage } from './pages/SettingsPage'
@@ -53,11 +54,23 @@ function checklistPath(path: string) {
 }
 
 function App() {
-  if (isMobileDevice()) {
+  const [bypassMobileGate, setBypassMobileGate] = useState(false)
+  const showMobileGate = shouldShowMobileAppGate() && !bypassMobileGate
+
+  if (showMobileGate) {
     document.documentElement.classList.add('is-mobile-gate')
-    return <MobileAppGate />
+    document.documentElement.classList.remove('is-mobile-web')
+    return (
+      <MobileAppGate onContinue={() => setBypassMobileGate(true)} />
+    )
   }
+
   document.documentElement.classList.remove('is-mobile-gate')
+  if (isMobileDevice()) {
+    document.documentElement.classList.add('is-mobile-web')
+  } else {
+    document.documentElement.classList.remove('is-mobile-web')
+  }
 
   let path = window.location.pathname.replace(/\/+$/, '') || '/'
 

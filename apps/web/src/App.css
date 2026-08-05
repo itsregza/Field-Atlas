@@ -261,6 +261,123 @@
   border-color: var(--ink);
 }
 
+@media (max-width: 900px) {
+  .site-header {
+    height: auto;
+    min-height: 56px;
+    padding: 10px 14px 12px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'brand menu'
+      'search search';
+    gap: 10px 12px;
+  }
+
+  .site-header .brand {
+    grid-area: brand;
+    min-width: 0;
+  }
+
+  .site-header .brand small {
+    display: none;
+  }
+
+  .site-header .brand strong {
+    font-size: 17px;
+  }
+
+  .site-header__menu-btn {
+    grid-area: menu;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 0 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--ink);
+    font: 700 12px / 1 var(--sans);
+    cursor: pointer;
+  }
+
+  .site-header .site-search {
+    grid-area: search;
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .site-header .site-nav {
+    display: none;
+  }
+
+  .site-header.is-menu-open {
+    grid-template-areas:
+      'brand menu'
+      'search search'
+      'nav nav';
+  }
+
+  .site-header.is-menu-open .site-nav {
+    grid-area: nav;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 4px 0 2px;
+    border-top: 1px solid var(--line);
+  }
+
+  .site-header.is-menu-open .site-nav a,
+  .site-header.is-menu-open .site-nav .nav-account {
+    min-height: 44px;
+    padding: 12px 4px;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid var(--line);
+    background: transparent;
+    justify-content: flex-start;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+
+  .site-header.is-menu-open .site-nav .nav-account {
+    margin-top: 4px;
+    border-bottom: 0;
+    color: var(--moss);
+  }
+
+  .workspace {
+    height: calc(100dvh - 118px);
+    min-height: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .peak-panel {
+    max-height: 42vh;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .soft-shell {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .soft-shell--feed {
+    width: min(100%, 470px);
+  }
+
+  .account-shell {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .feed-card__photo {
+    margin: 0;
+  }
+}
+
 .workspace {
   height: calc(100vh - 77px);
   min-height: 650px;
@@ -1424,6 +1541,49 @@ a:focus-visible {
   color: var(--ink);
   background: #fff;
   border-color: #fff;
+}
+
+.home-page--bleed .site-header__menu-btn {
+  border-color: rgb(247 242 230 / 35%);
+  background: rgb(31 36 24 / 35%);
+  color: #f7f2e6;
+}
+
+.home-page--bleed .site-header.is-menu-open {
+  background: rgb(31 36 24 / 94%);
+}
+
+.home-page--bleed .site-header.is-menu-open .site-nav a,
+.home-page--bleed .site-header.is-menu-open .site-nav .nav-account {
+  color: #f7f2e6;
+  border-bottom-color: rgb(247 242 230 / 14%);
+}
+
+.home-page--bleed .site-header.is-menu-open .site-nav .nav-account {
+  color: #fff;
+  background: var(--moss);
+  border-color: var(--moss);
+  justify-content: center;
+  border-radius: 999px;
+  margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+  .home-page--bleed .site-header {
+    position: absolute;
+    grid-template-areas: 'brand menu';
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .home-page--bleed .site-header.is-menu-open {
+    grid-template-areas:
+      'brand menu'
+      'nav nav';
+  }
+
+  .home-page--bleed .site-header > .site-search {
+    display: none;
+  }
 }
 
 .home-hero-bleed {
@@ -7466,6 +7626,26 @@ button.primary-link:disabled {
   font: 500 10px / 1 var(--mono);
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.mobile-gate__browser {
+  margin-top: 6px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--moss);
+  font: 700 14px / 1.3 var(--sans);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.mobile-gate__browser:hover {
+  color: var(--ink);
+}
+
+.site-header__menu-btn {
+  display: none;
 }
 
 .share-modal {

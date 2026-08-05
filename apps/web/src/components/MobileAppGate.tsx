@@ -1,4 +1,11 @@
-export function MobileAppGate() {
+import { setPrefersMobileBrowser } from '../lib/device'
+
+export function MobileAppGate({ onContinue }: { onContinue: () => void }) {
+  const continueInBrowser = () => {
+    setPrefersMobileBrowser(true)
+    onContinue()
+  }
+
   return (
     <main className="mobile-gate">
       <div className="mobile-gate__inner">
@@ -11,6 +18,7 @@ export function MobileAppGate() {
         />
         <span className="eyebrow">Field Atlas</span>
         <h1>Get the free app.</h1>
+        <p>Built for the hills. Or keep going in your browser for now.</p>
         <div className="mobile-gate__stores">
           <button type="button" className="mobile-gate__store" disabled>
             App Store
@@ -21,6 +29,13 @@ export function MobileAppGate() {
             <small>Coming soon</small>
           </button>
         </div>
+        <button
+          type="button"
+          className="mobile-gate__browser"
+          onClick={continueInBrowser}
+        >
+          Continue with browser
+        </button>
       </div>
     </main>
   )

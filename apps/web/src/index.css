@@ -56,8 +56,14 @@ html {
   scrollbar-gutter: stable;
 }
 
-html:not(.is-mobile-gate) {
-  min-width: 720px;
+@media (min-width: 901px) {
+  html {
+    min-width: 720px;
+  }
+
+  body {
+    min-width: 720px;
+  }
 }
 
 body {
@@ -65,8 +71,11 @@ body {
   margin: 0;
 }
 
-html:not(.is-mobile-gate) body {
-  min-width: 720px;
+html.is-mobile-web,
+html.is-mobile-web body {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 button,
