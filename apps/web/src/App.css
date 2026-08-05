@@ -9827,6 +9827,34 @@ button.text-link {
   max-width: 52ch;
 }
 
+.not-found-card {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 14px;
+  padding: 48px 24px;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--sand) 28%, #fff);
+  border: 1px solid var(--line);
+}
+
+.not-found-card h1 {
+  margin: 0;
+  font: 700 clamp(28px, 4vw, 36px) / 1.1 var(--sans);
+  letter-spacing: -0.03em;
+}
+
+.not-found-card > p:not(.soft-kicker) {
+  margin: 0;
+  max-width: 28ch;
+  color: var(--peat);
+  font: 500 16px / 1.5 var(--sans);
+}
+
+.not-found-card .account-pill-btn {
+  margin-top: 8px;
+}
+
 .soft-groups {
   display: grid;
   gap: 16px;

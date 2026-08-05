@@ -34,6 +34,7 @@ import { PublicChecklistPage } from './pages/PublicChecklistPage'
 import { TrackerPage } from './pages/TrackerPage'
 import { UnfinishedPeaksPage } from './pages/UnfinishedPeaksPage'
 import { WeatherPage } from './pages/WeatherPage'
+import { NotFoundPage } from './pages/NotFoundPage'
 import './App.css'
 
 function redirect(to: string) {
@@ -169,7 +170,9 @@ function App() {
     )
   }
 
-  return <HomePage />
+  if (path === '/' || path === '') return <HomePage />
+
+  return <NotFoundPage />
 }
 
 export default App
