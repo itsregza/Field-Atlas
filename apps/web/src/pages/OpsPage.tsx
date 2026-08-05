@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { SiteHeader } from '../components/SiteHeader'
 import {
   ApiError,
@@ -31,8 +31,25 @@ export function OpsPage() {
   const [summary, setSummary] = useState<OpsSummary | null>(null)
   const [users, setUsers] = useState<OpsUser[]>([])
   const [posts, setPosts] = useState<OpsPost[]>([])
+  const [userQuery, setUserQuery] = useState('')
   const [busyId, setBusyId] = useState('')
   const [error, setError] = useState('')
+
+  const filteredUsers = useMemo(() => {
+    const q = userQuery.trim().toLowerCase()
+    if (!q) return users
+    return users.filter((user) => {
+      const haystack = [
+        user.name,
+        user.email,
+        user.handle ? `@${user.handle}` : '',
+        user.handle ?? '',
+      ]
+        .join(' ')
+        .toLowerCase()
+      return haystack.includes(q)
+    })
+  }, [users, userQuery])
 
   const load = () => {
     setLoading(true)
@@ -132,30 +149,67 @@ export function OpsPage() {
               {users.length === 0 ? (
                 <p className="account-muted">No users yet.</p>
               ) : (
-                <div className="ops-table-wrap">
-                  <table className="ops-table">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Handle</th>
-                        <th>Email</th>
-                        <th>Public</th>
-                        <th>Joined</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {users.map((user) => (
-                        <tr key={user.id}>
-                          <td>{user.name}</td>
-                          <td>{user.handle ? `@${user.handle}` : '—'}</td>
-                          <td>{user.email}</td>
-                          <td>{user.isPublic ? 'Yes' : 'No'}</td>
-                          <td>{formatWhen(user.createdAt)}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                <>
+                  <label className="ops-search">
+                    <span className="sr-only">Search users</span>
+                    <input
+                      type="search"
+                      value={userQuery}
+                      placeholder="Search name, @handle, or email…"
+                      onChange={(event) => setUserQuery(event.target.value)}
+                    />
+                  </label>
+                  {filteredUsers.length === 0 ? (
+                    <p className="account-muted">No users match that search.</p>
+                  ) : (
+                    <div className="ops-table-wrap">
+                      <table className="ops-table">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Handle</th>
+                            <th>Email</th>
+                            <th>Public</th>
+                            <th>Joined</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {filteredUsers.map((user) => (
+                            <tr key={user.id}>
+                              <td>
+                                {user.handle ? (
+                                  <a
+                                    className="ops-user-link"
+                                    href={`/u/${encodeURIComponent(user.handle)}`}
+                                  >
+                                    {user.name}
+                                  </a>
+                                ) : (
+                                  user.name
+                                )}
+                              </td>
+                              <td>
+                                {user.handle ? (
+                                  <a
+                                    className="ops-user-link"
+                                    href={`/u/${encodeURIComponent(user.handle)}`}
+                                  >
+                                    @{user.handle}
+                                  </a>
+                                ) : (
+                                  '—'
+                                )}
+                              </td>
+                              <td>{user.email}</td>
+                              <td>{user.isPublic ? 'Yes' : 'No'}</td>
+                              <td>{formatWhen(user.createdAt)}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </>
               )}
             </section>
 
@@ -179,8 +233,17 @@ export function OpsPage() {
                       </a>
                       <div className="ops-post-list__copy">
                         <strong>
-                          {post.peakName || 'Post'} · @
-                          {post.authorHandle || 'unknown'}
+                          {post.peakName || 'Post'} ·{' '}
+                          {post.authorHandle ? (
+                            <a
+                              className="ops-user-link"
+                              href={`/u/${encodeURIComponent(post.authorHandle)}`}
+                            >
+                              @{post.authorHandle}
+                            </a>
+                          ) : (
+                            '@unknown'
+                          )}
                         </strong>
                         <span>{post.authorEmail}</span>
                         <p>{post.body}</p>
