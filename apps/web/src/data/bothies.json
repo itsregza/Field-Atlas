@@ -1,0 +1,3138 @@
+[
+  {
+    "id": "osm-way-182787955",
+    "name": "A' Chùil",
+    "coords": [
+      -5.384609,
+      56.977
+    ],
+    "region": "Western Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 182787955,
+    "website": "https://www.mountainbothies.org.uk/bothies/western-highlands-islands/achuil/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2020/04/achuilEDIT.jpg"
+  },
+  {
+    "id": "osm-way-484829532",
+    "name": "Abyssinia",
+    "coords": [
+      -4.817933,
+      56.265505
+    ],
+    "region": "Southwest Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 484829532,
+    "website": "https://www.mountainbothies.org.uk/bothies/southwest-highlands-islands/abyssinia/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2017/05/Abyssinia-848x518.jpg"
+  },
+  {
+    "id": "osm-way-98655394",
+    "name": "Achnanclach",
+    "coords": [
+      -4.346406,
+      58.426804
+    ],
+    "region": "Northern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 98655394,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-highlands/achnanclach/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2022/07/purple-1.jpg"
+  },
+  {
+    "id": "osm-way-989876806",
+    "name": "Allan's Hut",
+    "coords": [
+      -3.222767,
+      56.912902
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "Also used as a stable for stalker's horses",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 989876806,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-74533405",
+    "name": "Allt Scheicheachan",
+    "coords": [
+      -3.91152,
+      56.839934
+    ],
+    "region": "Eastern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 74533405,
+    "website": "https://www.mountainbothies.org.uk/bothies/eastern-highlands/allt-scheicheachan/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2020/04/Allt-Scheicheachan-3-edit.jpg"
+  },
+  {
+    "id": "osm-way-294256755",
+    "name": "An Cladach",
+    "coords": [
+      -6.085046,
+      55.785435
+    ],
+    "region": "Southern Scotland",
+    "operator": "Dunlossit Estate",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 294256755,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-597070979",
+    "name": "Arenig Fawr",
+    "coords": [
+      -3.711641,
+      52.926213
+    ],
+    "region": "Wales",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 597070979,
+    "website": "https://www.mountainbothies.org.uk/bothies/wales/arenig-fawr/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/0310-Arenig-Fawr-10-08-2008-barton.jpg"
+  },
+  {
+    "id": "osm-way-101941099",
+    "name": "Auchope Mountain Refuge Hut",
+    "coords": [
+      -2.19603,
+      55.475112
+    ],
+    "region": "Northern England",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 101941099,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-294235730",
+    "name": "Backhill of Bush (Bothy)",
+    "coords": [
+      -4.384457,
+      55.129533
+    ],
+    "region": "Southern Scotland",
+    "operator": "",
+    "description": "Missing window",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 294235730,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-node-10224126555",
+    "name": "Barisdale Bothy",
+    "coords": [
+      -5.513342,
+      57.079645
+    ],
+    "region": "Northwest Highlands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "node",
+    "osmId": 10224126555,
+    "website": "https://www.barrisdaleestate.com",
+    "image": ""
+  },
+  {
+    "id": "osm-way-95598440",
+    "name": "Barrisdale Bothy",
+    "coords": [
+      -5.513454,
+      57.085136
+    ],
+    "region": "Northwest Highlands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 95598440,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-83637916",
+    "name": "Bearnais",
+    "coords": [
+      -5.298829,
+      57.434325
+    ],
+    "region": "Northwest Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 83637916,
+    "website": "https://www.mountainbothies.org.uk/bothies/north-west-highlands-islands/bearnais/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/11/Bothy_Bearnais_pic.jpg"
+  },
+  {
+    "id": "osm-way-381743408",
+    "name": "Beehive Bothy",
+    "coords": [
+      -4.784415,
+      55.005658
+    ],
+    "region": "Southern Scotland",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 381743408,
+    "website": "https://www.dgoutdooraccess.org.uk/beehive-bothy/",
+    "image": ""
+  },
+  {
+    "id": "osm-way-446656498",
+    "name": "Ben Alder Cottage",
+    "coords": [
+      -4.458983,
+      56.779068
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "Mountain Bothies Association",
+    "description": "Ben Alder Cottage is in two parts. The old stone part of the bothy is always open and accessible for anyone to use. The timber built extension is for estate use only.",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446656498,
+    "website": "https://www.mountainbothies.org.uk/bothies/central-highlands/ben-alder-cottage/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2017/08/Ben-Alder-Sept-2012-1.jpg"
+  },
+  {
+    "id": "osm-way-291970969",
+    "name": "Bendronaig Lodge Bothy",
+    "coords": [
+      -5.307272,
+      57.396636
+    ],
+    "region": "Northwest Highlands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 291970969,
+    "website": "https://www.attadale.com/hill-walking-guide",
+    "image": ""
+  },
+  {
+    "id": "osm-way-1509939526",
+    "name": "BIrch Hall Bothy",
+    "coords": [
+      -3.39111,
+      51.836923
+    ],
+    "region": "Wales",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1509939526,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-64097141",
+    "name": "Blackburn of Corrieyairack",
+    "coords": [
+      -4.671876,
+      57.088233
+    ],
+    "region": "Northwest Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 64097141,
+    "website": "https://www.mountainbothies.org.uk/bothies/central-highlands/blackburn-of-corrieyairack/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Blackburn-of-Corrieyairick-February-2013-4-mcquiston.jpg"
+  },
+  {
+    "id": "osm-way-105250898",
+    "name": "Bob Scott's Bothy",
+    "coords": [
+      -3.579311,
+      57.018808
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 105250898,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-839116918",
+    "name": "Bothi Claerddu",
+    "coords": [
+      -3.771791,
+      52.302809
+    ],
+    "region": "Wales",
+    "operator": "Elan Valley Trust",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 839116918,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-749264803",
+    "name": "Bothy",
+    "coords": [
+      -4.105802,
+      57.208587
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 749264803,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-1309124751",
+    "name": "Bothy Tal-y-maes",
+    "coords": [
+      -4.050184,
+      53.030558
+    ],
+    "region": "Wales",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1309124751,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-385679418",
+    "name": "Brattleburn",
+    "coords": [
+      -3.553591,
+      55.346518
+    ],
+    "region": "Southern Scotland",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 385679418,
+    "website": "https://www.mountainbothies.org.uk/bothies/southern-scotland/brattleburn/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/P1050389-p-alymer.jpg"
+  },
+  {
+    "id": "osm-way-235192369",
+    "name": "Burleywhag",
+    "coords": [
+      -3.621383,
+      55.284086
+    ],
+    "region": "Southern Scotland",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 235192369,
+    "website": "https://www.mountainbothies.org.uk/bothies/southern-scotland/burleywhag/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Burleywhag-5-alan-bellis.jpg"
+  },
+  {
+    "id": "osm-way-118151255",
+    "name": "Burnmouth",
+    "coords": [
+      -3.380651,
+      58.868701
+    ],
+    "region": "Northern Highlands",
+    "operator": "The Hoy Trust",
+    "description": "Free Bothy with toilet, no electricity, no beds. Camping in the walled paddock is allowed.",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 118151255,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-446513088",
+    "name": "Cadderlie",
+    "coords": [
+      -5.175007,
+      56.484531
+    ],
+    "region": "Southwest Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446513088,
+    "website": "https://www.mountainbothies.org.uk/bothies/southwest-highlands-islands/cadderlie/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Cadderlie-1-dave-todd.jpg"
+  },
+  {
+    "id": "osm-way-515199370",
+    "name": "Cae Amos Bothy",
+    "coords": [
+      -4.210836,
+      52.986128
+    ],
+    "region": "Wales",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 515199370,
+    "website": "https://www.mountainbothies.org.uk/bothies/wales/cae-amos/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2017/06/sparky-gilmore.jpg"
+  },
+  {
+    "id": "osm-way-203603343",
+    "name": "Callater Stable",
+    "coords": [
+      -3.3526,
+      56.943838
+    ],
+    "region": "Eastern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 203603343,
+    "website": "https://www.mountainbothies.org.uk/bothies/eastern-highlands/callater-stable/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2018/06/DSC_1902.jpg"
+  },
+  {
+    "id": "osm-way-449599819",
+    "name": "Camasunary",
+    "coords": [
+      -6.110466,
+      57.188142
+    ],
+    "region": "Northwest Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 449599819,
+    "website": "https://www.mountainbothies.org.uk/bothies/north-west-highlands-islands/camasunary/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2020/04/image1.jpg"
+  },
+  {
+    "id": "osm-way-78568441",
+    "name": "Camban bothy",
+    "coords": [
+      -5.225192,
+      57.214411
+    ],
+    "region": "Northwest Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 78568441,
+    "website": "https://www.mountainbothies.org.uk/bothies/north-west-highlands-islands/camban/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2017/10/060_60-pryde-v2.jpg"
+  },
+  {
+    "id": "osm-way-831162890",
+    "name": "Carlottas Eyrie Bothy",
+    "coords": [
+      -5.825361,
+      56.888205
+    ],
+    "region": "Western Highlands & Islands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 831162890,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-169419004",
+    "name": "Carnmore Bothy",
+    "coords": [
+      -5.398228,
+      57.736544
+    ],
+    "region": "Northwest Highlands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 169419004,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-216539595",
+    "name": "Carron",
+    "coords": [
+      -5.310823,
+      56.144819
+    ],
+    "region": "Southwest Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 216539595,
+    "website": "https://www.mountainbothies.org.uk/bothies/southwest-highlands-islands/carron/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Gordon-Mackie-005.jpg"
+  },
+  {
+    "id": "osm-way-317289206",
+    "name": "Cefn Gwyn",
+    "coords": [
+      -3.735755,
+      52.994498
+    ],
+    "region": "Wales",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 317289206,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-382254292",
+    "name": "Chalk Memorial Bothy",
+    "coords": [
+      -4.071714,
+      55.293405
+    ],
+    "region": "Southern Scotland",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 382254292,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-397918502",
+    "name": "Charr Bothy",
+    "coords": [
+      -2.633062,
+      56.937646
+    ],
+    "region": "Eastern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 397918502,
+    "website": "https://www.mountainbothies.org.uk/bothies/eastern-highlands/charr/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2017/07/19667652_1348248648629970_1317735646510295045_o-watson.jpg"
+  },
+  {
+    "id": "osm-way-157390904",
+    "name": "Chiarain Bothy",
+    "coords": [
+      -4.798389,
+      56.730676
+    ],
+    "region": "Eastern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 157390904,
+    "website": "https://www.mountainbothies.org.uk/bothies/central-highlands/loch-chiarain/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/1405f-Chiarain-sandy-reid.jpg"
+  },
+  {
+    "id": "osm-way-446865317",
+    "name": "Clennoch",
+    "coords": [
+      -4.200304,
+      55.275699
+    ],
+    "region": "Southern Scotland",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446865317,
+    "website": "https://www.mountainbothies.org.uk/bothies/southern-scotland/clennoch/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Clennoch-August-2005-4-mcquiston.jpg"
+  },
+  {
+    "id": "osm-way-44503745",
+    "name": "Coire Fionnaraich Bothy",
+    "coords": [
+      -5.420865,
+      57.475535
+    ],
+    "region": "Northwest Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 44503745,
+    "website": "https://www.mountainbothies.org.uk/bothies/north-west-highlands-islands/coire-fionnaraich/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2023/04/CF-main-picture.jpg"
+  },
+  {
+    "id": "osm-way-230365421",
+    "name": "Coiremor",
+    "coords": [
+      -4.858034,
+      57.856513
+    ],
+    "region": "Northern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 230365421,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-highlands/coiremor-choire-mhoir/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2017/10/Coiremor.jpg"
+  },
+  {
+    "id": "osm-way-115026204",
+    "name": "Corrour Bothy",
+    "coords": [
+      -3.680967,
+      57.042042
+    ],
+    "region": "Eastern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 115026204,
+    "website": "https://www.mountainbothies.org.uk/bothies/eastern-highlands/corrour/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Corrour-dan-barber.jpg"
+  },
+  {
+    "id": "osm-way-446850698",
+    "name": "Corryhully",
+    "coords": [
+      -5.429034,
+      56.90379
+    ],
+    "region": "Western Highlands & Islands",
+    "operator": "Glenfinnan Estate",
+    "description": "Power outlets and electric light",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446850698,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-node-12556182796",
+    "name": "Coyles Cottage",
+    "coords": [
+      -3.112363,
+      57.013825
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "node",
+    "osmId": 12556182796,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-180085030",
+    "name": "Craig",
+    "coords": [
+      -5.727038,
+      57.609671
+    ],
+    "region": "Northwest Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 180085030,
+    "website": "https://www.mountainbothies.org.uk/bothies/north-west-highlands-islands/craig/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Craig-Bothy-bellis.jpg"
+  },
+  {
+    "id": "osm-way-205539866",
+    "name": "Creag Mohr",
+    "coords": [
+      -4.723265,
+      57.924351
+    ],
+    "region": "Northwest Highlands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 205539866,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-98222107",
+    "name": "Croft House",
+    "coords": [
+      -4.066844,
+      58.412403
+    ],
+    "region": "Northern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 98222107,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-highlands/croft-house-lochstrathy/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Lochstrathy-Bothy-1-alan-bellis.jpg"
+  },
+  {
+    "id": "osm-way-137340927",
+    "name": "Cruib",
+    "coords": [
+      -5.901604,
+      55.977035
+    ],
+    "region": "Southwest Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 137340927,
+    "website": "https://www.mountainbothies.org.uk/bothies/southwest-highlands-islands/cruib/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Cruib-aex-mackie.jpg"
+  },
+  {
+    "id": "osm-way-259803017",
+    "name": "Culra",
+    "coords": [
+      -4.42395,
+      56.853575
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 259803017,
+    "website": "https://www.mountainbothies.org.uk/bothies/central-highlands-cairngorms/culra/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2025/11/PHOTO-2025-11-07-19-55-13-edit.jpg"
+  },
+  {
+    "id": "osm-way-218290395",
+    "name": "Culsharg (Bothy)",
+    "coords": [
+      -4.485703,
+      55.108252
+    ],
+    "region": "Southern Scotland",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 218290395,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-446850700",
+    "name": "Dalnashallag",
+    "coords": [
+      -4.229932,
+      57.056902
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446850700,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-551950441",
+    "name": "Davy's Bourach",
+    "coords": [
+      -3.258654,
+      56.88497
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 551950441,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-58177887",
+    "name": "Dibidil Bothy",
+    "coords": [
+      -6.289053,
+      56.952222
+    ],
+    "region": "Western Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 58177887,
+    "website": "https://www.mountainbothies.org.uk/bothies/western-highlands-islands/dibidil/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/dib.jpg"
+  },
+  {
+    "id": "osm-way-278797747",
+    "name": "Doune Byre",
+    "coords": [
+      -4.695868,
+      56.293062
+    ],
+    "region": "Southwest Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 278797747,
+    "website": "https://www.mountainbothies.org.uk/bothies/southwest-highlands-islands/doune-byre/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Doune-Byre-March-2014-peter-Rowell.jpg"
+  },
+  {
+    "id": "osm-way-446865319",
+    "name": "Dryfehead",
+    "coords": [
+      -3.308089,
+      55.286628
+    ],
+    "region": "Southern Scotland",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446865319,
+    "website": "https://www.mountainbothies.org.uk/bothies/southern-scotland/dryfehead/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2017/08/Dryfehead-christopher-horton.jpg"
+  },
+  {
+    "id": "osm-way-291812651",
+    "name": "Dubs Hut",
+    "coords": [
+      -3.222864,
+      54.510026
+    ],
+    "region": "Northern England",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 291812651,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-england-borders/dubs-hut/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2024/10/Dubs-Edit-jpg.jpg"
+  },
+  {
+    "id": "osm-way-446850699",
+    "name": "Duinish",
+    "coords": [
+      -4.263318,
+      56.773898
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446850699,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-604057741",
+    "name": "Dulyn",
+    "coords": [
+      -3.938744,
+      53.178853
+    ],
+    "region": "Wales",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 604057741,
+    "website": "https://www.mountainbothies.org.uk/bothies/wales/dulyn/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2022/08/Dulyn-1.jpg"
+  },
+  {
+    "id": "osm-way-34700876",
+    "name": "Easan Dorcha (The Teahouse)",
+    "coords": [
+      -5.321575,
+      57.519163
+    ],
+    "region": "Northwest Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 34700876,
+    "website": "https://www.mountainbothies.org.uk/bothies/north-west-highlands-islands/easan-dorcha-the-teahouse/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2021/01/tea-house.jpg"
+  },
+  {
+    "id": "osm-way-38787228",
+    "name": "Eilean Gorm Bothy",
+    "coords": [
+      -4.486845,
+      56.180992
+    ],
+    "region": "Southern Scotland",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 38787228,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-446431736",
+    "name": "Essan",
+    "coords": [
+      -5.583278,
+      56.874756
+    ],
+    "region": "Southwest Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446431736,
+    "website": "https://www.mountainbothies.org.uk/bothies/southwest-highlands-islands/essan/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2025/01/P1090827.jpg"
+  },
+  {
+    "id": "osm-way-446669480",
+    "name": "Faindouran",
+    "coords": [
+      -3.518818,
+      57.137099
+    ],
+    "region": "Eastern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446669480,
+    "website": "https://www.mountainbothies.org.uk/bothies/eastern-highlands/faindouran/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/img_88951.jpg"
+  },
+  {
+    "id": "osm-way-743441668",
+    "name": "Flittingford",
+    "coords": [
+      -2.388684,
+      55.190705
+    ],
+    "region": "Northern England",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 743441668,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-england-borders/flittingford/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2017/12/flittingford-edit.jpg"
+  },
+  {
+    "id": "osm-way-446669479",
+    "name": "Fords of Avon Refuge Hut",
+    "coords": [
+      -3.583309,
+      57.10955
+    ],
+    "region": "Eastern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "Not for planned overnight stays, merely a backup for very bad weather or (emergency) overnight stays",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446669479,
+    "website": "https://www.mountainbothies.org.uk/bothies/eastern-highlands/fords-of-avon-refuge/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/fords-of-avon-derek-stewart.jpg"
+  },
+  {
+    "id": "osm-way-453293616",
+    "name": "Foreland Bothy",
+    "coords": [
+      -3.783988,
+      51.24154
+    ],
+    "region": "South West England",
+    "operator": "National Trust",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 453293616,
+    "website": "https://www.nationaltrust.org.uk/holidays/foreland-bothy-devon",
+    "image": ""
+  },
+  {
+    "id": "osm-way-446865321",
+    "name": "Gameshope",
+    "coords": [
+      -3.368708,
+      55.452697
+    ],
+    "region": "Southern Scotland",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446865321,
+    "website": "https://www.mountainbothies.org.uk/bothies/southern-scotland/gameshope/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2025/08/7R409139.jpg"
+  },
+  {
+    "id": "osm-way-397916097",
+    "name": "Gelder Shiel Stable",
+    "coords": [
+      -3.224076,
+      56.995158
+    ],
+    "region": "Eastern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 397916097,
+    "website": "https://www.mountainbothies.org.uk/bothies/eastern-highlands/gelder-shiel-stable/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/new-yr-15-16-022-neil-reid.jpg"
+  },
+  {
+    "id": "osm-way-108966299",
+    "name": "Glas-allt-Shiel",
+    "coords": [
+      -3.19088,
+      56.927444
+    ],
+    "region": "Eastern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 108966299,
+    "website": "https://www.mountainbothies.org.uk/bothies/eastern-highlands/glas-allt-shiel/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2019/04/007.jpg"
+  },
+  {
+    "id": "osm-way-60219954",
+    "name": "Gleann Dubh-lighe",
+    "coords": [
+      -5.374955,
+      56.883532
+    ],
+    "region": "Western Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 60219954,
+    "website": "https://www.mountainbothies.org.uk/bothies/western-highlands-islands/gleann-dubh-lighe/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/1560470_570407819695371_793440187_n-bellis.jpg"
+  },
+  {
+    "id": "osm-way-446850697",
+    "name": "Glen Sulaig",
+    "coords": [
+      -5.236796,
+      56.899402
+    ],
+    "region": "Western Highlands & Islands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446850697,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-169387272",
+    "name": "Glenbeg Bothy",
+    "coords": [
+      -4.840284,
+      57.808826
+    ],
+    "region": "Northwest Highlands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 169387272,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-446656496",
+    "name": "Glenbuck",
+    "coords": [
+      -4.745482,
+      57.056858
+    ],
+    "region": "Northwest Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446656496,
+    "website": "https://www.mountainbothies.org.uk/bothies/central-highlands/glenbuck/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/IMG_1060-mcturk.jpg"
+  },
+  {
+    "id": "osm-way-292082913",
+    "name": "Glencoul",
+    "coords": [
+      -4.946723,
+      58.228073
+    ],
+    "region": "Northern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 292082913,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-highlands/glencoul/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/0193-Glencoul-08-05-2015-r-barton.jpg"
+  },
+  {
+    "id": "osm-way-292082912",
+    "name": "Glendhu",
+    "coords": [
+      -4.927896,
+      58.258588
+    ],
+    "region": "Northern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 292082912,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-highlands/glendhu/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2023/07/Glendhu-a-mackie-edit.jpg"
+  },
+  {
+    "id": "osm-way-137340922",
+    "name": "Glengarrisdale",
+    "coords": [
+      -5.790136,
+      56.106829
+    ],
+    "region": "Southwest Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 137340922,
+    "website": "https://www.mountainbothies.org.uk/bothies/southwest-highlands-islands/glengarrisdale/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Glengarrisdale-March-08-2-bellis.jpg"
+  },
+  {
+    "id": "osm-way-78568413",
+    "name": "Glenlicht House",
+    "coords": [
+      -5.303169,
+      57.203077
+    ],
+    "region": "Northwest Highlands",
+    "operator": "EUMC",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 78568413,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-446435948",
+    "name": "Glenpean Bothy",
+    "coords": [
+      -5.395615,
+      56.957959
+    ],
+    "region": "Western Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446435948,
+    "website": "https://www.mountainbothies.org.uk/bothies/western-highlands-islands/glenpean/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2017/07/Glenpean.jpg"
+  },
+  {
+    "id": "osm-way-232739426",
+    "name": "Gorton",
+    "coords": [
+      -4.64845,
+      56.596947
+    ],
+    "region": "Eastern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 232739426,
+    "website": "https://www.mountainbothies.org.uk/bothies/central-highlands/gorton/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Carron-Bothy-Feb-2010-bellis.jpg"
+  },
+  {
+    "id": "osm-way-493948411",
+    "name": "Great Lingy Hut",
+    "coords": [
+      -3.069331,
+      54.692548
+    ],
+    "region": "Northern England",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 493948411,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-england-borders/great-lingy-hut/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2023/10/Lingy-old-new-3.png"
+  },
+  {
+    "id": "osm-way-183727467",
+    "name": "Green",
+    "coords": [
+      -2.40907,
+      55.101172
+    ],
+    "region": "Northern England",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 183727467,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-england-borders/green/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2024/09/Boarded-up.png"
+  },
+  {
+    "id": "osm-way-661006534",
+    "name": "Green Bothy",
+    "coords": [
+      -3.913384,
+      56.582884
+    ],
+    "region": "Eastern Highlands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 661006534,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-369500767",
+    "name": "Greenhaw Hut",
+    "coords": [
+      -2.01239,
+      54.32616
+    ],
+    "region": "Northern England",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 369500767,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-446865320",
+    "name": "Greensykes",
+    "coords": [
+      -3.084151,
+      55.289788
+    ],
+    "region": "Southern Scotland",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446865320,
+    "website": "https://www.mountainbothies.org.uk/bothies/southern-scotland/greensykes/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2019/04/57085305_1995247363878069_5810999371763810304_n.jpg"
+  },
+  {
+    "id": "osm-way-258834856",
+    "name": "Greg's Hut Bothy",
+    "coords": [
+      -2.481497,
+      54.712849
+    ],
+    "region": "Northern England",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 258834856,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-england-borders/gregs-hut/",
+    "image": ""
+  },
+  {
+    "id": "osm-way-223456728",
+    "name": "Grwyne Fawr",
+    "coords": [
+      -3.128609,
+      51.974363
+    ],
+    "region": "Wales",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 223456728,
+    "website": "https://www.mountainbothies.org.uk/bothies/wales/grwyne-fawr/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/IMG_1495-mcturk.jpg"
+  },
+  {
+    "id": "osm-way-111636594",
+    "name": "Guirdil",
+    "coords": [
+      -6.418488,
+      57.025064
+    ],
+    "region": "Western Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 111636594,
+    "website": "https://www.mountainbothies.org.uk/bothies/western-highlands-islands/guirdil/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Bothy-18-b-stainsby.jpg"
+  },
+  {
+    "id": "osm-way-181309939",
+    "name": "Haughtongreen",
+    "coords": [
+      -2.333199,
+      55.035471
+    ],
+    "region": "Northern England",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 181309939,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-england-borders/haughtongreen/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/2016-06-10_3302-jsm.jpg"
+  },
+  {
+    "id": "osm-node-10236191010",
+    "name": "Howe of Torbeg",
+    "coords": [
+      -3.116858,
+      57.087485
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "node",
+    "osmId": 10236191010,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-397766353",
+    "name": "Hutchinson Memorial Hut",
+    "coords": [
+      -3.613358,
+      57.07873
+    ],
+    "region": "Eastern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 397766353,
+    "website": "https://www.mountainbothies.org.uk/bothies/eastern-highlands/hutchison-memorial-hut-etchachan/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2021/10/Hutchison-Memorial-Hut-edit-Apr-15-d-sinclair-720x440-1.jpg"
+  },
+  {
+    "id": "osm-way-352344748",
+    "name": "Imperial College Mountain Hut",
+    "coords": [
+      -4.178269,
+      53.058448
+    ],
+    "region": "Wales",
+    "operator": "Imperial College",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 352344748,
+    "website": "https://www.imperial.ac.uk/sport/facilities/north-wales/",
+    "image": ""
+  },
+  {
+    "id": "osm-way-169383061",
+    "name": "Inshriach (\"Drake's\") Bothy",
+    "coords": [
+      -3.845124,
+      57.127538
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 169383061,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-503569300",
+    "name": "Inver Croft",
+    "coords": [
+      -5.093967,
+      57.555142
+    ],
+    "region": "Northwest Highlands",
+    "operator": "Jacobites MC",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 503569300,
+    "website": "http://www.jacobitesmc.co.uk/inver",
+    "image": ""
+  },
+  {
+    "id": "osm-way-446544133",
+    "name": "Invermallie",
+    "coords": [
+      -5.066701,
+      56.952925
+    ],
+    "region": "Western Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446544133,
+    "website": "https://www.mountainbothies.org.uk/bothies/western-highlands-islands/invermallie/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2024/06/Invermallie-FAQ.pdf"
+  },
+  {
+    "id": "osm-way-435690553",
+    "name": "Johnny Gordon's Bothy",
+    "coords": [
+      -2.999282,
+      56.922115
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 435690553,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-424698550",
+    "name": "Kearvaig",
+    "coords": [
+      -4.941155,
+      58.60848
+    ],
+    "region": "Northern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 424698550,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-highlands/kearvaig/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2017/07/kearvaig-bothy.jpg"
+  },
+  {
+    "id": "osm-way-449771134",
+    "name": "Kershopehead",
+    "coords": [
+      -2.716783,
+      55.168898
+    ],
+    "region": "Northern England",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 449771134,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-england-borders/kershopehead/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2020/02/Kershopehead-article.pdf"
+  },
+  {
+    "id": "osm-way-446865318",
+    "name": "Kettleton Byre",
+    "coords": [
+      -3.715823,
+      55.300541
+    ],
+    "region": "Southern Scotland",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446865318,
+    "website": "https://www.mountainbothies.org.uk/bothies/southern-scotland/kettleton-byre/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/b.-Kettleton-Byre-2-ns.jpg"
+  },
+  {
+    "id": "osm-way-366280921",
+    "name": "Kinbreack",
+    "coords": [
+      -5.292943,
+      57.012307
+    ],
+    "region": "Western Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 366280921,
+    "website": "https://www.mountainbothies.org.uk/bothies/western-highlands-islands/kinbreack/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/2011_0209NewYear20090028-p-king.jpg"
+  },
+  {
+    "id": "osm-node-9672631865",
+    "name": "Kintyre Way Outdoor Education Classroom",
+    "coords": [
+      -5.546083,
+      55.545808
+    ],
+    "region": "Southern Scotland",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "node",
+    "osmId": 9672631865,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-66887827",
+    "name": "Knockdamph",
+    "coords": [
+      -4.894836,
+      57.914898
+    ],
+    "region": "Northern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 66887827,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-highlands/knockdamph/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Knockdamph-Bothy-2-alan-bellis.jpg"
+  },
+  {
+    "id": "osm-way-157415713",
+    "name": "Lairig Leacach",
+    "coords": [
+      -4.815706,
+      56.822652
+    ],
+    "region": "Southwest Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 157415713,
+    "website": "https://www.mountainbothies.org.uk/bothies/central-highlands/lairig-leacach/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/IMG_2403-m-mcturk.jpg"
+  },
+  {
+    "id": "osm-way-446513086",
+    "name": "Leacraithnaich",
+    "coords": [
+      -5.676318,
+      56.561887
+    ],
+    "region": "Southwest Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446513086,
+    "website": "https://www.mountainbothies.org.uk/bothies/southwest-highlands-islands/leacraithnaich/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2019/06/DSCF0031.jpg"
+  },
+  {
+    "id": "osm-way-750259049",
+    "name": "Leckie Bothy",
+    "coords": [
+      -5.189347,
+      57.630572
+    ],
+    "region": "Northwest Highlands",
+    "operator": "",
+    "description": "An old shepards house previously converted to a bothy. Now locked and disused.",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 750259049,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-388394995",
+    "name": "Lluest Cwmbach Bothy",
+    "coords": [
+      -3.614327,
+      52.321422
+    ],
+    "region": "Wales",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 388394995,
+    "website": "https://www.mountainbothies.org.uk/bothies/wales/lluest-cwmbach/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2017/06/DSC01671-gill-millward.jpg"
+  },
+  {
+    "id": "osm-way-274566080",
+    "name": "Llyndy Bothy",
+    "coords": [
+      -4.050116,
+      53.025736
+    ],
+    "region": "Wales",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 274566080,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-697350846",
+    "name": "Loch Wharral Bothy",
+    "coords": [
+      -3.054201,
+      56.853086
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "Rottal Estate",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 697350846,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-134106534",
+    "name": "Lochivraon Bothy",
+    "coords": [
+      -5.161697,
+      57.710673
+    ],
+    "region": "Northwest Highlands",
+    "operator": "Inverbroom Estate",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 134106534,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-1059399564",
+    "name": "Log Cabin",
+    "coords": [
+      -5.669509,
+      57.029779
+    ],
+    "region": "Northwest Highlands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1059399564,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-52217424",
+    "name": "Luib Chonnal",
+    "coords": [
+      -4.645963,
+      57.005959
+    ],
+    "region": "Northwest Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 52217424,
+    "website": "https://www.mountainbothies.org.uk/bothies/central-highlands/luib-chonnal/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Luib-Chonnal-a-mackie.jpg"
+  },
+  {
+    "id": "osm-way-52218690",
+    "name": "Luibleathann",
+    "coords": [
+      -4.083006,
+      57.047241
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 52218690,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-496754323",
+    "name": "Mangurstadh Bothy",
+    "coords": [
+      -7.101569,
+      58.172381
+    ],
+    "region": "Northwest Highlands",
+    "operator": "Private",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 496754323,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-252994308",
+    "name": "Maol Bhuidhe",
+    "coords": [
+      -5.240724,
+      57.37215
+    ],
+    "region": "Northwest Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 252994308,
+    "website": "https://www.mountainbothies.org.uk/bothies/north-west-highlands-islands/maol-bhuidhe/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Maol-Bhuidhe-Jun-09-david-sinclair.jpg"
+  },
+  {
+    "id": "osm-way-446513089",
+    "name": "Mark Cottage",
+    "coords": [
+      -4.849294,
+      56.116277
+    ],
+    "region": "Southwest Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446513089,
+    "website": "https://www.mountainbothies.org.uk/bothies/southwest-highlands-islands/mark-cottage/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/cover-j-houston.jpg"
+  },
+  {
+    "id": "osm-way-52200658",
+    "name": "Meanach bothy",
+    "coords": [
+      -4.839315,
+      56.77556
+    ],
+    "region": "Southwest Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 52200658,
+    "website": "https://www.mountainbothies.org.uk/bothies/central-highlands/meanach/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/meanach-mcturk.jpg"
+  },
+  {
+    "id": "osm-way-52217449",
+    "name": "Melgarve",
+    "coords": [
+      -4.533857,
+      57.030203
+    ],
+    "region": "Northwest Highlands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 52217449,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-377637084",
+    "name": "Moel Prysgau",
+    "coords": [
+      -3.749826,
+      52.23531
+    ],
+    "region": "Wales",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 377637084,
+    "website": "https://www.mountainbothies.org.uk/bothies/wales/moel-prysgau/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/10583961_653014334768052_2880234255613816726_n-bellis.jpg"
+  },
+  {
+    "id": "osm-way-238448699",
+    "name": "Mosedale Cottage",
+    "coords": [
+      -2.781192,
+      54.478312
+    ],
+    "region": "Northern England",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 238448699,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-england-borders/mosedale-cottage/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Mosedale-Cottage-bothy-2-hutchison.jpg"
+  },
+  {
+    "id": "osm-way-1076213537",
+    "name": "Nant Syddion",
+    "coords": [
+      -3.804153,
+      52.395808
+    ],
+    "region": "Wales",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1076213537,
+    "website": "https://www.mountainbothies.org.uk/bothies/wales/nant-syddion/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/aIMG_8880a-c-hutchison.jpg"
+  },
+  {
+    "id": "osm-way-666782632",
+    "name": "Nant-Rhys",
+    "coords": [
+      -3.711085,
+      52.399059
+    ],
+    "region": "Wales",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 666782632,
+    "website": "https://www.mountainbothies.org.uk/bothies/wales/nant-rhys/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/14731282_1029864703749678_3382700881581775100_n-bellis.jpg"
+  },
+  {
+    "id": "osm-way-272046474",
+    "name": "Nantmor Mountain Centre",
+    "coords": [
+      -4.038944,
+      53.014615
+    ],
+    "region": "Wales",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 272046474,
+    "website": "https://nantmormountaincentre.co.uk/",
+    "image": ""
+  },
+  {
+    "id": "osm-way-438458839",
+    "name": "Narrachan Bothy",
+    "coords": [
+      -5.069781,
+      56.482908
+    ],
+    "region": "Southwest Highlands & Islands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 438458839,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-446432765",
+    "name": "Oban",
+    "coords": [
+      -5.515189,
+      56.95198
+    ],
+    "region": "Western Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446432765,
+    "website": "https://www.mountainbothies.org.uk/bothies/western-highlands-islands/oban/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Oban-Jul-11-david-sinclair.jpg"
+  },
+  {
+    "id": "osm-way-251482191",
+    "name": "Ollisdal",
+    "coords": [
+      -6.636411,
+      57.359482
+    ],
+    "region": "Northwest Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 251482191,
+    "website": "https://www.mountainbothies.org.uk/bothies/north-west-highlands-islands/ollisdal/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/emily-john.jpg"
+  },
+  {
+    "id": "osm-way-343075962",
+    "name": "Over Phawhope",
+    "coords": [
+      -3.292368,
+      55.360663
+    ],
+    "region": "Southern Scotland",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 343075962,
+    "website": "https://www.mountainbothies.org.uk/bothies/southern-scotland/over-phawhope/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2017/08/Over-Phawhope-christopher-horton.jpg"
+  },
+  {
+    "id": "osm-way-315464707",
+    "name": "Peanmeanach",
+    "coords": [
+      -5.754582,
+      56.859487
+    ],
+    "region": "Western Highlands & Islands",
+    "operator": "Ardnish Estate",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 315464707,
+    "website": "https://www.ardnish.org/bothy/",
+    "image": ""
+  },
+  {
+    "id": "osm-way-384027842",
+    "name": "Penrhos Isaf",
+    "coords": [
+      -3.873669,
+      52.797609
+    ],
+    "region": "Wales",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 384027842,
+    "website": "https://www.mountainbothies.org.uk/bothies/wales/penrhos-isaf/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/DSCF0289.jpg"
+  },
+  {
+    "id": "osm-way-294003529",
+    "name": "Proaig",
+    "coords": [
+      -6.052018,
+      55.745478
+    ],
+    "region": "Southern Scotland",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 294003529,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-node-1187676548",
+    "name": "Red Bothy",
+    "coords": [
+      -4.168024,
+      57.092265
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "node",
+    "osmId": 1187676548,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-446513085",
+    "name": "Resourie",
+    "coords": [
+      -5.502265,
+      56.78071
+    ],
+    "region": "Southwest Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446513085,
+    "website": "https://www.mountainbothies.org.uk/bothies/southwest-highlands-islands/resourie/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2023/07/Resourie-1-720x440.jpg"
+  },
+  {
+    "id": "osm-way-238700579",
+    "name": "Roughside",
+    "coords": [
+      -2.4006,
+      55.143397
+    ],
+    "region": "Northern England",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 238700579,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-england-borders/roughside/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2024/05/Roughside-1.png"
+  },
+  {
+    "id": "osm-way-446514074",
+    "name": "Rowchoish",
+    "coords": [
+      -4.683662,
+      56.202245
+    ],
+    "region": "Southwest Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446514074,
+    "website": "https://www.mountainbothies.org.uk/bothies/southwest-highlands-islands/rowchoish/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/L1010704-g-mackie.jpg"
+  },
+  {
+    "id": "osm-way-137340924",
+    "name": "Ruantallain",
+    "coords": [
+      -6.000537,
+      55.977276
+    ],
+    "region": "Southern Scotland",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 137340924,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-446669478",
+    "name": "Ruigh Aiteachain",
+    "coords": [
+      -3.900362,
+      57.011871
+    ],
+    "region": "Eastern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446669478,
+    "website": "https://www.mountainbothies.org.uk/bothies/eastern-highlands/ruigh-aiteachain/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2018/06/P1020924.jpg"
+  },
+  {
+    "id": "osm-way-79409085",
+    "name": "Ryvoan Bothy",
+    "coords": [
+      -3.645816,
+      57.183644
+    ],
+    "region": "Eastern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 79409085,
+    "website": "https://www.mountainbothies.org.uk/bothies/eastern-highlands/ryvoan/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Ryvoan-March-2015-045-joyce-low.jpg"
+  },
+  {
+    "id": "osm-way-382327296",
+    "name": "Scalpay Bothy",
+    "coords": [
+      -6.642323,
+      57.857836
+    ],
+    "region": "Northwest Highlands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 382327296,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-66905668",
+    "name": "Shenavall Bothy",
+    "coords": [
+      -5.254181,
+      57.776774
+    ],
+    "region": "Northern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 66905668,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-highlands/shenavall/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2023/07/Shenavall-Peter-Aikman.jpg"
+  },
+  {
+    "id": "osm-way-126812367",
+    "name": "Shiel of Castlemaddy",
+    "coords": [
+      -4.271424,
+      55.178903
+    ],
+    "region": "Southern Scotland",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 126812367,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-108965176",
+    "name": "Shielin of Mark",
+    "coords": [
+      -3.09125,
+      56.930101
+    ],
+    "region": "Eastern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 108965176,
+    "website": "https://www.mountainbothies.org.uk/bothies/eastern-highlands/shielin-of-mark/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Shielin-of-Mark-April-2001.jpg"
+  },
+  {
+    "id": "osm-way-1188673532",
+    "name": "Shoddy Hut",
+    "coords": [
+      -5.893682,
+      54.19259
+    ],
+    "region": "Northern Ireland",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1188673532,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-52102377",
+    "name": "Sourlies",
+    "coords": [
+      -5.512703,
+      56.997381
+    ],
+    "region": "Western Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "Can be very busy in the Summer, worth bring a tent.",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 52102377,
+    "website": "https://www.mountainbothies.org.uk/bothies/western-highlands-islands/sourlies/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/3-Camping-at-Sourlies-bellis.jpg"
+  },
+  {
+    "id": "osm-way-333564261",
+    "name": "Spithope Bothy",
+    "coords": [
+      -2.366778,
+      55.344293
+    ],
+    "region": "Northern England",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 333564261,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-1303524192",
+    "name": "Spring Valley Lodges",
+    "coords": [
+      -3.661155,
+      51.72824
+    ],
+    "region": "Wales",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1303524192,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-251668118",
+    "name": "Spylaw Cottage",
+    "coords": [
+      -1.938957,
+      55.271394
+    ],
+    "region": "Northern England",
+    "operator": "Blyth Valley Scouts",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 251668118,
+    "website": "https://sites.google.com/site/blythvalleyscouts/spylaw-cottage",
+    "image": ""
+  },
+  {
+    "id": "osm-way-57736965",
+    "name": "Staoineag",
+    "coords": [
+      -4.79054,
+      56.770818
+    ],
+    "region": "Eastern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 57736965,
+    "website": "https://www.mountainbothies.org.uk/bothies/central-highlands/staoineag/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Stoineag-July-2006-a-mcquiston.jpg"
+  },
+  {
+    "id": "osm-way-446676427",
+    "name": "Strabeg",
+    "coords": [
+      -4.756353,
+      58.424784
+    ],
+    "region": "Northern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446676427,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-highlands/strabeg/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2023/07/Strabeg-720x440.png"
+  },
+  {
+    "id": "osm-way-446676426",
+    "name": "Strathan",
+    "coords": [
+      -5.009668,
+      58.503279
+    ],
+    "region": "Northern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446676426,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-highlands/strathan/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2020/04/0370-Strathan-2-04-10-2008.jpg"
+  },
+  {
+    "id": "osm-way-65534635",
+    "name": "Strathchailleach",
+    "coords": [
+      -5.009875,
+      58.544665
+    ],
+    "region": "Northern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 65534635,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-highlands/strathchailleach/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2023/07/Strachailleach-a-mackie.png"
+  },
+  {
+    "id": "osm-way-369564432",
+    "name": "Suardalan",
+    "coords": [
+      -5.505996,
+      57.196959
+    ],
+    "region": "Western Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 369564432,
+    "website": "https://www.mountainbothies.org.uk/bothies/western-highlands-islands/suardalan/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/IMG_9217-Surardalen-2-cameron-mcmurdo.jpg"
+  },
+  {
+    "id": "osm-way-227315069",
+    "name": "Suileag",
+    "coords": [
+      -5.144931,
+      58.139817
+    ],
+    "region": "Northern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 227315069,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-highlands/suileag/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2023/09/Suileag-main.png"
+  },
+  {
+    "id": "osm-way-210633548",
+    "name": "Taigh Thormoid Dhuibh",
+    "coords": [
+      -5.988507,
+      57.50056
+    ],
+    "region": "Northwest Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 210633548,
+    "website": "https://www.mountainbothies.org.uk/bothies/north-west-highlands-islands/taigh-thormoid-dhuibh-raasay/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/raasay1-bellis.jpg"
+  },
+  {
+    "id": "osm-way-1442090404",
+    "name": "Tan Y Coed Bothy",
+    "coords": [
+      -4.047963,
+      53.008509
+    ],
+    "region": "Wales",
+    "operator": "National Trust",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1442090404,
+    "website": "https://www.nationaltrust.org.uk/holidays/wales/tan-y-coed-bothy",
+    "image": ""
+  },
+  {
+    "id": "osm-way-171149055",
+    "name": "Tan yr Wyddfa",
+    "coords": [
+      -4.134613,
+      53.0525
+    ],
+    "region": "Wales",
+    "operator": "Oread Mountaineering Club",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 171149055,
+    "website": "https://www.oread.co.uk/huts/tan-yr-wyddfa/",
+    "image": ""
+  },
+  {
+    "id": "osm-way-205258648",
+    "name": "The Lookout",
+    "coords": [
+      -6.344737,
+      57.701256
+    ],
+    "region": "Northwest Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": 110,
+    "osmType": "way",
+    "osmId": 205258648,
+    "website": "https://www.mountainbothies.org.uk/bothies/north-west-highlands-islands/lookout-rubha-hunish/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2017/06/lookout-view.jpg"
+  },
+  {
+    "id": "osm-way-446506492",
+    "name": "The Red House",
+    "coords": [
+      -3.641391,
+      56.962352
+    ],
+    "region": "Eastern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446506492,
+    "website": "https://www.mountainbothies.org.uk/bothies/eastern-highlands/the-red-house-ruighe-ealasaid/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2022/12/300092499_10158563873442821_6406510469334186377_n.jpg"
+  },
+  {
+    "id": "osm-way-1363855282",
+    "name": "The Red House Toilets",
+    "coords": [
+      -3.641603,
+      56.96234
+    ],
+    "region": "Eastern Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1363855282,
+    "website": "https://www.mountainbothies.org.uk/bothies/eastern-highlands/the-red-house-ruighe-ealasaid/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2022/12/300092499_10158563873442821_6406510469334186377_n.jpg"
+  },
+  {
+    "id": "osm-way-295435827",
+    "name": "Tighachrochadair",
+    "coords": [
+      -4.614392,
+      57.497391
+    ],
+    "region": "Northwest Highlands",
+    "operator": "",
+    "description": "Sometimes fire-making supplies present.  Leave as you found it.  Guest book and info-board with history of croft.",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 295435827,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-446513087",
+    "name": "Tomsleibhe",
+    "coords": [
+      -5.869533,
+      56.46658
+    ],
+    "region": "Southwest Highlands & Islands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 446513087,
+    "website": "https://www.mountainbothies.org.uk/bothies/southwest-highlands-islands/tomsleibhe/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/DSCF1043-g-mackie.jpg"
+  },
+  {
+    "id": "osm-way-692946459",
+    "name": "Trannish Island Bothy",
+    "coords": [
+      -7.503969,
+      54.209868
+    ],
+    "region": "Northern Ireland",
+    "operator": "Share Discovery Village",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 692946459,
+    "website": "https://www.sharevillage.org/accommodation/trannish-island-bothy",
+    "image": ""
+  },
+  {
+    "id": "osm-way-294235099",
+    "name": "Tunskeen",
+    "coords": [
+      -4.475821,
+      55.184069
+    ],
+    "region": "Southern Scotland",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 294235099,
+    "website": "https://www.mountainbothies.org.uk/bothies/southern-scotland/tunskeen/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Tunskeen-August-2004-1-mcQuistin.jpg"
+  },
+  {
+    "id": "osm-way-32942575",
+    "name": "Uags",
+    "coords": [
+      -5.787342,
+      57.34873
+    ],
+    "region": "Northwest Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 32942575,
+    "website": "https://www.mountainbothies.org.uk/bothies/north-west-highlands-islands/uags/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/Uags-Bothy-Nov-2016-10-alan-bellis.jpg"
+  },
+  {
+    "id": "osm-way-419443558",
+    "name": "Uisinis",
+    "coords": [
+      -7.23076,
+      57.280754
+    ],
+    "region": "Northwest Highlands",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 419443558,
+    "website": "https://www.mountainbothies.org.uk/bothies/north-west-highlands-islands/uisinis/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2018/03/uisinis-sept-17-edit.jpg"
+  },
+  {
+    "id": "osm-node-2619208425",
+    "name": "Unnamed bothy",
+    "coords": [
+      -4.065777,
+      57.740088
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "node",
+    "osmId": 2619208425,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-node-7366114698",
+    "name": "Unnamed bothy",
+    "coords": [
+      -4.424794,
+      57.662816
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "node",
+    "osmId": 7366114698,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-node-8199942982",
+    "name": "Unnamed bothy",
+    "coords": [
+      -2.081173,
+      54.528041
+    ],
+    "region": "Northern England",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "node",
+    "osmId": 8199942982,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-343075967",
+    "name": "Unnamed bothy",
+    "coords": [
+      -3.292527,
+      55.360769
+    ],
+    "region": "Southern Scotland",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 343075967,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-423953660",
+    "name": "Unnamed bothy",
+    "coords": [
+      -4.775399,
+      57.763016
+    ],
+    "region": "Northwest Highlands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 423953660,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-491618063",
+    "name": "Unnamed bothy",
+    "coords": [
+      -5.275271,
+      57.768393
+    ],
+    "region": "Northwest Highlands",
+    "operator": "",
+    "description": "Sign: Emergency shelter for walkers and climbers",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 491618063,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-546273941",
+    "name": "Unnamed bothy",
+    "coords": [
+      -2.029908,
+      53.814787
+    ],
+    "region": "Northern England",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 546273941,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-662889911",
+    "name": "Unnamed bothy",
+    "coords": [
+      -3.926347,
+      56.648865
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 662889911,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-697649974",
+    "name": "Unnamed bothy",
+    "coords": [
+      -3.022493,
+      56.830706
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 697649974,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-724444107",
+    "name": "Unnamed bothy",
+    "coords": [
+      -4.905101,
+      56.137218
+    ],
+    "region": "Southwest Highlands & Islands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 724444107,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-749016253",
+    "name": "Unnamed bothy",
+    "coords": [
+      -4.017032,
+      57.175353
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 749016253,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-749016255",
+    "name": "Unnamed bothy",
+    "coords": [
+      -4.009038,
+      57.197944
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 749016255,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-834712283",
+    "name": "Unnamed bothy",
+    "coords": [
+      -4.457201,
+      57.668799
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 834712283,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-865475878",
+    "name": "Unnamed bothy",
+    "coords": [
+      -1.949539,
+      54.776156
+    ],
+    "region": "Northern England",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 865475878,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-873272229",
+    "name": "Unnamed bothy",
+    "coords": [
+      -1.923848,
+      54.696427
+    ],
+    "region": "Northern England",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 873272229,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-893558442",
+    "name": "Unnamed bothy",
+    "coords": [
+      -3.860726,
+      56.570285
+    ],
+    "region": "Eastern Highlands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 893558442,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-902228537",
+    "name": "Unnamed bothy",
+    "coords": [
+      -5.156985,
+      57.481047
+    ],
+    "region": "Northwest Highlands",
+    "operator": "",
+    "description": "Garden shed style climber's shelter",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 902228537,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-916944646",
+    "name": "Unnamed bothy",
+    "coords": [
+      -3.645112,
+      51.529962
+    ],
+    "region": "Wales",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 916944646,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-1197746893",
+    "name": "Unnamed bothy",
+    "coords": [
+      -4.084265,
+      57.019095
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1197746893,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-1206861301",
+    "name": "Unnamed bothy",
+    "coords": [
+      -1.874603,
+      54.237724
+    ],
+    "region": "Northern England",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1206861301,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-1303524586",
+    "name": "Unnamed bothy",
+    "coords": [
+      -5.77484,
+      57.857875
+    ],
+    "region": "Northwest Highlands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1303524586,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-1328448103",
+    "name": "Unnamed bothy",
+    "coords": [
+      -3.453276,
+      57.232876
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1328448103,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-1328448104",
+    "name": "Unnamed bothy",
+    "coords": [
+      -3.453152,
+      57.229401
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1328448104,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-1344813080",
+    "name": "Unnamed bothy",
+    "coords": [
+      -5.711744,
+      54.359389
+    ],
+    "region": "Northern Ireland",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1344813080,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-1348766662",
+    "name": "Unnamed bothy",
+    "coords": [
+      -3.54308,
+      56.645887
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1348766662,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-1353156689",
+    "name": "Unnamed bothy",
+    "coords": [
+      -3.623248,
+      56.717819
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1353156689,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-1386653380",
+    "name": "Unnamed bothy",
+    "coords": [
+      -3.86905,
+      56.509523
+    ],
+    "region": "Eastern Highlands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1386653380,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-1444118020",
+    "name": "Unnamed bothy",
+    "coords": [
+      -3.938333,
+      56.644469
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1444118020,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-1509061899",
+    "name": "Unnamed bothy",
+    "coords": [
+      -6.132088,
+      56.87807
+    ],
+    "region": "Western Highlands & Islands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 1509061899,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-271970052",
+    "name": "Wainhope",
+    "coords": [
+      -2.519214,
+      55.225754
+    ],
+    "region": "Northern England",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 271970052,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-england-borders/wainhope/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2022/04/Wainhope-848x518-1.jpg"
+  },
+  {
+    "id": "osm-node-12129790930",
+    "name": "waiting room",
+    "coords": [
+      -2.999139,
+      58.825512
+    ],
+    "region": "Northern Highlands",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "node",
+    "osmId": 12129790930,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-469083910",
+    "name": "Warnscale Head",
+    "coords": [
+      -3.229768,
+      54.508572
+    ],
+    "region": "Northern England",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 469083910,
+    "website": "https://www.mountainbothies.org.uk/bothies/northern-england-borders/warnscale-head/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2024/06/edit-1.2.jpg"
+  },
+  {
+    "id": "osm-way-218292721",
+    "name": "White Laggan",
+    "coords": [
+      -4.403175,
+      55.067878
+    ],
+    "region": "Southern Scotland",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 218292721,
+    "website": "https://www.mountainbothies.org.uk/bothies/southern-scotland/white-laggan/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2016/12/P1050309-p-alymer.jpg"
+  },
+  {
+    "id": "osm-way-531231904",
+    "name": "Whitehaugh",
+    "coords": [
+      -3.149384,
+      56.854219
+    ],
+    "region": "Central Highlands & Cairngorms",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 531231904,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-way-843295174",
+    "name": "Will's Bothy",
+    "coords": [
+      -2.731158,
+      55.271194
+    ],
+    "region": "Southern Scotland",
+    "operator": "Mountain Bothies Association",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 843295174,
+    "website": "https://www.mountainbothies.org.uk/bothies/southern-scotland/leysburnfoot-wills-bothy/",
+    "image": "https://www.mountainbothies.org.uk/wp-content/uploads/2019/04/thumbnail_DSC_0149283.jpg"
+  },
+  {
+    "id": "osm-way-97635754",
+    "name": "Yearning Saddle Refuge Hut",
+    "coords": [
+      -2.310794,
+      55.409846
+    ],
+    "region": "Northern England",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "way",
+    "osmId": 97635754,
+    "website": "",
+    "image": ""
+  },
+  {
+    "id": "osm-node-12298119381",
+    "name": "Yurtopia LTD",
+    "coords": [
+      -3.856496,
+      52.399611
+    ],
+    "region": "Wales",
+    "operator": "",
+    "description": "",
+    "ele": null,
+    "osmType": "node",
+    "osmId": 12298119381,
+    "website": "",
+    "image": ""
+  }
+]

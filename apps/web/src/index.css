@@ -1,0 +1,100 @@
+:root {
+  --paper: #f3efe4;
+  --paper-light: #f7f2e6;
+  --sand: #e2d9c4;
+  --ink: #1f2418;
+  --peat: #3d4334;
+  --moss: #3f6b3a;
+  --rust: #9a5436;
+  --muted: #5f6456;
+  --faint: #85887a;
+  --line: #d4cdb8;
+  --line-strong: #b7ae96;
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans: 'DM Sans', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+  --mono: 'SFMono-Regular', Consolas, monospace;
+  --soft-wash:
+    radial-gradient(ellipse at 50% -10%, rgb(63 107 58 / 10%), transparent 46%),
+    radial-gradient(ellipse at 100% 30%, rgb(226 217 196 / 55%), transparent 42%);
+  --contours:
+    radial-gradient(
+      ellipse at 18% 30%,
+      transparent 0 28px,
+      rgb(94 100 72 / 5%) 29px 30px,
+      transparent 31px 44px,
+      rgb(94 100 72 / 4%) 45px 46px,
+      transparent 47px 63px,
+      rgb(94 100 72 / 4%) 64px 65px,
+      transparent 66px
+    ),
+    radial-gradient(
+      ellipse at 82% 76%,
+      transparent 0 36px,
+      rgb(125 84 54 / 4%) 37px 38px,
+      transparent 39px 57px,
+      rgb(125 84 54 / 4%) 58px 59px,
+      transparent 60px 78px,
+      rgb(125 84 54 / 3%) 79px 80px,
+      transparent 81px
+    );
+
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--paper);
+  scrollbar-gutter: stable;
+}
+
+html:not(.is-mobile-gate) {
+  min-width: 720px;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+}
+
+html:not(.is-mobile-gate) body {
+  min-width: 720px;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) var(--paper-light);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--paper-light);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border: 2px solid var(--paper-light);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}

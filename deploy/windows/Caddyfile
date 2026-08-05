@@ -1,0 +1,15 @@
+# Field Atlas — Caddy on Windows
+# Install: https://caddyserver.com/download
+# Run: caddy run --config C:\apps\FieldAtlas\deploy\windows\Caddyfile
+
+fieldatlas.co.uk, www.fieldatlas.co.uk {
+	encode gzip
+	root * C:\apps\FieldAtlas\apps\web\dist
+	try_files {path} /index.html
+	file_server
+}
+
+api.fieldatlas.co.uk {
+	encode gzip
+	reverse_proxy 127.0.0.1:8787
+}
