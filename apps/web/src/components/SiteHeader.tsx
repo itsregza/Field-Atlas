@@ -58,26 +58,28 @@ function NavDropdown({
         {label}
       </button>
       <div id={menuId} className="site-nav__drop-menu" role="menu" hidden={!open}>
-        {items.map((item) =>
-          item.disabled || !item.href ? (
-            <span key={item.label} className="site-nav__drop-soon" role="menuitem">
-              {item.label}
-              <small>Soon</small>
-            </span>
-          ) : (
-            <a
-              key={item.label}
-              role="menuitem"
-              href={item.href}
-              onClick={() => {
-                setOpen(false)
-                onNavigate()
-              }}
-            >
-              {item.label}
-            </a>
-          ),
-        )}
+        <div className="site-nav__drop-menu-inner">
+          {items.map((item) =>
+            item.disabled || !item.href ? (
+              <span key={item.label} className="site-nav__drop-soon" role="menuitem">
+                {item.label}
+                <small>Soon</small>
+              </span>
+            ) : (
+              <a
+                key={item.label}
+                role="menuitem"
+                href={item.href}
+                onClick={() => {
+                  setOpen(false)
+                  onNavigate()
+                }}
+              >
+                {item.label}
+              </a>
+            ),
+          )}
+        </div>
       </div>
     </div>
   )
