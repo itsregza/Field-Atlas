@@ -1,19 +1,32 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FeedPostCard } from '../components/FeedPostCard'
 import { LoginGatePage } from '../components/LoginGatePage'
 import { SiteHeader } from '../components/SiteHeader'
 import { apiEnabled, apiGetFeed, type ApiFeedPost } from '../data/api'
-import { loadUser } from '../data/auth'
+import { bootstrapSession, type MockUser } from '../data/auth'
 
 export function ExplorePage() {
-  const user = useMemo(() => loadUser(), [])
+  const [user, setUser] = useState<MockUser | null>(null)
+  const [ready, setReady] = useState(!apiEnabled())
   const [posts, setPosts] = useState<ApiFeedPost[]>([])
   const [scope, setScope] = useState<'all' | 'following'>('all')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
   useEffect(() => {
-    if (!user || !apiEnabled()) {
+    let cancelled = false
+    void bootstrapSession().then((session) => {
+      if (cancelled) return
+      setUser(session.user)
+      setReady(true)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!ready || !user || !apiEnabled()) {
       setLoading(false)
       return
     }
@@ -38,7 +51,18 @@ export function ExplorePage() {
     return () => {
       cancelled = true
     }
-  }, [user, scope])
+  }, [ready, user, scope])
+
+  if (!ready) {
+    return (
+      <main className="soft-page">
+        <SiteHeader />
+        <div className="soft-shell">
+          <p className="account-muted">Loading Explore…</p>
+        </div>
+      </main>
+    )
+  }
 
   if (!user) {
     return <LoginGatePage returnTo="/explore" />
@@ -95,42 +119,27 @@ export function ExplorePage() {
         </header>
 
         {loading ? (
-          <p className="account-muted">Loading Explore…</p>
+          <p className="account-muted">Loading posts…</p>
         ) : error ? (
-          <p className="account-muted" style={{ color: 'var(--rust)' }}>
-            {error}
-          </p>
+          <div className="account-card account-card--center">
+            <p className="account-muted">{error}</p>
+          </div>
         ) : posts.length === 0 ? (
-          <div className="account-card">
-            <div className="account-empty">
-              <p>
-                {scope === 'following'
-                  ? 'No posts from people you follow yet. Open a walker profile and tap Follow.'
-                  : 'No shared posts yet. Mark a summit complete, then share it to the feed.'}
-              </p>
-              <button
-                type="button"
-                className="account-pill-btn"
-                onClick={() => {
-                  if (scope === 'following') setScope('all')
-                  else window.location.href = '/checklists'
-                }}
-              >
-                {scope === 'following' ? 'Show everyone' : 'Open checklists'}
-              </button>
-            </div>
+          <div className="account-card account-card--center">
+            <p className="account-muted">
+              {scope === 'following'
+                ? 'No posts from people you follow yet.'
+                : 'No posts in the feed yet.'}
+            </p>
           </div>
         ) : (
-          <section className="soft-feed" aria-label="Shared posts">
+          <div className="soft-feed">
             {posts.map((post) => (
               <FeedPostCard key={post.id} post={post} />
             ))}
-          </section>
+          </div>
         )}
       </div>
     </main>
   )
 }
-
-/** @deprecated Use ExplorePage — kept so old imports fail loudly if missed. */
-export const FeedPage = ExplorePage

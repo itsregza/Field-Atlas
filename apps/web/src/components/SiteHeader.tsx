@@ -1,14 +1,104 @@
-import { useEffect, useId, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { AtlasSearch } from './AtlasSearch'
-import { loadUser } from '../data/auth'
+import { bootstrapSession, loadUser, type MockUser } from '../data/auth'
 import { useAuthModal } from './AuthModal'
+
+type NavItem = {
+  label: string
+  href?: string
+  disabled?: boolean
+}
+
+function NavDropdown({
+  label,
+  active,
+  items,
+  onNavigate,
+}: {
+  label: string
+  active: boolean
+  items: NavItem[]
+  onNavigate: () => void
+}) {
+  const [open, setOpen] = useState(false)
+  const rootRef = useRef<HTMLDivElement>(null)
+  const menuId = useId()
+
+  useEffect(() => {
+    if (!open) return
+    const onPointer = (event: MouseEvent) => {
+      if (!rootRef.current?.contains(event.target as Node)) setOpen(false)
+    }
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false)
+    }
+    window.addEventListener('pointerdown', onPointer)
+    window.addEventListener('keydown', onKey)
+    return () => {
+      window.removeEventListener('pointerdown', onPointer)
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [open])
+
+  return (
+    <div
+      ref={rootRef}
+      className={`site-nav__drop ${active ? 'is-active' : ''} ${open ? 'is-open' : ''}`}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <button
+        type="button"
+        className="site-nav__drop-btn"
+        aria-expanded={open}
+        aria-haspopup="true"
+        aria-controls={menuId}
+        onClick={() => setOpen((value) => !value)}
+      >
+        {label}
+      </button>
+      <div id={menuId} className="site-nav__drop-menu" role="menu" hidden={!open}>
+        {items.map((item) =>
+          item.disabled || !item.href ? (
+            <span key={item.label} className="site-nav__drop-soon" role="menuitem">
+              {item.label}
+              <small>Soon</small>
+            </span>
+          ) : (
+            <a
+              key={item.label}
+              role="menuitem"
+              href={item.href}
+              onClick={() => {
+                setOpen(false)
+                onNavigate()
+              }}
+            >
+              {item.label}
+            </a>
+          ),
+        )}
+      </div>
+    </div>
+  )
+}
 
 export function SiteHeader() {
   const path = window.location.pathname
-  const user = loadUser()
+  const [user, setUser] = useState<MockUser | null>(() => loadUser())
   const { openAuth } = useAuthModal()
   const [menuOpen, setMenuOpen] = useState(false)
   const menuId = useId()
+
+  useEffect(() => {
+    let cancelled = false
+    void bootstrapSession().then((session) => {
+      if (!cancelled) setUser(session.user)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   useEffect(() => {
     if (!menuOpen) return
@@ -20,6 +110,10 @@ export function SiteHeader() {
   }, [menuOpen])
 
   const closeMenu = () => setMenuOpen(false)
+
+  const mapsActive =
+    path === '/map' || path === '/bothies' || path === '/pitching' || path === '/camping'
+  const hikingActive = path === '/hikes' || path.startsWith('/hikes/')
 
   return (
     <header className={`site-header ${menuOpen ? 'is-menu-open' : ''}`}>
@@ -45,48 +139,39 @@ export function SiteHeader() {
         {menuOpen ? 'Close' : 'Menu'}
       </button>
 
-      <nav
-        id={menuId}
-        className="site-nav"
-        aria-label="Main navigation"
-      >
+      <nav id={menuId} className="site-nav" aria-label="Main navigation">
         <a className={path === '/' ? 'active' : ''} href="/" onClick={closeMenu}>
           Home
         </a>
-        <a
-          className={path === '/map' ? 'active' : ''}
-          href="/map"
-          onClick={closeMenu}
-        >
-          Map
-        </a>
-        <a
-          className={path === '/bothies' ? 'active' : ''}
-          href="/bothies"
-          onClick={closeMenu}
-        >
-          Bothies
-        </a>
-        <a
-          className={path === '/camping' || path === '/pitching' ? 'active' : ''}
-          href="/pitching"
-          onClick={closeMenu}
-        >
-          Pitching
-        </a>
+
+        <NavDropdown
+          label="Maps"
+          active={mapsActive}
+          onNavigate={closeMenu}
+          items={[
+            { label: 'UK Map', href: '/map' },
+            { label: 'Pitching Map', href: '/pitching' },
+            { label: 'Bothies', href: '/bothies' },
+          ]}
+        />
+
+        <NavDropdown
+          label="Hiking"
+          active={hikingActive}
+          onNavigate={closeMenu}
+          items={[
+            { label: 'Find a hike', href: '/hikes/generator' },
+            { label: 'Unfinished peaks', href: '/hikes/unfinished' },
+            { label: 'Multi-day hikes', disabled: true },
+          ]}
+        />
+
         <a
           className={path === '/forecasts' || path === '/weather' ? 'active' : ''}
           href="/forecasts"
           onClick={closeMenu}
         >
           Forecasts
-        </a>
-        <a
-          className={path === '/hikes' || path.startsWith('/hikes/') ? 'active' : ''}
-          href="/hikes"
-          onClick={closeMenu}
-        >
-          Hikes
         </a>
         <a
           className={
@@ -102,17 +187,17 @@ export function SiteHeader() {
         >
           Checklists
         </a>
+
         {user ? (
           <a
-            className={
-              path === '/explore' || path.startsWith('/posts/') ? 'active' : ''
-            }
+            className={`nav-explore ${path === '/explore' || path.startsWith('/posts/') ? 'active' : ''}`}
             href="/explore"
             onClick={closeMenu}
           >
             Explore
           </a>
         ) : null}
+
         {user ? (
           <a
             className={`nav-account ${path.startsWith('/account') ? 'active' : ''}`}
