@@ -172,7 +172,7 @@ export function CampingMapPage() {
               <LoginPrompt
                 className="camping-pin-gate"
                 returnTo={pinReturnTo}
-                description="Sign in to drop private pitching pins on the map."
+                description="Sign in start saving pins for your future camps."
               />
             )}
           </div>

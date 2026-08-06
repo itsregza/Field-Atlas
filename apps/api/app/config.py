@@ -33,7 +33,18 @@ class Settings(BaseSettings):
             for part in self.web_origin.split(",")
             if part.strip()
         ]
-        return origins or ["http://localhost:5173"]
+        # Expo web / Metro defaults for local mobile development
+        extras = [
+            "http://localhost:8081",
+            "http://127.0.0.1:8081",
+            "http://localhost:19006",
+            "http://127.0.0.1:19006",
+        ]
+        merged = origins or ["http://localhost:5173"]
+        for origin in extras:
+            if origin not in merged:
+                merged.append(origin)
+        return merged
 
     @property
     def ops_path(self) -> str:

@@ -106,6 +106,7 @@ class Post(Base):
     media_json: Mapped[str | None] = mapped_column(Text)
     route_url: Mapped[str | None] = mapped_column(Text)
     route_label: Mapped[str | None] = mapped_column(Text)
+    activity: Mapped[str | None] = mapped_column(Text)
     peak_id: Mapped[str | None] = mapped_column(Text)
     peak_name: Mapped[str | None] = mapped_column(Text)
     area_slug: Mapped[str | None] = mapped_column(Text)
@@ -160,5 +161,20 @@ class PostComment(Base):
     )
     body: Mapped[str] = mapped_column(Text, nullable=False)
     created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, server_default=func.now()
+    )
+
+
+class PeakRating(Base):
+    __tablename__ = "peak_ratings"
+    __table_args__ = (PrimaryKeyConstraint("user_id", "peak_id", "kind"),)
+
+    user_id: Mapped[uuid.UUID] = mapped_column(
+        Uuid, ForeignKey("users.id", ondelete="CASCADE"), nullable=False
+    )
+    peak_id: Mapped[str] = mapped_column(Text, nullable=False)
+    kind: Mapped[str] = mapped_column(Text, nullable=False, default="pitch")
+    score: Mapped[int] = mapped_column(Integer, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), nullable=False, server_default=func.now()
     )

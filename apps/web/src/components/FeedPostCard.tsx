@@ -11,6 +11,7 @@ import {
 } from '../data/api'
 import { loadUser } from '../data/auth'
 import { formatProfileDate } from '../data/profiles'
+import { PostActivityBadge, isPostActivity } from './PostActivity'
 
 function formatWhen(iso: string) {
   const day = iso.slice(0, 10)
@@ -179,7 +180,12 @@ export function FeedPostCard({
             <span>@{post.author.handle}</span>
           </span>
         </a>
-        <time dateTime={post.createdAt}>{formatWhen(post.createdAt)}</time>
+        <div className="feed-card__header-meta">
+          {isPostActivity(post.activity) ? (
+            <PostActivityBadge activity={post.activity} />
+          ) : null}
+          <time dateTime={post.createdAt}>{formatWhen(post.createdAt)}</time>
+        </div>
       </header>
 
       <figure className="feed-card__photo">

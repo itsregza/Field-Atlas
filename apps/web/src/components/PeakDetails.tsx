@@ -1,7 +1,11 @@
-import type { ChangeEvent } from 'react'
+import { useEffect, useState, type ChangeEvent } from 'react'
 import { formatPeakLists, type TrackedPeak } from '../data/areaPeaks'
 import type { PeakLog } from '../data/logs'
-import { FieldAtlasRating } from './FieldAtlasRating'
+import {
+  getPitchability,
+  setPitchability,
+  type RatingSummary,
+} from '../data/ratings'
 import { PeakWeather } from './PeakWeather'
 import { useAuthModal } from './AuthModal'
 
@@ -12,13 +16,52 @@ type PeakDetailsProps = {
   onChange: (changes: Partial<PeakLog>) => void
   onImage: (file: File) => void
   onClose: () => void
-  onShare?: () => void
   readOnly?: boolean
   returnTo?: string
 }
 
-function today() {
-  return new Date().toISOString().slice(0, 10)
+function PitchStars({
+  value,
+  interactive,
+  onPick,
+}: {
+  value: number
+  interactive?: boolean
+  onPick?: (score: number) => void
+}) {
+  return (
+    <span
+      className={`fa-rating__stars ${interactive ? 'is-interactive' : ''}`}
+      role={interactive ? 'radiogroup' : 'img'}
+      aria-label={`${value} out of 5`}
+    >
+      {[1, 2, 3, 4, 5].map((score) => {
+        const filled = score <= Math.round(value)
+        if (!interactive || !onPick) {
+          return (
+            <span
+              key={score}
+              className={`fa-rating__star ${filled ? 'is-on' : ''}`}
+              aria-hidden="true"
+            >
+              ★
+            </span>
+          )
+        }
+        return (
+          <button
+            key={score}
+            type="button"
+            className={`fa-rating__star ${filled ? 'is-on' : ''}`}
+            aria-label={`Rate pitchability ${score} out of 5`}
+            onClick={() => onPick(score)}
+          >
+            ★
+          </button>
+        )
+      })}
+    </span>
+  )
 }
 
 export function PeakDetails({
@@ -28,18 +71,46 @@ export function PeakDetails({
   onChange,
   onImage,
   onClose,
-  onShare,
   readOnly = false,
   returnTo = typeof window !== 'undefined'
     ? window.location.pathname + window.location.search
     : '/account',
 }: PeakDetailsProps) {
   const { openAuth } = useAuthModal()
+  const [pitch, setPitch] = useState<RatingSummary>(() =>
+    getPitchability(peak.id),
+  )
+  const [awaitingPitch, setAwaitingPitch] = useState(false)
+
+  useEffect(() => {
+    setPitch(getPitchability(peak.id))
+    setAwaitingPitch(false)
+  }, [peak.id])
+
+  const applyPitch = (score: number) => {
+    const next = setPitchability(peak.id, score)
+    setPitch(next)
+    return next
+  }
+
   const toggleDone = () => {
-    onChange({
-      done: !peak.done,
-      date: !peak.done && !log.date ? today() : log.date,
-    })
+    if (peak.done) {
+      setAwaitingPitch(false)
+      onChange({ done: false })
+      return
+    }
+    if (pitch.myScore != null) {
+      setAwaitingPitch(false)
+      onChange({ done: true })
+      return
+    }
+    setAwaitingPitch(true)
+  }
+
+  const confirmPitchAndComplete = (score: number) => {
+    applyPitch(score)
+    setAwaitingPitch(false)
+    onChange({ done: true })
   }
 
   const pickImage = (event: ChangeEvent<HTMLInputElement>) => {
@@ -52,10 +123,10 @@ export function PeakDetails({
     <article className="peak-card" aria-live="polite">
       <div className="peak-card__heading">
         <div>
-        <span className="eyebrow">
-          {peak.gridRef} · {formatPeakLists(peak.lists)}
-        </span>
-        <h2>{peak.name}</h2>
+          <span className="eyebrow">
+            {peak.gridRef} · {formatPeakLists(peak.lists)}
+          </span>
+          <h2>{peak.name}</h2>
         </div>
         <button
           className="close-details"
@@ -77,12 +148,14 @@ export function PeakDetails({
           <dd>{peak.done ? 'Completed' : 'Still to climb'}</dd>
         </div>
         <div>
-          <dt>Steepness</dt>
-          <dd>Route dependent</dd>
-        </div>
-        <div>
           <dt>Pitchability</dt>
-          <dd>Not assessed</dd>
+          <dd>
+            {pitch.count > 0
+              ? `${pitch.average.toFixed(1)} / 5 · ${pitch.count} rating${
+                  pitch.count === 1 ? '' : 's'
+                }`
+              : 'Not assessed'}
+          </dd>
         </div>
       </dl>
 
@@ -94,52 +167,57 @@ export function PeakDetails({
         compact
       />
 
-      <FieldAtlasRating
-        entityType="peak"
-        entityId={peak.id}
-        canRate={!readOnly && peak.done}
-        returnTo={returnTo}
-      />
-
       {readOnly ? (
         <div className="peak-login-gate">
           <strong>Want to mark this summit complete?</strong>
-          <span>Sign in to save dates, notes and photographs.</span>
+          <span>Sign in to save progress, notes and photographs.</span>
           <button type="button" onClick={() => openAuth('login', returnTo)}>
             Log in to Field Atlas →
           </button>
         </div>
       ) : (
         <>
-          <button
-            className={`complete-button ${peak.done ? 'is-done' : ''}`}
-            type="button"
-            onClick={toggleDone}
-          >
-            {peak.done ? 'Mark as not completed' : 'Mark as completed'}
-          </button>
-
-          {peak.done && onShare ? (
+          {awaitingPitch ? (
+            <div className="pitch-rate" role="group" aria-labelledby="pitch-rate-title">
+              <strong id="pitch-rate-title">How pitchable is this peak?</strong>
+              <p>Rate the summit ground for an overnight pitch before you tick it off.</p>
+              <PitchStars
+                value={pitch.myScore ?? 0}
+                interactive
+                onPick={confirmPitchAndComplete}
+              />
+              <button
+                type="button"
+                className="account-text-link"
+                onClick={() => setAwaitingPitch(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          ) : (
             <button
-              className="share-button"
+              className={`complete-button ${peak.done ? 'is-done' : ''}`}
               type="button"
-              onClick={onShare}
+              onClick={toggleDone}
             >
-              Share to feed
+              {peak.done ? 'Mark as not completed' : 'Mark as completed'}
             </button>
+          )}
+
+          {peak.done ? (
+            <div className="pitch-rate pitch-rate--done">
+              <span>Your pitchability rating</span>
+              <PitchStars
+                value={pitch.myScore ?? 0}
+                interactive
+                onPick={(score) => {
+                  applyPitch(score)
+                }}
+              />
+            </div>
           ) : null}
 
           <div className="completion-form">
-            <label>
-              Completion date
-              <input
-                type="date"
-                value={log.date}
-                max={today()}
-                onChange={(event) => onChange({ date: event.target.value })}
-              />
-            </label>
-
             <label>
               Notes
               <textarea
@@ -171,11 +249,6 @@ export function PeakDetails({
           </div>
         </>
       )}
-
-      <p className="terrain-note">
-        Overnight terrain notes describe physical ground only and never imply
-        permission to camp.
-      </p>
     </article>
   )
 }

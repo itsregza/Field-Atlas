@@ -6,6 +6,7 @@ import { areas, type Area } from '../data/areas'
 import { getAreaPeaks } from '../data/areaPeaks'
 import { loadUser } from '../data/auth'
 import { homeHeroShots, pickHomeHero } from '../data/homeHero'
+import { getPublicProfile } from '../data/profiles'
 
 const HERO_INTERVAL_MS = 10_000
 
@@ -31,6 +32,8 @@ export function HomePage() {
     return found >= 0 ? found : 0
   })
   const hero = homeHeroShots[index] ?? homeHeroShots[0]
+  const [creditAvatar, setCreditAvatar] = useState<string | null>(null)
+  const [creditName, setCreditName] = useState<string | null>(null)
 
   useEffect(() => {
     if (homeHeroShots.length < 2) return
@@ -43,6 +46,20 @@ export function HomePage() {
 
     return () => window.clearInterval(id)
   }, [])
+
+  useEffect(() => {
+    let cancelled = false
+    setCreditAvatar(null)
+    setCreditName(null)
+    void getPublicProfile(hero.handle).then((profile) => {
+      if (cancelled || !profile) return
+      setCreditAvatar(profile.avatarUrl ?? null)
+      setCreditName(profile.name)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [hero.handle])
 
   const featured = featuredSlugs
     .map((slug) => {
@@ -77,13 +94,31 @@ export function HomePage() {
           <div className="home-hero-bleed__shade" />
         </div>
 
+        <a
+          className="home-hero-bleed__credit"
+          href={`/u/${encodeURIComponent(hero.handle)}`}
+          aria-label={`Photo by @${hero.handle}${creditName ? `, ${creditName}` : ''}`}
+        >
+          <span className="home-hero-bleed__credit-avatar" aria-hidden="true">
+            {creditAvatar ? (
+              <img src={creditAvatar} alt="" />
+            ) : (
+              (creditName || hero.handle).charAt(0).toUpperCase()
+            )}
+          </span>
+          <span className="home-hero-bleed__credit-copy">
+            <small>Photo</small>
+            <strong>@{hero.handle}</strong>
+          </span>
+        </a>
+
         <div className="home-hero-bleed__content">
           <span className="home-hero-bleed__place">{hero.place}</span>
           <h1>Field Atlas</h1>
           <p>Your atlas for the hills. The ultimate guide to the UK's mountains.</p>
           <AtlasSearch
             className="site-search--hero"
-            placeholder="Search hikes, peaks, ranges and friends…"
+            placeholder="Search hikes, multi-day routes, peaks, ranges and users…"
           />
           <div className="home-hero-bleed__actions">
             <a className="home-hero-bleed__cta" href="/map">
@@ -104,7 +139,7 @@ export function HomePage() {
                 type="button"
                 onClick={() => openAuth('register', '/account')}
               >
-                Register for FREE
+                Register for free
               </button>
             )}
           </div>
@@ -179,7 +214,13 @@ export function HomePage() {
           <a href="/pitching">Pitching</a>
           <a href="/forecasts">Forecasts</a>
           <a href="/hikes">Hikes</a>
-          <a href="/checklists">Checklists</a>
+          {user ? (
+            <a href="/checklists">Checklists</a>
+          ) : (
+            <button type="button" onClick={() => openAuth('login', '/checklists')}>
+              Checklists
+            </button>
+          )}
           {user ? <a href="/explore">Explore</a> : null}
           {user ? (
             <a href="/account">Account</a>

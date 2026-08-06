@@ -44,7 +44,11 @@ $env:VITE_MAPTILER_KEY = "YOUR_MAPTILER_BROWSER_KEY"
 powershell -ExecutionPolicy Bypass -File .\deploy\windows\deploy.ps1
 ```
 
-## 4. Start Python (same role as Pingster’s uvicorn on 8001)
+## 4. Start and stop Python
+
+See **[RUNNING.md](./RUNNING.md)** for start/stop commands (manual window, Windows service, restart after updates).
+
+Quick start:
 
 ```
 powershell -ExecutionPolicy Bypass -File .\deploy\windows\start-api.ps1
@@ -53,7 +57,13 @@ powershell -ExecutionPolicy Bypass -File .\deploy\windows\start-api.ps1
 Check: http://127.0.0.1:8787/health  
 You should also see the site at http://127.0.0.1:8787/
 
-Leave this running (or install as a Windows service later with NSSM).
+Quick stop:
+
+```
+powershell -ExecutionPolicy Bypass -File .\deploy\windows\stop-api.ps1
+```
+
+Or install as a Windows service with `install-service.ps1` (details in RUNNING.md).
 
 ## 5. IIS site (copy Pingster’s pattern)
 

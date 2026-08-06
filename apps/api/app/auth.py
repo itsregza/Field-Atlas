@@ -8,7 +8,7 @@ from typing import Annotated
 
 from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError
-from fastapi import Cookie, Depends, HTTPException, Response
+from fastapi import Cookie, Depends, Header, HTTPException, Response
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -43,7 +43,7 @@ def slugify_handle(value: str) -> str:
     return slug[:32]
 
 
-def create_session(db: Session, user_id: uuid.UUID, response: Response) -> None:
+def create_session(db: Session, user_id: uuid.UUID, response: Response) -> str:
     settings = get_settings()
     token = secrets.token_hex(32)
     expires_at = datetime.now(UTC) + timedelta(days=SESSION_DAYS)
@@ -58,6 +58,7 @@ def create_session(db: Session, user_id: uuid.UUID, response: Response) -> None:
         secure=settings.is_production,
         max_age=SESSION_DAYS * 24 * 60 * 60,
     )
+    return token
 
 
 def destroy_session(
@@ -169,8 +170,14 @@ def find_user_by_login(db: Session, login: str) -> User | None:
 def get_optional_user(
     db: Annotated[Session, Depends(get_db)],
     fa_session: Annotated[str | None, Cookie(alias=SESSION_COOKIE)] = None,
+    authorization: Annotated[str | None, Header()] = None,
 ) -> SessionUser | None:
-    return load_session_user(db, fa_session)
+    token = fa_session
+    if not token and authorization:
+        scheme, _, value = authorization.partition(" ")
+        if scheme.lower() == "bearer" and value.strip():
+            token = value.strip()
+    return load_session_user(db, token)
 
 
 def require_user(

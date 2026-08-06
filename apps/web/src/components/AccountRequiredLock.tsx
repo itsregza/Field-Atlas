@@ -32,7 +32,7 @@ export function AccountRequiredLock({
             type="button"
             onClick={() => openAuth('login', returnTo)}
           >
-            Log in / sign up for free
+            Log in / sign up
           </button>
         </div>
       </div>

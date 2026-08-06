@@ -34,6 +34,11 @@ packages/shared   Shared Zod schemas / types (web)
 docker-compose.yml  Postgres 16
 ```
 
+## Windows Server (production)
+
+Start/stop and service setup: [`deploy/windows/RUNNING.md`](deploy/windows/RUNNING.md)  
+First-time IIS + DNS setup: [`deploy/windows/README.md`](deploy/windows/README.md)
+
 ## Running locally
 
 Requirements:

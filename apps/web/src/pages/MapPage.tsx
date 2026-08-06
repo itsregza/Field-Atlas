@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, type MouseEvent } from 'react'
+import { useAuthModal } from '../components/AuthModal'
 import { LoginPrompt } from '../components/LoginPrompt'
 import { FieldAtlasRating } from '../components/FieldAtlasRating'
 import { PeakWeather } from '../components/PeakWeather'
@@ -32,6 +33,13 @@ function writeMapParams(areaSlug: string | null, peakId: string | null) {
 
 export function MapPage() {
   const user = loadUser()
+  const { openAuth } = useAuthModal()
+
+  const requireAuth = (event: MouseEvent<HTMLAnchorElement>, returnTo: string) => {
+    if (user) return
+    event.preventDefault()
+    openAuth('login', returnTo)
+  }
   const initial = readMapParams()
   const [areaSlug, setAreaSlug] = useState(initial.areaSlug)
   const [peakId, setPeakId] = useState(initial.peakId)
@@ -116,6 +124,9 @@ export function MapPage() {
                 <a
                   className="primary-link"
                   href={`/checklists/${focusPeak.area}`}
+                  onClick={(event) =>
+                    requireAuth(event, `/checklists/${focusPeak.area}`)
+                  }
                 >
                   Open summit checklist
                 </a>
@@ -154,7 +165,13 @@ export function MapPage() {
               {area ? (
                 <>
                   <div className="map-sidebar-actions">
-                    <a className="primary-link" href={`/checklists/${area.slug}`}>
+                    <a
+                      className="primary-link"
+                      href={`/checklists/${area.slug}`}
+                      onClick={(event) =>
+                        requireAuth(event, `/checklists/${area.slug}`)
+                      }
+                    >
                       Open summit checklist
                     </a>
                   </div>
@@ -175,7 +192,11 @@ export function MapPage() {
                   )}
                 </>
               ) : (
-                <a className="area-directory-link" href="/checklists">
+                <a
+                  className="area-directory-link"
+                  href="/checklists"
+                  onClick={(event) => requireAuth(event, '/checklists')}
+                >
                   Browse all {areas.length} checklists →
                 </a>
               )}

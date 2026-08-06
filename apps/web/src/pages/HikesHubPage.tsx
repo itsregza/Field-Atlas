@@ -165,6 +165,13 @@ export function HikesHubPage() {
               Routes that cover summits you still need to complete.
             </span>
           </a>
+          <a className="account-card soft-hub-card" href="/hikes/multi-day">
+            <p className="soft-kicker">Go further</p>
+            <strong>Multi-day hikes</strong>
+            <span>
+              West Highland Way, Coast to Coast, Skye Trail and more.
+            </span>
+          </a>
         </div>
       </div>
     </main>

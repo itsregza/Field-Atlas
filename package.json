@@ -3,12 +3,14 @@
   "private": true,
   "workspaces": [
     "apps/web",
+    "apps/mobile",
     "packages/*"
   ],
   "scripts": {
     "dev": "npm run dev -w web",
     "dev:web": "npm run dev -w web",
     "dev:api": "node scripts/run-api.mjs",
+    "dev:mobile": "npm run start -w mobile",
     "build": "npm run build -w @field-atlas/shared && npm run build -w web",
     "lint": "npm run lint -w web"
   },

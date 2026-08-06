@@ -115,7 +115,8 @@ export function SiteHeader() {
 
   const mapsActive =
     path === '/map' || path === '/bothies' || path === '/pitching' || path === '/camping'
-  const hikingActive = path === '/hikes' || path.startsWith('/hikes/')
+  const hikingActive =
+    path === '/hikes' || path.startsWith('/hikes/') || path === '/hikes/multi-day'
 
   return (
     <header className={`site-header ${menuOpen ? 'is-menu-open' : ''}`}>
@@ -164,7 +165,7 @@ export function SiteHeader() {
           items={[
             { label: 'Find a hike', href: '/hikes/generator' },
             { label: 'Unfinished peaks', href: '/hikes/unfinished' },
-            { label: 'Multi-day hikes', disabled: true },
+            { label: 'Multi-day hikes', href: '/hikes/multi-day' },
           ]}
         />
 
@@ -185,11 +186,18 @@ export function SiteHeader() {
               : ''
           }
           href="/checklists"
-          onClick={closeMenu}
+          onClick={(event) => {
+            if (user) {
+              closeMenu()
+              return
+            }
+            event.preventDefault()
+            closeMenu()
+            openAuth('login', '/checklists')
+          }}
         >
           Checklists
         </a>
-
         {user ? (
           <a
             className={`nav-explore ${path === '/explore' || path.startsWith('/posts/') ? 'active' : ''}`}

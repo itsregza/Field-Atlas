@@ -46,7 +46,7 @@ const campingOptions: Array<{
   {
     value: 'yes',
     label: 'Yes',
-    hint: 'Lean toward routes that suit a night out',
+    hint: 'Routes with a peak rated 3.5+ for pitchability',
   },
   {
     value: 'no',
@@ -267,8 +267,8 @@ export function HikeFinderPage() {
               </button>
               <h2 id="camping-title">Camping night?</h2>
               <p>
-                We won’t pin wild pitches — only whether the day suits an
-                overnight nearby.
+                Overnight picks use pitchability ratings from completed summits
+                (3.5+ average) — never a promise of a legal pitch.
               </p>
             </div>
             <div className="hike-choice-grid hike-choice-grid--tight">
@@ -434,6 +434,7 @@ export function HikeFinderPage() {
                                 hikeName: picked.hike.name,
                                 areaSlug: picked.hike.areaSlug,
                                 areaName: picked.areaName,
+                                activity: 'hiking',
                               })
                             }
                           >

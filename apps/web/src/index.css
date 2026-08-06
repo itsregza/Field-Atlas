@@ -53,7 +53,6 @@
 
 html {
   background: var(--paper);
-  scrollbar-gutter: stable;
 }
 
 @media (min-width: 901px) {
@@ -85,25 +84,14 @@ select {
   font: inherit;
 }
 
+/* Keep scrolling; hide the visible scrollbar chrome. */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: var(--line-strong) var(--paper-light);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 *::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-*::-webkit-scrollbar-track {
-  background: var(--paper-light);
-}
-
-*::-webkit-scrollbar-thumb {
-  background: var(--line-strong);
-  border: 2px solid var(--paper-light);
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background: var(--muted);
+  display: none;
+  width: 0;
+  height: 0;
 }

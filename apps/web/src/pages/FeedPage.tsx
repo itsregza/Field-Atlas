@@ -93,7 +93,7 @@ export function ExplorePage() {
           <p className="soft-kicker">Explore</p>
           <h1>From the hill</h1>
           <p>
-            Optional posts from public walkers — like, follow and comment when
+            Optional posts from public users — like, follow and comment when
             something lands.
           </p>
           <div className="soft-tabs" role="tablist" aria-label="Feed scope">

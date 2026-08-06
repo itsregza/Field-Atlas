@@ -105,6 +105,7 @@ class CreatePostBody(BaseModel):
     media: list[dict[str, str]] | None = None
     route_url: str | None = Field(default=None, alias="routeUrl", max_length=2000)
     route_label: str | None = Field(default=None, alias="routeLabel", max_length=120)
+    activity: str = Field(min_length=1, max_length=20)
     peak_id: str | None = Field(default=None, alias="peakId", max_length=80)
     peak_name: str | None = Field(default=None, alias="peakName", max_length=200)
     area_slug: str | None = Field(default=None, alias="areaSlug", max_length=80)
@@ -122,6 +123,14 @@ class CreatePostBody(BaseModel):
         if not stripped:
             raise ValueError("body must not be empty")
         return stripped
+
+    @field_validator("activity")
+    @classmethod
+    def validate_activity(cls, value: str) -> str:
+        cleaned = value.strip().lower()
+        if cleaned not in {"hiking", "camping"}:
+            raise ValueError("activity must be hiking or camping")
+        return cleaned
 
     @field_validator("media")
     @classmethod

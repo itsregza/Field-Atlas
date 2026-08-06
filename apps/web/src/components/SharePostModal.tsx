@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, type ChangeEvent } from 'react'
 import {
   ApiError,
   apiCreatePost,
@@ -8,6 +8,12 @@ import {
 import { getAllAreaPeaks } from '../data/areaPeaks'
 import { areas } from '../data/areas'
 import { prepareImageFile } from '../data/logs'
+import {
+  HikingGlyph,
+  PostActivityBadge,
+  TentGlyph,
+  type PostActivity,
+} from './PostActivity'
 
 export type SharePostDefaults = {
   peakId?: string
@@ -19,6 +25,7 @@ export type SharePostDefaults = {
   hikeName?: string
   imageUrl?: string
   body?: string
+  activity?: PostActivity
 }
 
 type LocalMedia = {
@@ -36,7 +43,17 @@ type SharePostModalProps = {
   onShared?: () => void
 }
 
+type Step = 'activity' | 'media' | 'details' | 'preview'
+
+const STEPS: Step[] = ['activity', 'media', 'details', 'preview']
 const MAX_MEDIA = 10
+
+const stepTitle: Record<Step, string> = {
+  activity: 'Type',
+  media: 'Photos',
+  details: 'Details',
+  preview: 'Preview',
+}
 
 export function SharePostModal({
   open,
@@ -44,6 +61,8 @@ export function SharePostModal({
   onClose,
   onShared,
 }: SharePostModalProps) {
+  const [step, setStep] = useState<Step>('activity')
+  const [activity, setActivity] = useState<PostActivity | null>(null)
   const [body, setBody] = useState('')
   const [media, setMedia] = useState<LocalMedia[]>([])
   const [peakQuery, setPeakQuery] = useState('')
@@ -66,7 +85,7 @@ export function SharePostModal({
   const peaks = useMemo(() => getAllAreaPeaks(), [])
   const peakHits = useMemo(() => {
     const q = peakQuery.trim().toLowerCase()
-    if (q.length < 2 || peakId) return []
+    if (q.length < 2 || peakId || step !== 'details') return []
     return peaks
       .filter(
         (peak) =>
@@ -74,7 +93,9 @@ export function SharePostModal({
           peak.area.toLowerCase().includes(q),
       )
       .slice(0, 8)
-  }, [peakQuery, peaks, peakId])
+  }, [peakQuery, peaks, peakId, step])
+
+  const stepIndex = STEPS.indexOf(step)
 
   useEffect(() => {
     if (!peakHits.length || !peakInputRef.current) {
@@ -118,6 +139,8 @@ export function SharePostModal({
     setError('')
     setPending(false)
     setSlide(0)
+    setActivity(defaults?.activity ?? null)
+    setStep(defaults?.activity ? 'media' : 'activity')
     if (defaults?.imageUrl) {
       const url = defaults.imageUrl
       if (url.startsWith('data:')) {
@@ -165,6 +188,65 @@ export function SharePostModal({
   }, [media])
 
   if (!open) return null
+
+  const goBack = () => {
+    setError('')
+    if (stepIndex <= 0) {
+      onClose()
+      return
+    }
+    setStep(STEPS[stepIndex - 1]!)
+  }
+
+  const validateRoute = () => {
+    const link = routeUrl.trim()
+    if (!link) return true
+    try {
+      const parsed = new URL(link)
+      if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
+        setError('Route link must start with http:// or https://')
+        return false
+      }
+      return true
+    } catch {
+      setError('Enter a valid route link, or leave it blank.')
+      return false
+    }
+  }
+
+  const goNext = () => {
+    setError('')
+    if (step === 'activity') {
+      if (!activity) {
+        setError('Choose hiking or camping.')
+        return
+      }
+      setStep('media')
+      return
+    }
+    if (step === 'media') {
+      if (!media.length) {
+        setError('Add at least one photo or video.')
+        return
+      }
+      setStep('details')
+      return
+    }
+    if (step === 'details') {
+      if (!body.trim()) {
+        setError('Write a caption.')
+        return
+      }
+      if (!validateRoute()) return
+      setStep('preview')
+    }
+  }
+
+  const pickActivity = (next: PostActivity) => {
+    setActivity(next)
+    setError('')
+    setStep('media')
+  }
 
   const pickFiles = async (event: ChangeEvent<HTMLInputElement>) => {
     const files = [...(event.target.files ?? [])]
@@ -244,35 +326,33 @@ export function SharePostModal({
     setAreaName(areas.find((area) => area.slug === peak.area)?.name ?? peak.area)
   }
 
-  const submit = async (event: FormEvent) => {
-    event.preventDefault()
+  const publish = async () => {
     if (!apiEnabled()) {
       setError('Sharing needs the Field Atlas API.')
+      return
+    }
+    if (!activity) {
+      setError('Choose hiking or camping first.')
+      setStep('activity')
       return
     }
     const trimmed = body.trim()
     if (!media.length) {
       setError('Add at least one photo or video.')
+      setStep('media')
       return
     }
     if (!trimmed) {
       setError('Write a caption.')
+      setStep('details')
       return
     }
-    const link = routeUrl.trim()
-    if (link) {
-      try {
-        const parsed = new URL(link)
-        if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
-          setError('Route link must start with http:// or https://')
-          return
-        }
-      } catch {
-        setError('Enter a valid route link, or leave it blank.')
-        return
-      }
+    if (!validateRoute()) {
+      setStep('details')
+      return
     }
 
+    const link = routeUrl.trim()
     setPending(true)
     setError('')
     try {
@@ -293,6 +373,7 @@ export function SharePostModal({
         body: trimmed,
         imageUrl: uploaded.find((item) => item.type === 'image')?.url ?? uploaded[0].url,
         media: uploaded,
+        activity,
         routeUrl: link || undefined,
         routeLabel: link ? 'Route' : undefined,
         peakId: peakId ?? defaults?.peakId,
@@ -319,6 +400,71 @@ export function SharePostModal({
 
   const current = media[slide]
 
+  const mediaStage = (
+    <div className="share-modal__stage">
+      {current ? (
+        <>
+          {current.kind === 'video' ? (
+            <video src={current.previewUrl} controls playsInline />
+          ) : (
+            <img src={current.previewUrl} alt="" />
+          )}
+          {step === 'media' ? (
+            <button
+              type="button"
+              className="share-modal__remove"
+              aria-label="Remove media"
+              onClick={() => removeMedia(current.key)}
+            >
+              ×
+            </button>
+          ) : null}
+          {media.length > 1 ? (
+            <>
+              <button
+                type="button"
+                className="share-modal__nav is-prev"
+                aria-label="Previous"
+                onClick={() =>
+                  setSlide((value) => (value - 1 + media.length) % media.length)
+                }
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                className="share-modal__nav is-next"
+                aria-label="Next"
+                onClick={() => setSlide((value) => (value + 1) % media.length)}
+              >
+                ›
+              </button>
+              <div className="share-modal__dots" aria-hidden="true">
+                {media.map((item, index) => (
+                  <span
+                    key={item.key}
+                    className={index === slide ? 'is-active' : ''}
+                  />
+                ))}
+              </div>
+            </>
+          ) : null}
+        </>
+      ) : (
+        <label className="share-modal__drop">
+          <strong>Add photos or videos</strong>
+          <span>Up to {MAX_MEDIA}</span>
+          <input
+            type="file"
+            accept="image/*,video/mp4,video/webm,video/quicktime"
+            multiple
+            onChange={(e) => void pickFiles(e)}
+          />
+        </label>
+      )}
+    </div>
+  )
+
   return (
     <div className="share-modal" role="presentation" onClick={onClose}>
       <div
@@ -329,158 +475,212 @@ export function SharePostModal({
         onClick={(event) => event.stopPropagation()}
       >
         <header className="share-modal__bar">
-          <button type="button" className="share-modal__ghost" onClick={onClose}>
-            Cancel
+          <button type="button" className="share-modal__ghost" onClick={goBack}>
+            {stepIndex === 0 ? 'Cancel' : 'Back'}
           </button>
-          <h2 id="share-modal-title">New post</h2>
-          <button
-            type="submit"
-            form="share-post-form"
-            className="share-modal__share"
-            disabled={pending}
-          >
-            {pending ? '…' : 'Share'}
-          </button>
+          <h2 id="share-modal-title">{stepTitle[step]}</h2>
+          {step === 'preview' ? (
+            <button
+              type="button"
+              className="share-modal__share share-modal__share--solid"
+              disabled={pending}
+              onClick={() => void publish()}
+            >
+              {pending ? '…' : 'Post'}
+            </button>
+          ) : (
+            <span className="share-modal__share-spacer" aria-hidden="true" />
+          )}
         </header>
 
-        <form
-          id="share-post-form"
-          className="share-modal__body"
-          noValidate
-          onSubmit={(e) => void submit(e)}
-        >
-          <div className="share-modal__stage">
-            {current ? (
-              <>
-                {current.kind === 'video' ? (
-                  <video src={current.previewUrl} controls playsInline />
-                ) : (
-                  <img src={current.previewUrl} alt="" />
-                )}
+        <ol className="share-modal__progress" aria-label="Post steps">
+          {STEPS.map((id, index) => (
+            <li
+              key={id}
+              className={
+                index < stepIndex
+                  ? 'is-done'
+                  : index === stepIndex
+                    ? 'is-active'
+                    : undefined
+              }
+            >
+              <span>{index + 1}</span>
+              <small>{stepTitle[id]}</small>
+            </li>
+          ))}
+        </ol>
+
+        <div className="share-modal__body share-modal__body--step">
+          {step === 'activity' ? (
+            <>
+              <p className="share-modal__step-copy">
+                Step 1 — tap hiking or camping to continue.
+              </p>
+              <div className="share-modal__activity-grid">
                 <button
                   type="button"
-                  className="share-modal__remove"
-                  aria-label="Remove media"
-                  onClick={() => removeMedia(current.key)}
+                  className={`share-modal__activity-choice ${
+                    activity === 'hiking' ? 'is-selected' : ''
+                  }`}
+                  onClick={() => pickActivity('hiking')}
                 >
-                  ×
+                  <HikingGlyph />
+                  <strong>Hiking</strong>
+                  <span>Summit days, day walks, routes</span>
                 </button>
-                {media.length > 1 ? (
-                  <>
-                    <button
-                      type="button"
-                      className="share-modal__nav is-prev"
-                      aria-label="Previous"
-                      onClick={() =>
-                        setSlide((value) => (value - 1 + media.length) % media.length)
-                      }
-                    >
-                      ‹
-                    </button>
-                    <button
-                      type="button"
-                      className="share-modal__nav is-next"
-                      aria-label="Next"
-                      onClick={() => setSlide((value) => (value + 1) % media.length)}
-                    >
-                      ›
-                    </button>
-                    <div className="share-modal__dots" aria-hidden="true">
-                      {media.map((item, index) => (
-                        <span
-                          key={item.key}
-                          className={index === slide ? 'is-active' : ''}
-                        />
-                      ))}
-                    </div>
-                  </>
-                ) : null}
-              </>
-            ) : (
-              <label className="share-modal__drop">
-                <strong>Add photos or videos</strong>
-                <span>Up to {MAX_MEDIA}</span>
-                <input
-                  type="file"
-                  accept="image/*,video/mp4,video/webm,video/quicktime"
-                  multiple
-                  onChange={(e) => void pickFiles(e)}
-                />
-              </label>
-            )}
-          </div>
-
-          {media.length > 0 && media.length < MAX_MEDIA ? (
-            <label className="share-modal__add-more">
-              + Add more
-              <input
-                type="file"
-                accept="image/*,video/mp4,video/webm,video/quicktime"
-                multiple
-                onChange={(e) => void pickFiles(e)}
-              />
-            </label>
-          ) : null}
-
-          <textarea
-            className="share-modal__caption"
-            value={body}
-            maxLength={1000}
-            rows={3}
-            placeholder="Write a caption…"
-            onChange={(event) => {
-              setBody(event.target.value)
-              if (error) setError('')
-            }}
-          />
-
-          <div className="share-modal__meta">
-            {peakId && peakName ? (
-              <div className="share-modal__chip">
-                <span>
-                  {peakName}
-                  {height ? ` · ${height} m` : ''}
-                </span>
-                <button type="button" aria-label="Clear peak" onClick={clearPeak}>
-                  ×
+                <button
+                  type="button"
+                  className={`share-modal__activity-choice ${
+                    activity === 'camping' ? 'is-selected' : ''
+                  }`}
+                  onClick={() => pickActivity('camping')}
+                >
+                  <TentGlyph />
+                  <strong>Camping</strong>
+                  <span>Overnight pitches and wild camps</span>
                 </button>
               </div>
-            ) : (
-              <div className="share-modal__peak">
+            </>
+          ) : null}
+
+          {step === 'media' ? (
+            <>
+              <p className="share-modal__step-copy">
+                Step 2 — add photos or videos from the day.
+              </p>
+              {mediaStage}
+              {media.length > 0 && media.length < MAX_MEDIA ? (
+                <label className="share-modal__add-more">
+                  + Add more
+                  <input
+                    type="file"
+                    accept="image/*,video/mp4,video/webm,video/quicktime"
+                    multiple
+                    onChange={(e) => void pickFiles(e)}
+                  />
+                </label>
+              ) : null}
+              <button
+                type="button"
+                className="share-modal__post-btn"
+                onClick={goNext}
+              >
+                Next
+              </button>
+            </>
+          ) : null}
+
+          {step === 'details' ? (
+            <>
+              <p className="share-modal__step-copy">
+                Step 3 — caption and optional peak or route link.
+              </p>
+              <textarea
+                className="share-modal__caption"
+                value={body}
+                maxLength={1000}
+                rows={4}
+                placeholder="Write a caption…"
+                onChange={(event) => {
+                  setBody(event.target.value)
+                  if (error) setError('')
+                }}
+              />
+              <div className="share-modal__meta">
+                {peakId && peakName ? (
+                  <div className="share-modal__chip">
+                    <span>
+                      {peakName}
+                      {height ? ` · ${height} m` : ''}
+                    </span>
+                    <button type="button" aria-label="Clear peak" onClick={clearPeak}>
+                      ×
+                    </button>
+                  </div>
+                ) : (
+                  <div className="share-modal__peak">
+                    <input
+                      ref={peakInputRef}
+                      type="search"
+                      value={peakQuery}
+                      placeholder="Tag a peak (optional)"
+                      autoComplete="off"
+                      onChange={(event) => {
+                        setPeakQuery(event.target.value)
+                        if (peakName && event.target.value !== peakName) {
+                          setPeakId(undefined)
+                          setPeakName(undefined)
+                        }
+                      }}
+                    />
+                  </div>
+                )}
                 <input
-                  ref={peakInputRef}
-                  type="search"
-                  value={peakQuery}
-                  placeholder="Tag a peak"
+                  className="share-modal__link"
+                  type="text"
+                  inputMode="url"
+                  value={routeUrl}
+                  maxLength={2000}
+                  placeholder="Route link (optional)"
                   autoComplete="off"
                   onChange={(event) => {
-                    setPeakQuery(event.target.value)
-                    if (peakName && event.target.value !== peakName) {
-                      setPeakId(undefined)
-                      setPeakName(undefined)
-                    }
+                    setRouteUrl(event.target.value)
+                    if (error) setError('')
                   }}
                 />
               </div>
-            )}
+              <button
+                type="button"
+                className="share-modal__post-btn"
+                onClick={goNext}
+              >
+                Next
+              </button>
+            </>
+          ) : null}
 
-            <input
-              className="share-modal__link"
-              type="text"
-              inputMode="url"
-              value={routeUrl}
-              maxLength={2000}
-              placeholder="Route link (optional)"
-              autoComplete="off"
-              onChange={(event) => {
-                setRouteUrl(event.target.value)
-                if (error) setError('')
-              }}
-            />
-          </div>
+          {step === 'preview' ? (
+            <>
+              <p className="share-modal__step-copy">
+                Step 4 — check it looks right, then post.
+              </p>
+              <div className="share-modal__preview">
+                <div className="share-modal__preview-head">
+                  {activity ? <PostActivityBadge activity={activity} /> : null}
+                  {peakName || defaults?.hikeName ? (
+                    <strong>
+                      {peakName || defaults?.hikeName}
+                      {height ? ` · ${height} m` : ''}
+                    </strong>
+                  ) : null}
+                </div>
+                {mediaStage}
+                {areaName ? (
+                  <p className="share-modal__preview-meta">{areaName}</p>
+                ) : null}
+                {routeUrl.trim() ? (
+                  <p className="share-modal__preview-meta">
+                    Route link ready
+                  </p>
+                ) : null}
+                {body.trim() ? (
+                  <p className="share-modal__preview-caption">{body.trim()}</p>
+                ) : null}
+              </div>
+              <button
+                type="button"
+                className="share-modal__post-btn"
+                disabled={pending}
+                onClick={() => void publish()}
+              >
+                {pending ? 'Posting…' : 'Post'}
+              </button>
+            </>
+          ) : null}
 
           {error ? <p className="share-modal__error">{error}</p> : null}
-        </form>
+        </div>
 
         {peakHits.length > 0 && peakMenu ? (
           <ul

@@ -1,9 +1,15 @@
-import { useEffect, useState } from 'react'
-import { FeedPostCard } from '../components/FeedPostCard'
+import { useEffect, useMemo, useState } from 'react'
 import {
   parseProfileSection,
   ProfileSectionNav,
 } from '../components/ProfileSectionNav'
+import {
+  PostActivityBadge,
+  PostActivityFilter,
+  PostActivityIcon,
+  isPostActivity,
+  type PostActivity,
+} from '../components/PostActivity'
 import { SiteHeader } from '../components/SiteHeader'
 import {
   apiEnabled,
@@ -26,7 +32,7 @@ function ProfileNotFound() {
         <div className="account-card account-card--center">
           <h1>Profile not found</h1>
           <p className="account-muted">
-            This walker is private, or the link is out of date.
+            This user is private, or the link is out of date.
           </p>
           <a className="account-pill-btn" href="/">
             Back home
@@ -50,8 +56,26 @@ export function ProfilePage({
     undefined,
   )
   const [posts, setPosts] = useState<ApiFeedPost[]>([])
+  const [activityFilter, setActivityFilter] = useState<'all' | PostActivity>(
+    'all',
+  )
   const [followBusy, setFollowBusy] = useState(false)
   const [followError, setFollowError] = useState('')
+
+  const activityCounts = useMemo(() => {
+    let hiking = 0
+    let camping = 0
+    for (const post of posts) {
+      if (post.activity === 'camping') camping += 1
+      else if (post.activity === 'hiking') hiking += 1
+    }
+    return { all: posts.length, hiking, camping }
+  }, [posts])
+
+  const filteredPosts = useMemo(() => {
+    if (activityFilter === 'all') return posts
+    return posts.filter((post) => post.activity === activityFilter)
+  }, [posts, activityFilter])
 
   useEffect(() => {
     let cancelled = false
@@ -217,11 +241,51 @@ export function ProfilePage({
                   <p>No feed posts yet.</p>
                 </div>
               ) : (
-                <div className="feed-list">
-                  {posts.slice(0, 3).map((post) => (
-                    <FeedPostCard key={post.id} post={post} compact />
-                  ))}
-                </div>
+                <>
+                  <PostActivityFilter
+                    value={activityFilter}
+                    onChange={setActivityFilter}
+                    counts={activityCounts}
+                  />
+                  {filteredPosts.length === 0 ? (
+                    <div className="account-empty">
+                      <p>No {activityFilter} posts yet.</p>
+                    </div>
+                  ) : (
+                    <ul className="account-post-grid" aria-label="Activity posts">
+                      {filteredPosts.slice(0, 9).map((post) => (
+                        <li key={post.id}>
+                          <a
+                            className="account-post-tile"
+                            href={`/posts/${post.id}`}
+                            aria-label={
+                              post.peakName
+                                ? `Open post from ${post.peakName}`
+                                : 'Open shared photograph'
+                            }
+                          >
+                            <img
+                              src={post.imageUrl}
+                              alt={
+                                post.peakName
+                                  ? `Post from ${post.peakName}`
+                                  : 'Shared photograph'
+                              }
+                            />
+                            {isPostActivity(post.activity) ? (
+                              <span
+                                className={`account-post-tile__badge is-${post.activity}`}
+                                aria-label={post.activity}
+                              >
+                                <PostActivityIcon activity={post.activity} />
+                              </span>
+                            ) : null}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </>
               )}
               <div className="account-quick-links">
                 <a href={`${basePath}/stats`}>Full stats →</a>
@@ -328,23 +392,47 @@ export function ProfilePage({
                 <p>No posts yet.</p>
               </div>
             ) : (
-              <ul className="account-trips-grid" aria-label="Trips">
-                {posts.map((post) => (
-                  <li key={post.id}>
-                    <a
-                      className="account-trips-tile"
-                      href={`/posts/${post.id}`}
-                    >
-                      <span className="account-trips-tile__media">
-                        <img src={post.imageUrl} alt="" />
-                      </span>
-                      <span className="account-trips-tile__name">
-                        {post.peakName || post.hikeName || 'Post'}
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <>
+                <PostActivityFilter
+                  value={activityFilter}
+                  onChange={setActivityFilter}
+                  counts={activityCounts}
+                />
+                {filteredPosts.length === 0 ? (
+                  <div className="account-empty">
+                    <p>No {activityFilter} posts yet.</p>
+                  </div>
+                ) : (
+                  <ul className="account-trips-grid" aria-label="Trips">
+                    {filteredPosts.map((post) => (
+                      <li key={post.id}>
+                        <a
+                          className="account-trips-tile"
+                          href={`/posts/${post.id}`}
+                        >
+                          <span className="account-trips-tile__media">
+                            <img src={post.imageUrl} alt="" />
+                            {isPostActivity(post.activity) ? (
+                              <span
+                                className={`account-trips-tile__badge is-${post.activity}`}
+                                aria-hidden="true"
+                              >
+                                <PostActivityIcon activity={post.activity} />
+                              </span>
+                            ) : null}
+                          </span>
+                          <span className="account-trips-tile__name">
+                            {post.peakName || post.hikeName || 'Post'}
+                          </span>
+                          {isPostActivity(post.activity) ? (
+                            <PostActivityBadge activity={post.activity} />
+                          ) : null}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </>
             )}
           </section>
         ) : null}

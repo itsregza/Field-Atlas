@@ -97,7 +97,7 @@ def register(
     db.refresh(user)
 
     ensure_profile(db, user.id, user.name, user.email, preferred_handle=body.username)
-    create_session(db, user.id, response)
+    token = create_session(db, user.id, response)
 
     return {
         "user": {
@@ -105,7 +105,8 @@ def register(
             "email": user.email,
             "name": user.name,
             "provider": "email",
-        }
+        },
+        "sessionToken": token,
     }
 
 
@@ -123,7 +124,7 @@ def login(
         raise HTTPException(status_code=401, detail={"error": "Invalid username/email or password"})
 
     ensure_profile(db, user.id, user.name, user.email)
-    create_session(db, user.id, response)
+    token = create_session(db, user.id, response)
 
     return {
         "user": {
@@ -131,7 +132,8 @@ def login(
             "email": user.email,
             "name": user.name,
             "provider": "google" if user.provider == "google" else "email",
-        }
+        },
+        "sessionToken": token,
     }
 
 
@@ -157,7 +159,7 @@ def demo_google(
         db.refresh(user)
 
     ensure_profile(db, user.id, user.name, user.email)
-    create_session(db, user.id, response)
+    token = create_session(db, user.id, response)
 
     return {
         "user": {
@@ -165,7 +167,8 @@ def demo_google(
             "email": user.email,
             "name": user.name,
             "provider": "google",
-        }
+        },
+        "sessionToken": token,
     }
 
 

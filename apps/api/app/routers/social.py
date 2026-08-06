@@ -27,6 +27,7 @@ def map_post_base(row: dict[str, Any]) -> dict[str, Any]:
         "media": media,
         "routeUrl": row.get("route_url") or None,
         "routeLabel": row.get("route_label") or None,
+        "activity": row.get("activity") or None,
         "peakId": row["peak_id"] or None,
         "peakName": row["peak_name"] or None,
         "areaSlug": row["area_slug"] or None,

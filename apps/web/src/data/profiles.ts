@@ -204,7 +204,7 @@ function slugifyHandle(value: string) {
 export function defaultHandleFor(user: MockUser) {
   const fromName = slugifyHandle(user.name)
   if (fromName.length >= 3) return fromName
-  return slugifyHandle(user.email.split('@')[0] || 'walker') || 'walker'
+  return slugifyHandle(user.email.split('@')[0] || 'user') || 'user'
 }
 
 export function loadProfileSettings(user: MockUser): ProfileSettings {
@@ -237,7 +237,7 @@ export function loadProfileSettings(user: MockUser): ProfileSettings {
 
 export function saveProfileSettings(settings: ProfileSettings) {
   const next: ProfileSettings = {
-    handle: slugifyHandle(settings.handle) || 'walker',
+    handle: slugifyHandle(settings.handle) || 'user',
     status: settings.status.trim().slice(0, 160),
     avatarUrl: settings.avatarUrl ?? null,
     isPublic: settings.isPublic,
@@ -254,7 +254,7 @@ export async function persistProfileSettings(
   name?: string,
 ) {
   const draft: ProfileSettings = {
-    handle: slugifyHandle(settings.handle) || 'walker',
+    handle: slugifyHandle(settings.handle) || 'user',
     status: settings.status.trim().slice(0, 160),
     avatarUrl: settings.avatarUrl ?? null,
     isPublic: settings.isPublic,

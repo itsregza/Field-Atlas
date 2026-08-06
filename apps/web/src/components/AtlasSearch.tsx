@@ -19,7 +19,7 @@ type AtlasSearchProps = {
 
 export function AtlasSearch({
   className,
-  placeholder = 'Search hikes, peaks, ranges and friends…',
+  placeholder = 'Search hikes, multi-day routes, peaks, ranges and users…',
 }: AtlasSearchProps) {
   const listId = useId()
   const inputId = useId()

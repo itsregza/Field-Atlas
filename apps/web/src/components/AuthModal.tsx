@@ -60,7 +60,7 @@ const registerSteps = [
   {
     id: 'username',
     title: 'Choose a username',
-    hint: 'How other walkers will find you.',
+    hint: 'How other users will find you.',
   },
   {
     id: 'firstName',
@@ -348,7 +348,7 @@ function AuthModal({ mode, returnTo, onModeChange, onClose }: AuthModalProps) {
   const continueWithGoogle = async () => {
     setError('')
     if (!usingApi) {
-      finishOffline('Demo Walker', 'walker@example.com', 'google')
+      finishOffline('Demo User', 'demo@example.com', 'google')
       return
     }
     setPending(true)
@@ -357,7 +357,7 @@ function AuthModal({ mode, returnTo, onModeChange, onClose }: AuthModalProps) {
       await finish(user)
     } catch (err) {
       if (isNetworkFailure(err)) {
-        finishOffline('Demo Walker', 'walker@example.com', 'google')
+        finishOffline('Demo User', 'demo@example.com', 'google')
         return
       }
       setError(err instanceof Error ? err.message : 'Sign in failed')

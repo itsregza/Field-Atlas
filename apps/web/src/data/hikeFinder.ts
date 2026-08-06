@@ -2,6 +2,7 @@ import { getAllAreaPeaks, getAreaPeaks } from './areaPeaks'
 import { areas } from './areas'
 import { hikes, type Difficulty, type Hike } from './hikes'
 import type { PeakLogs } from './logs'
+import { bestPitchabilityForPeaks } from './ratings'
 
 export type CampingChoice = 'yes' | 'no' | 'either'
 
@@ -29,6 +30,7 @@ export type RankedHike = {
 }
 
 const peakIndex = new Map(getAllAreaPeaks().map((peak) => [peak.id, peak]))
+const OVERNIGHT_PITCH_MIN = 3.5
 
 export const defaultGeneratorPrefs: GeneratorPrefs = {
   areaSlugs: [],
@@ -60,7 +62,13 @@ function matchesGenerator(hike: Hike, prefs: GeneratorPrefs, logs: PeakLogs) {
   if (prefs.difficulty !== 'any' && hike.difficulty !== prefs.difficulty) {
     return false
   }
-  if (prefs.campingNight === 'yes' && !hike.campingNight) return false
+  if (prefs.campingNight === 'yes') {
+    if (!hike.campingNight) return false
+    // Overnight draws need a summit with solid pitchability analytics.
+    if (bestPitchabilityForPeaks(hike.peakIds, OVERNIGHT_PITCH_MIN) < OVERNIGHT_PITCH_MIN) {
+      return false
+    }
+  }
   if (prefs.campingNight === 'no' && hike.campingNight) return false
 
   if (prefs.goal.kind === 'remaining') {
@@ -109,13 +117,17 @@ function scoreGenerated(
   }
 
   if (prefs.campingNight === 'yes') {
-    reasons.push('Proper day for an overnight nearby')
-    score += 10
+    const pitch = bestPitchabilityForPeaks(hike.peakIds, OVERNIGHT_PITCH_MIN)
+    reasons.push(`Pitchability ${pitch.toFixed(1)}/5 nearby`)
+    score += 12 + (pitch - OVERNIGHT_PITCH_MIN) * 10
   } else if (prefs.campingNight === 'no') {
     reasons.push('Day walk without an overnight')
     score += 6
   } else if (hike.campingNight) {
-    reasons.push('Also works with a camping night')
+    const pitch = bestPitchabilityForPeaks(hike.peakIds)
+    if (pitch >= OVERNIGHT_PITCH_MIN) {
+      reasons.push('Also works with a camping night')
+    }
   }
 
   if (prefs.goal.kind === 'remaining') {

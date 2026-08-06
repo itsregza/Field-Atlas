@@ -1,6 +1,6 @@
 import { loadUser } from './auth'
 
-export type RatingEntityType = 'peak' | 'hike' | 'bothy'
+export type RatingEntityType = 'peak' | 'hike' | 'bothy' | 'pitch'
 
 export type UserRating = {
   entityType: RatingEntityType
@@ -132,4 +132,31 @@ export function clearMyRating(
     ),
   )
   return getRatingSummary(entityType, entityId)
+}
+
+/** Community pitchability for a summit (1–5). */
+export function getPitchability(peakId: string): RatingSummary {
+  return getRatingSummary('pitch', peakId)
+}
+
+export function setPitchability(peakId: string, score: number): RatingSummary {
+  return setMyRating('pitch', peakId, score)
+}
+
+/** True when average pitchability is at least the overnight threshold. */
+export function isWellPitchable(peakId: string, minAverage = 3.5): boolean {
+  return getPitchability(peakId).average >= minAverage
+}
+
+/** Best pitchability average among a hike’s peaks (0 if none). */
+export function bestPitchabilityForPeaks(
+  peakIds: string[],
+  minAverage = 0,
+): number {
+  let best = 0
+  for (const id of peakIds) {
+    const average = getPitchability(id).average
+    if (average >= minAverage && average > best) best = average
+  }
+  return best
 }

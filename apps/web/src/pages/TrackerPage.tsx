@@ -1,10 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { PeakFilter } from '../components/LakeMap'
 import { PeakDetails } from '../components/PeakDetails'
-import {
-  SharePostModal,
-  type SharePostDefaults,
-} from '../components/SharePostModal'
 import { SiteHeader } from '../components/SiteHeader'
 import { TrackerMap } from '../components/TrackerMap'
 import {
@@ -42,9 +38,6 @@ export function TrackerPage({ area }: { area: Area }) {
   const [logs, setLogs] = useState(() => (user ? loadLogs() : {}))
   const [imageError, setImageError] = useState('')
   const [hydrated, setHydrated] = useState(!apiEnabled() || !user)
-  const [shareDefaults, setShareDefaults] = useState<SharePostDefaults | null>(
-    null,
-  )
 
   useEffect(() => {
     if (!user || !apiEnabled()) {
@@ -327,30 +320,10 @@ export function TrackerPage({ area }: { area: Area }) {
               onChange={updateLog}
               onImage={addImage}
               onClose={() => setSelectedId(null)}
-              onShare={
-                user && apiEnabled()
-                  ? () =>
-                      setShareDefaults({
-                        peakId: selected.id,
-                        peakName: selected.name,
-                        areaSlug: area.slug,
-                        areaName: area.name,
-                        height: selected.height,
-                        imageUrl: selectedLog.image,
-                        body: selectedLog.notes,
-                      })
-                  : undefined
-              }
               readOnly={!user}
               returnTo={loginReturnTo}
             />
           )}
-
-          <SharePostModal
-            open={Boolean(shareDefaults)}
-            defaults={shareDefaults ?? undefined}
-            onClose={() => setShareDefaults(null)}
-          />
 
           <div className="map-note">
             {user ? (

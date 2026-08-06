@@ -29,7 +29,7 @@ function RidgeMock({
           <span>Feed</span>
           <span>Map</span>
           <span>Checklists</span>
-          <span>Walkers</span>
+          <span>Users</span>
         </nav>
       </header>
 
@@ -40,11 +40,11 @@ function RidgeMock({
             <h1>Field Atlas</h1>
             <p>
               Track your summits in private. Share the days worth keeping with
-              walkers who know the wind.
+              users who know the wind.
             </p>
             <div className="mu-a__actions">
               <span className="mu-btn">Join the feed</span>
-              <span className="mu-link">Browse walkers</span>
+              <span className="mu-link">Browse users</span>
             </div>
           </div>
           <figure
@@ -65,11 +65,11 @@ function RidgeMock({
             <h1>Field Atlas</h1>
             <p>
               Track your summits in private. Share the days worth keeping with
-              walkers who know the wind.
+              users who know the wind.
             </p>
             <div className="mu-a__actions">
               <span className="mu-btn">Join the feed</span>
-              <span className="mu-link">Browse walkers</span>
+              <span className="mu-link">Browse users</span>
             </div>
           </div>
         </section>
@@ -85,7 +85,7 @@ function RidgeMock({
           <p>Sixteen area checklists that stay yours until you post.</p>
         </article>
         <article>
-          <h2>Other walkers</h2>
+          <h2>Other users</h2>
           <p>Public profiles of people already out on the hill.</p>
         </article>
       </section>

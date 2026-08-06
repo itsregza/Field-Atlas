@@ -14,7 +14,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 from app.config import get_settings
 from app.db import ensure_schema
-from app.routers import auth, logs, posts, profiles, social
+from app.routers import auth, logs, posts, profiles, ratings, social
 from app.routers.ops import build_ops_router
 from app.storage import UPLOAD_ROOT, ensure_upload_root
 
@@ -53,8 +53,10 @@ app = FastAPI(
 app.add_middleware(StripApiPrefixMiddleware)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origins,
-    allow_credentials=True,
+    # Dev / mobile tunnels (Expo web, Cloudflare) send varying Origins.
+    # Bearer auth does not need cookies; reflecting any origin keeps login working.
+    allow_origins=["*"] if not settings.is_production else settings.cors_origins,
+    allow_credentials=False if not settings.is_production else True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -101,6 +103,7 @@ app.include_router(logs.router)
 app.include_router(profiles.router)
 app.include_router(posts.router)
 app.include_router(social.router)
+app.include_router(ratings.router)
 
 ops_router = build_ops_router()
 if ops_router is not None:

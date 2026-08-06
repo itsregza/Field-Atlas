@@ -10,6 +10,8 @@ import { ExplorePage } from './pages/FeedPage'
 import { HikeDetailPage } from './pages/HikeDetailPage'
 import { HikeFinderPage } from './pages/HikeFinderPage'
 import { HikesHubPage } from './pages/HikesHubPage'
+import { MultiDayDetailPage } from './pages/MultiDayDetailPage'
+import { MultiDayHikesPage } from './pages/MultiDayHikesPage'
 import { HomePage } from './pages/HomePage'
 import { BothiesPage } from './pages/BothiesPage'
 import { CampingMapPage } from './pages/CampingMapPage'
@@ -101,6 +103,14 @@ function App() {
   if (path === '/hikes') return <HikesHubPage />
   if (path === '/hikes/generator') return <HikeFinderPage />
   if (path === '/hikes/unfinished') return <UnfinishedPeaksPage />
+  if (path === '/hikes/multi-day') return <MultiDayHikesPage />
+  if (path.startsWith('/hikes/multi-day/')) {
+    return (
+      <MultiDayDetailPage
+        routeId={decodeURIComponent(path.slice('/hikes/multi-day/'.length))}
+      />
+    )
+  }
   if (path.startsWith('/hikes/')) {
     return <HikeDetailPage hikeId={decodeURIComponent(path.slice('/hikes/'.length))} />
   }

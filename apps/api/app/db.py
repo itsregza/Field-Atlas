@@ -128,6 +128,17 @@ SCHEMA_STATEMENTS = [
     "ALTER TABLE posts ADD COLUMN IF NOT EXISTS media_json text",
     "ALTER TABLE posts ADD COLUMN IF NOT EXISTS route_url text",
     "ALTER TABLE posts ADD COLUMN IF NOT EXISTS route_label text",
+    "ALTER TABLE posts ADD COLUMN IF NOT EXISTS activity text",
+    """
+    CREATE TABLE IF NOT EXISTS peak_ratings (
+      user_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      peak_id text NOT NULL,
+      kind text NOT NULL DEFAULT 'pitch',
+      score integer NOT NULL,
+      updated_at timestamptz NOT NULL DEFAULT now(),
+      PRIMARY KEY (user_id, peak_id, kind)
+    )
+    """,
 ]
 
 
@@ -147,6 +158,7 @@ def ensure_schema() -> None:
             _sqlite_add_column(conn, "posts", "media_json", "media_json text")
             _sqlite_add_column(conn, "posts", "route_url", "route_url text")
             _sqlite_add_column(conn, "posts", "route_label", "route_label text")
+            _sqlite_add_column(conn, "posts", "activity", "activity text")
         return
 
     with engine.begin() as conn:

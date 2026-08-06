@@ -2,6 +2,10 @@ import { areas } from './areas'
 import { getAllAreaPeaks } from './areaPeaks'
 import { bothies } from './bothies'
 import { hikes } from './hikes'
+import {
+  formatDurationDays,
+  multiDayRoutes,
+} from './multiDayRoutes'
 import type { PublicProfile } from './profiles'
 
 export type SearchHit =
@@ -14,6 +18,13 @@ export type SearchHit =
     }
   | {
       kind: 'hike'
+      id: string
+      label: string
+      detail: string
+      href: string
+    }
+  | {
+      kind: 'multi-day'
       id: string
       label: string
       detail: string
@@ -42,8 +53,9 @@ export type SearchHit =
     }
 
 const kindLabel: Record<SearchHit['kind'], string> = {
-  user: 'Walker',
+  user: 'User',
   hike: 'Hike',
+  'multi-day': 'Multi-day',
   peak: 'Peak',
   range: 'Range',
   bothy: 'Bothy',
@@ -65,7 +77,7 @@ function scoreName(name: string, query: string) {
   return 0
 }
 
-/** Search peaks, ranges, hikes, and optional public profiles. */
+/** Search peaks, ranges, hikes, multi-day routes, and optional public profiles. */
 export function searchAtlas(
   query: string,
   profiles: PublicProfile[] = [],
@@ -89,7 +101,7 @@ export function searchAtlas(
       label: profile.name,
       detail: `@${profile.handle}`,
       href: `/u/${profile.handle}`,
-      score: score + 5,
+      score,
     })
   }
 
@@ -127,6 +139,26 @@ export function searchAtlas(
     })
   }
 
+  for (const route of multiDayRoutes) {
+    const score = Math.max(
+      scoreName(route.name, q),
+      scoreName(route.start, q),
+      scoreName(route.finish, q),
+      scoreName(route.nation, q) > 0 && q.length > 4
+        ? scoreName(route.nation, q) / 2
+        : 0,
+    )
+    if (!score) continue
+    hits.push({
+      kind: 'multi-day',
+      id: route.id,
+      label: route.name,
+      detail: `${route.nation} · ${route.distanceKm} km · ${formatDurationDays(route)}`,
+      href: `/hikes/multi-day/${encodeURIComponent(route.id)}`,
+      score: score + 2,
+    })
+  }
+
   for (const peak of getAllAreaPeaks()) {
     const score = scoreName(peak.name, q)
     if (!score) continue
@@ -160,13 +192,28 @@ export function searchAtlas(
     })
   }
 
-  return hits
+  const seen = new Set<string>()
+  const ranked = hits
     .sort(
       (a, b) =>
         b.score - a.score ||
         a.label.localeCompare(b.label) ||
         a.kind.localeCompare(b.kind),
     )
+    // Generated rounds often share a title + area; keep one visible hit.
+    .filter((hit) => {
+      const key = `${hit.kind}|${hit.label}|${hit.detail}`
+      if (seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
+
+  const places = ranked.filter((hit) => hit.kind !== 'user')
+  const users = ranked.filter((hit) => hit.kind === 'user')
+  // Places / routes first; keep a few matching users at the end.
+  const userSlots = Math.min(users.length, 3)
+  const placeSlots = Math.max(0, limit - userSlots)
+  return [...places.slice(0, placeSlots), ...users.slice(0, userSlots)]
     .slice(0, limit)
     .map(({ score: _score, ...hit }) => hit)
 }
