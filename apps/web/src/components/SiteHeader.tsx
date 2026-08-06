@@ -161,12 +161,17 @@ export function SiteHeader() {
 
       <button
         type="button"
-        className="site-header__menu-btn"
+        className={`site-header__menu-btn ${menuOpen ? 'is-open' : ''}`}
         aria-expanded={menuOpen}
         aria-controls={menuId}
+        aria-label={menuOpen ? 'Close menu' : 'Open menu'}
         onClick={() => setMenuOpen((open) => !open)}
       >
-        {menuOpen ? 'Close' : 'Menu'}
+        <span className="site-header__menu-icon" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </span>
       </button>
 
       <nav id={menuId} className="site-nav" aria-label="Main navigation">
