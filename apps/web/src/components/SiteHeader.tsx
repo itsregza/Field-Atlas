@@ -14,18 +14,20 @@ function NavDropdown({
   active,
   items,
   onNavigate,
+  flat,
 }: {
   label: string
   active: boolean
   items: NavItem[]
   onNavigate: () => void
+  flat?: boolean
 }) {
   const [open, setOpen] = useState(false)
   const rootRef = useRef<HTMLDivElement>(null)
   const menuId = useId()
 
   useEffect(() => {
-    if (!open) return
+    if (!open || flat) return
     const onPointer = (event: MouseEvent) => {
       if (!rootRef.current?.contains(event.target as Node)) setOpen(false)
     }
@@ -38,7 +40,32 @@ function NavDropdown({
       window.removeEventListener('pointerdown', onPointer)
       window.removeEventListener('keydown', onKey)
     }
-  }, [open])
+  }, [open, flat])
+
+  if (flat) {
+    return (
+      <div className={`site-nav__drop site-nav__drop--flat ${active ? 'is-active' : ''}`}>
+        <span className="site-nav__group-label">{label}</span>
+        {items.map((item) =>
+          item.disabled || !item.href ? (
+            <span key={item.label} className="site-nav__drop-soon" role="menuitem">
+              {item.label}
+              <small>Soon</small>
+            </span>
+          ) : (
+            <a
+              key={item.label}
+              role="menuitem"
+              href={item.href}
+              onClick={() => onNavigate()}
+            >
+              {item.label}
+            </a>
+          ),
+        )}
+      </div>
+    )
+  }
 
   return (
     <div
@@ -151,6 +178,7 @@ export function SiteHeader() {
           label="Maps"
           active={mapsActive}
           onNavigate={closeMenu}
+          flat={menuOpen}
           items={[
             { label: 'UK Map', href: '/map' },
             { label: 'Pitching Map', href: '/pitching' },
@@ -162,6 +190,7 @@ export function SiteHeader() {
           label="Hiking"
           active={hikingActive}
           onNavigate={closeMenu}
+          flat={menuOpen}
           items={[
             { label: 'Find a hike', href: '/hikes/generator' },
             { label: 'Unfinished peaks', href: '/hikes/unfinished' },

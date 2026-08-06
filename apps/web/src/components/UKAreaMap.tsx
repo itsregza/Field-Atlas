@@ -684,6 +684,16 @@ export function UKAreaMap({
   }, [apiKey])
 
   useEffect(() => {
+    const el = container.current
+    if (!el) return
+    const observer = new ResizeObserver(() => {
+      mapRef.current?.resize()
+    })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [apiKey])
+
+  useEffect(() => {
     if (!ready) return
     rebuildOverlays.current?.()
     if (area?.slug && !focusPeakId) {

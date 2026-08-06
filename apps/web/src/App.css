@@ -534,6 +534,70 @@
     color: var(--moss);
   }
 
+  .site-header.is-menu-open .site-nav__drop--flat {
+    width: 100%;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .site-header.is-menu-open .site-nav__group-label {
+    display: block;
+    padding: 14px 4px 6px;
+    color: var(--faint);
+    font: 750 10px / 1 var(--sans);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .site-header.is-menu-open .site-nav__drop--flat a,
+  .site-header.is-menu-open .site-nav__drop--flat .site-nav__drop-soon {
+    min-height: 40px;
+    padding: 10px 4px 10px 12px;
+    border-bottom: 0;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    text-transform: none;
+  }
+
+  .explore-page .site-header,
+  .area-directory .site-header,
+  .area-detail .site-header,
+  .hike-page .site-header,
+  .bothies-page .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+  }
+
+  .explore-layout {
+    height: auto;
+    min-height: calc(100dvh - 118px);
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(52dvh, 1fr);
+  }
+
+  .explore-sidebar {
+    max-height: 44dvh;
+    padding: 22px 18px 20px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .explore-sidebar h1 {
+    font-size: clamp(28px, 8vw, 36px);
+  }
+
+  .uk-map-panel {
+    min-height: 52dvh;
+    height: min(58dvh, 560px);
+  }
+
+  .map-note.area-map-note {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    max-width: calc(100% - 24px);
+  }
+
   .workspace {
     height: calc(100dvh - 118px);
     min-height: 0;
@@ -1806,6 +1870,18 @@ a:focus-visible {
     grid-template-areas:
       'brand menu'
       'nav nav';
+  }
+
+  .home-page--bleed .site-header.is-menu-open .site-nav__group-label {
+    color: rgb(247 242 230 / 58%);
+  }
+
+  .home-page--bleed .site-header.is-menu-open .site-nav__drop--flat {
+    border-bottom-color: rgb(247 242 230 / 14%);
+  }
+
+  .home-page--bleed .site-header.is-menu-open .site-nav__drop--flat a {
+    color: #f7f2e6;
   }
 
   .home-page--bleed .site-header > .site-search {
