@@ -36,8 +36,7 @@ docker-compose.yml  Postgres 16
 
 ## Windows Server (production)
 
-Start/stop and service setup: [`deploy/windows/RUNNING.md`](deploy/windows/RUNNING.md)  
-First-time IIS + DNS setup: [`deploy/windows/README.md`](deploy/windows/README.md)
+Start/stop: [`deploy/windows/RUNNING.md`](deploy/windows/RUNNING.md)
 
 ## Running locally
 

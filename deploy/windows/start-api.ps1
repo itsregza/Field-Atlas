@@ -1,5 +1,14 @@
-# Start Field Atlas (IIS proxies HTTPS to this process)
+# Start Field Atlas via scheduled task, or run uvicorn directly if no task exists
 $ErrorActionPreference = "Stop"
+
+$TaskName = "FieldAtlasAPI"
+$task = Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue
+if ($task) {
+  Start-ScheduledTask -TaskName $TaskName
+  Write-Host "Started scheduled task $TaskName."
+  exit 0
+}
+
 $Api = Resolve-Path (Join-Path $PSScriptRoot "..\..\apps\api")
 Set-Location $Api
 
