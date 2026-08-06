@@ -15,12 +15,14 @@ function NavDropdown({
   items,
   onNavigate,
   flat,
+  path,
 }: {
   label: string
   active: boolean
   items: NavItem[]
   onNavigate: () => void
   flat?: boolean
+  path: string
 }) {
   const [open, setOpen] = useState(false)
   const rootRef = useRef<HTMLDivElement>(null)
@@ -56,6 +58,7 @@ function NavDropdown({
             <a
               key={item.label}
               role="menuitem"
+              className={item.href === path ? 'active' : ''}
               href={item.href}
               onClick={() => onNavigate()}
             >
@@ -184,6 +187,7 @@ export function SiteHeader() {
           active={mapsActive}
           onNavigate={closeMenu}
           flat={menuOpen}
+          path={path}
           items={[
             { label: 'UK Map', href: '/map' },
             { label: 'Pitching Map', href: '/pitching' },
@@ -196,6 +200,7 @@ export function SiteHeader() {
           active={hikingActive}
           onNavigate={closeMenu}
           flat={menuOpen}
+          path={path}
           items={[
             { label: 'Find a hike', href: '/hikes/generator' },
             { label: 'Unfinished peaks', href: '/hikes/unfinished' },
@@ -232,36 +237,39 @@ export function SiteHeader() {
         >
           Checklists
         </a>
-        {user ? (
-          <a
-            className={`nav-explore ${path === '/explore' || path.startsWith('/posts/') ? 'active' : ''}`}
-            href="/explore"
-            onClick={closeMenu}
-          >
-            Explore
-          </a>
-        ) : null}
 
-        {user ? (
-          <a
-            className={`nav-account ${path.startsWith('/account') ? 'active' : ''}`}
-            href="/account"
-            onClick={closeMenu}
-          >
-            Account
-          </a>
-        ) : (
-          <button
-            className="nav-account"
-            type="button"
-            onClick={() => {
-              closeMenu()
-              openAuth('login', path === '/' ? '/account' : path)
-            }}
-          >
-            Log in
-          </button>
-        )}
+        <div className="site-nav__actions">
+          {user ? (
+            <a
+              className={`nav-explore ${path === '/explore' || path.startsWith('/posts/') ? 'active' : ''}`}
+              href="/explore"
+              onClick={closeMenu}
+            >
+              Explore
+            </a>
+          ) : null}
+
+          {user ? (
+            <a
+              className={`nav-account ${path.startsWith('/account') ? 'active' : ''}`}
+              href="/account"
+              onClick={closeMenu}
+            >
+              Account
+            </a>
+          ) : (
+            <button
+              className="nav-account"
+              type="button"
+              onClick={() => {
+                closeMenu()
+                openAuth('login', path === '/' ? '/account' : path)
+              }}
+            >
+              Log in
+            </button>
+          )}
+        </div>
       </nav>
     </header>
   )
