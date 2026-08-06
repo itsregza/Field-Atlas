@@ -155,8 +155,20 @@ export function apiPutProfile(profile: ApiProfileUpdate) {
   })
 }
 
-export function apiListProfiles() {
-  return request<{ profiles: PublicProfile[] }>('/profiles')
+export type ProfileSearchHit = {
+  handle: string
+  name: string
+  avatarUrl?: string | null
+}
+
+export function apiSearchProfiles(query: string, limit = 10) {
+  const params = new URLSearchParams({
+    q: query,
+    limit: String(limit),
+  })
+  return request<{ profiles: ProfileSearchHit[] }>(
+    `/profiles/search?${params.toString()}`,
+  )
 }
 
 export function apiGetProfile(handle: string) {

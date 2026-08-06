@@ -5,7 +5,7 @@ from typing import Annotated, Any
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException, Query
-from sqlalchemy import and_, func, select
+from sqlalchemy import and_, func, or_, select
 from sqlalchemy.orm import Session
 
 from app.auth import get_optional_user, require_user
@@ -173,34 +173,41 @@ def update_my_profile(
     return {"profile": serialize_profile(existing, next_name)}
 
 
-@router.get("/profiles")
-def list_profiles(
+@router.get("/profiles/search")
+def search_profiles(
     db: Annotated[Session, Depends(get_db)],
-    viewer: Annotated[SessionUser | None, Depends(get_optional_user)],
+    q: Annotated[str, Query(max_length=100)] = "",
+    limit: Annotated[int, Query(ge=1, le=20)] = 10,
 ) -> dict[str, Any]:
+    term = q.strip().lower()
+    if len(term) < 2:
+        return {"profiles": []}
+
+    pattern = f"%{term}%"
     rows = db.execute(
-        select(
-            Profile.handle,
-            Profile.user_id,
-            User.name,
-            Profile.status,
-            Profile.avatar_url,
-            Profile.share_notes,
-            Profile.share_photos,
-            Profile.updated_at,
-        )
+        select(Profile.handle, User.name, Profile.avatar_url)
         .join(User, Profile.user_id == User.id)
         .where(Profile.is_public.is_(True))
+        .where(
+            or_(
+                func.lower(Profile.handle).like(pattern),
+                func.lower(User.name).like(pattern),
+            )
+        )
         .order_by(Profile.updated_at.desc())
+        .limit(limit)
     ).all()
 
-    result = []
-    for row in rows:
-        logs = db.execute(select(PeakLog).where(PeakLog.user_id == row.user_id)).scalars().all()
-        social = follow_stats(db, row.user_id, viewer.id if viewer else None)
-        result.append(build_public_profile(row, list(logs), social))
-
-    return {"profiles": result}
+    return {
+        "profiles": [
+            {
+                "handle": row.handle,
+                "name": row.name,
+                "avatarUrl": row.avatar_url,
+            }
+            for row in rows
+        ]
+    }
 
 
 @router.get("/profiles/{handle}")

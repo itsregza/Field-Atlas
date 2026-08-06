@@ -131,7 +131,7 @@ Schema tables are created automatically on API startup. **Docker is optional** â
 | GET/PUT | `/me/logs` | Peak completion map |
 | PUT | `/me/logs/:peakId` | Single peak upsert |
 | GET/PUT | `/me/profile` | Sharing settings |
-| GET | `/profiles` | Public profiles |
+| GET | `/profiles/search?q=` | Search public profiles (min 2 chars) |
 | GET | `/profiles/:handle` | One public profile |
 
 Sessions use an HTTP-only `fa_session` cookie.

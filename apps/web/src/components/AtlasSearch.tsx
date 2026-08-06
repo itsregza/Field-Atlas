@@ -6,10 +6,7 @@ import {
   useState,
   type KeyboardEvent,
 } from 'react'
-import {
-  listPublicProfiles,
-  type PublicProfile,
-} from '../data/profiles'
+import { searchPublicProfiles } from '../data/profiles'
 import { searchAtlas, searchKindLabel, type SearchHit } from '../data/search'
 
 type AtlasSearchProps = {
@@ -25,19 +22,31 @@ export function AtlasSearch({
   const inputId = useId()
   const rootRef = useRef<HTMLDivElement>(null)
   const [query, setQuery] = useState('')
-  const [profiles, setProfiles] = useState<PublicProfile[]>([])
+  const [profileHits, setProfileHits] = useState<
+    Array<{ handle: string; name: string }>
+  >([])
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState(0)
 
   useEffect(() => {
+    const trimmed = query.trim()
+    if (trimmed.length < 2) {
+      setProfileHits([])
+      return
+    }
+
     let cancelled = false
-    void listPublicProfiles().then((next) => {
-      if (!cancelled) setProfiles(next)
-    })
+    const timer = window.setTimeout(() => {
+      void searchPublicProfiles(trimmed, 10).then((next) => {
+        if (!cancelled) setProfileHits(next)
+      })
+    }, 200)
+
     return () => {
       cancelled = true
+      window.clearTimeout(timer)
     }
-  }, [])
+  }, [query])
 
   useEffect(() => {
     const onPointer = (event: MouseEvent) => {
@@ -48,8 +57,8 @@ export function AtlasSearch({
   }, [])
 
   const results = useMemo(
-    () => searchAtlas(query, profiles, 10),
-    [query, profiles],
+    () => searchAtlas(query, profileHits, 10),
+    [query, profileHits],
   )
 
   useEffect(() => {

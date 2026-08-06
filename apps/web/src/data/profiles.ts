@@ -3,7 +3,8 @@ import { getAllAreaPeaks, getAreaPeaks } from './areaPeaks'
 import {
   apiEnabled,
   apiGetProfile,
-  apiListProfiles,
+  apiSearchProfiles,
+  type ProfileSearchHit,
   apiPutProfile,
 } from './api'
 import { loadUser, type MockUser } from './auth'
@@ -497,23 +498,48 @@ export function listPublicProfilesLocal(): PublicProfile[] {
   )
 }
 
-export async function listPublicProfiles(): Promise<PublicProfile[]> {
-  if (!apiEnabled()) return listPublicProfilesLocal()
+export type { ProfileSearchHit }
+
+function matchProfileSearch(profile: PublicProfile, query: string) {
+  const q = query.trim().toLowerCase()
+  if (q.length < 2) return false
+  return (
+    profile.name.toLowerCase().includes(q) ||
+    profile.handle.toLowerCase().includes(q) ||
+    `@${profile.handle}`.includes(q)
+  )
+}
+
+export async function searchPublicProfiles(
+  query: string,
+  limit = 10,
+): Promise<ProfileSearchHit[]> {
+  const q = query.trim()
+  if (q.length < 2) return []
+
+  if (!apiEnabled()) {
+    return listPublicProfilesLocal()
+      .filter((profile) => matchProfileSearch(profile, q))
+      .slice(0, limit)
+      .map((profile) => ({
+        handle: profile.handle,
+        name: profile.name,
+        avatarUrl: profile.avatarUrl,
+      }))
+  }
 
   try {
-    const { profiles } = await apiListProfiles()
-    const byHandle = new Map<string, PublicProfile>()
-    for (const profile of demoProfiles) {
-      byHandle.set(profile.handle, profile)
-    }
-    for (const profile of profiles) {
-      byHandle.set(profile.handle, mapApiProfile(profile))
-    }
-    return [...byHandle.values()].sort((a, b) =>
-      b.updatedAt.localeCompare(a.updatedAt),
-    )
+    const { profiles } = await apiSearchProfiles(q, limit)
+    return profiles
   } catch {
     return listPublicProfilesLocal()
+      .filter((profile) => matchProfileSearch(profile, q))
+      .slice(0, limit)
+      .map((profile) => ({
+        handle: profile.handle,
+        name: profile.name,
+        avatarUrl: profile.avatarUrl,
+      }))
   }
 }
 

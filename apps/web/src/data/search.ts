@@ -6,7 +6,10 @@ import {
   formatDurationDays,
   multiDayRoutes,
 } from './multiDayRoutes'
-import type { PublicProfile } from './profiles'
+type SearchProfile = {
+  handle: string
+  name: string
+}
 
 export type SearchHit =
   | {
@@ -80,7 +83,7 @@ function scoreName(name: string, query: string) {
 /** Search peaks, ranges, hikes, multi-day routes, and optional public profiles. */
 export function searchAtlas(
   query: string,
-  profiles: PublicProfile[] = [],
+  profiles: SearchProfile[] = [],
   limit = 8,
 ): SearchHit[] {
   const q = normalize(query)
