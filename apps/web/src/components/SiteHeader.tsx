@@ -14,22 +14,25 @@ function NavDropdown({
   active,
   items,
   onNavigate,
-  flat,
+  accordion,
+  menuOpen,
   path,
 }: {
   label: string
   active: boolean
   items: NavItem[]
   onNavigate: () => void
-  flat?: boolean
+  accordion?: boolean
+  menuOpen: boolean
   path: string
 }) {
   const [open, setOpen] = useState(false)
+  const [sectionOpen, setSectionOpen] = useState(false)
   const rootRef = useRef<HTMLDivElement>(null)
   const menuId = useId()
 
   useEffect(() => {
-    if (!open || flat) return
+    if (!open || accordion) return
     const onPointer = (event: MouseEvent) => {
       if (!rootRef.current?.contains(event.target as Node)) setOpen(false)
     }
@@ -42,30 +45,52 @@ function NavDropdown({
       window.removeEventListener('pointerdown', onPointer)
       window.removeEventListener('keydown', onKey)
     }
-  }, [open, flat])
+  }, [open, accordion])
 
-  if (flat) {
+  useEffect(() => {
+    if (!accordion) return
+    if (!menuOpen) {
+      setSectionOpen(false)
+      return
+    }
+    setSectionOpen(active)
+  }, [accordion, menuOpen, active])
+
+  if (accordion) {
     return (
-      <div className={`site-nav__drop site-nav__drop--flat ${active ? 'is-active' : ''}`}>
-        <span className="site-nav__group-label">{label}</span>
-        {items.map((item) =>
-          item.disabled || !item.href ? (
-            <span key={item.label} className="site-nav__drop-soon" role="menuitem">
-              {item.label}
-              <small>Soon</small>
-            </span>
-          ) : (
-            <a
-              key={item.label}
-              role="menuitem"
-              className={item.href === path ? 'active' : ''}
-              href={item.href}
-              onClick={() => onNavigate()}
-            >
-              {item.label}
-            </a>
-          ),
-        )}
+      <div
+        className={`site-nav__drop site-nav__drop--accordion ${active ? 'is-active' : ''} ${sectionOpen ? 'is-open' : ''}`}
+      >
+        <button
+          type="button"
+          className="site-nav__accordion-btn"
+          aria-expanded={sectionOpen}
+          aria-controls={menuId}
+          onClick={() => setSectionOpen((value) => !value)}
+        >
+          <span>{label}</span>
+          <span className="site-nav__chevron" aria-hidden="true" />
+        </button>
+        <div id={menuId} className="site-nav__accordion-panel" hidden={!sectionOpen}>
+          {items.map((item) =>
+            item.disabled || !item.href ? (
+              <span key={item.label} className="site-nav__drop-soon" role="menuitem">
+                {item.label}
+                <small>Soon</small>
+              </span>
+            ) : (
+              <a
+                key={item.label}
+                role="menuitem"
+                className={item.href === path ? 'active' : ''}
+                href={item.href}
+                onClick={() => onNavigate()}
+              >
+                {item.label}
+              </a>
+            ),
+          )}
+        </div>
       </div>
     )
   }
@@ -186,7 +211,8 @@ export function SiteHeader() {
           label="Maps"
           active={mapsActive}
           onNavigate={closeMenu}
-          flat={menuOpen}
+          accordion={menuOpen}
+          menuOpen={menuOpen}
           path={path}
           items={[
             { label: 'UK Map', href: '/map' },
@@ -199,7 +225,8 @@ export function SiteHeader() {
           label="Hiking"
           active={hikingActive}
           onNavigate={closeMenu}
-          flat={menuOpen}
+          accordion={menuOpen}
+          menuOpen={menuOpen}
           path={path}
           items={[
             { label: 'Find a hike', href: '/hikes/generator' },
