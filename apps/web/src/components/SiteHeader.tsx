@@ -49,12 +49,8 @@ function NavDropdown({
 
   useEffect(() => {
     if (!accordion) return
-    if (!menuOpen) {
-      setSectionOpen(false)
-      return
-    }
-    setSectionOpen(active)
-  }, [accordion, menuOpen, active])
+    if (!menuOpen) setSectionOpen(false)
+  }, [accordion, menuOpen])
 
   if (accordion) {
     return (
