@@ -65,6 +65,27 @@ export const homeHeroShots: HomeHeroShot[] = [
 
 const lastKey = 'field-atlas:last-hero'
 
+let bootHero: HomeHeroShot | null = null
+
+export function getBootHero(): HomeHeroShot {
+  if (!bootHero) bootHero = pickHomeHero()
+  return bootHero
+}
+
+export function preloadHeroImage(src: string): void {
+  if (typeof document === 'undefined') return
+  if (!document.querySelector(`link[rel="preload"][href="${CSS.escape(src)}"]`)) {
+    const link = document.createElement('link')
+    link.rel = 'preload'
+    link.as = 'image'
+    link.href = src
+    document.head.appendChild(link)
+  }
+  const img = new Image()
+  img.decoding = 'async'
+  img.src = src
+}
+
 export function pickHomeHero(): HomeHeroShot {
   const pool = homeHeroShots
   if (pool.length === 1) return pool[0]

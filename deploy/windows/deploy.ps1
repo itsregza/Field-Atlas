@@ -99,6 +99,14 @@ if (-not $env:VITE_OPS_PATH) {
   Write-Host "NOTE: VITE_OPS_PATH not set - owner ops panel will be hidden in this build."
 }
 
+$HeroSrc = Join-Path $Root "apps\mobile\assets\heroes"
+$HeroDst = Join-Path $Web "public\heroes"
+if (Test-Path $HeroSrc) {
+  New-Item -ItemType Directory -Force -Path $HeroDst | Out-Null
+  Copy-Item -Path (Join-Path $HeroSrc "*") -Destination $HeroDst -Force
+  Write-Host "Copied hero images to apps\web\public\heroes"
+}
+
 npm run build -w web
 Assert-LastExitCode "web build"
 

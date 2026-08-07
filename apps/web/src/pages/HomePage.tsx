@@ -5,7 +5,7 @@ import { SiteHeader } from '../components/SiteHeader'
 import { areas, type Area } from '../data/areas'
 import { getAreaPeaks } from '../data/areaPeaks'
 import { loadUser } from '../data/auth'
-import { homeHeroShots, pickHomeHero } from '../data/homeHero'
+import { homeHeroShots, getBootHero, preloadHeroImage } from '../data/homeHero'
 import { getPublicProfile } from '../data/profiles'
 
 const HERO_INTERVAL_MS = 10_000
@@ -27,7 +27,7 @@ export function HomePage() {
   const user = loadUser()
   const { openAuth } = useAuthModal()
   const [index, setIndex] = useState(() => {
-    const first = pickHomeHero()
+    const first = getBootHero()
     const found = homeHeroShots.findIndex((shot) => shot.src === first.src)
     return found >= 0 ? found : 0
   })
@@ -46,6 +46,11 @@ export function HomePage() {
 
     return () => window.clearInterval(id)
   }, [])
+
+  useEffect(() => {
+    const next = homeHeroShots[(index + 1) % homeHeroShots.length]
+    if (next) preloadHeroImage(next.src)
+  }, [index])
 
   useEffect(() => {
     let cancelled = false
@@ -81,14 +86,19 @@ export function HomePage() {
       <section className="home-hero-bleed" aria-label="Field Atlas">
         <div className="home-hero-bleed__media" aria-hidden="true">
           {homeHeroShots.map((shot, shotIndex) => (
-            <div
+            <img
               key={shot.src}
+              src={shot.src}
+              alt=""
+              aria-hidden="true"
               className={
                 shotIndex === index
                   ? 'home-hero-bleed__slide is-active'
                   : 'home-hero-bleed__slide'
               }
-              style={{ backgroundImage: `url('${shot.src}')` }}
+              fetchPriority={shotIndex === index ? 'high' : 'low'}
+              loading={shotIndex === index ? 'eager' : 'lazy'}
+              decoding="async"
             />
           ))}
           <div className="home-hero-bleed__shade" />

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { areas } from './data/areas'
 import { ChecklistAuthGate } from './components/ChecklistAuthGate'
 import { MobileAppGate } from './components/MobileAppGate'
@@ -57,6 +57,11 @@ function checklistPath(path: string) {
 
 function App() {
   const [bypassMobileGate, setBypassMobileGate] = useState(false)
+
+  useEffect(() => {
+    document.body.classList.remove('booting')
+  }, [])
+
   const showMobileGate = shouldShowMobileAppGate() && !bypassMobileGate
 
   if (showMobileGate) {
