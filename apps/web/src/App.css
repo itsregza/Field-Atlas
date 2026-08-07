@@ -9275,6 +9275,7 @@ button.primary-link:disabled {
 .feed-card__caption {
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -11060,6 +11061,7 @@ button.text-link {
 .ops-post-list__copy p {
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   color: var(--peat);
