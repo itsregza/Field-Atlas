@@ -64,11 +64,30 @@ export const homeHeroShots: HomeHeroShot[] = [
 ]
 
 const lastKey = 'field-atlas:last-hero'
+const bootKey = 'field-atlas:boot-hero'
 
 let bootHero: HomeHeroShot | null = null
 
 export function getBootHero(): HomeHeroShot {
-  if (!bootHero) bootHero = pickHomeHero()
+  if (bootHero) return bootHero
+
+  try {
+    const src = sessionStorage.getItem(bootKey)
+    if (src) {
+      const found = homeHeroShots.find((shot) => shot.src === src)
+      if (found) {
+        bootHero = found
+        return bootHero
+      }
+    }
+  } catch {
+  }
+
+  bootHero = pickHomeHero()
+  try {
+    sessionStorage.setItem(bootKey, bootHero.src)
+  } catch {
+  }
   return bootHero
 }
 

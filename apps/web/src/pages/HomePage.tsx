@@ -32,8 +32,27 @@ export function HomePage() {
     return found >= 0 ? found : 0
   })
   const hero = homeHeroShots[index] ?? homeHeroShots[0]
+  const [heroReady, setHeroReady] = useState(false)
   const [creditAvatar, setCreditAvatar] = useState<string | null>(null)
   const [creditName, setCreditName] = useState<string | null>(null)
+
+  useEffect(() => {
+    setHeroReady(false)
+    const shot = homeHeroShots[index]
+    if (!shot) return
+    const img = new Image()
+    img.src = shot.src
+    if (img.complete) setHeroReady(true)
+  }, [index])
+
+  useEffect(() => {
+    if (!heroReady) return
+    const root = document.getElementById('root')
+    if (!root) return
+    root.style.backgroundImage = ''
+    root.style.backgroundColor = ''
+    root.style.minHeight = ''
+  }, [heroReady])
 
   useEffect(() => {
     if (homeHeroShots.length < 2) return
@@ -79,12 +98,20 @@ export function HomePage() {
     ranges: featured.filter((item) => item.area.nation === nation),
   }))
 
+  const markHeroReady = (shotIndex: number, img: HTMLImageElement | null) => {
+    if (shotIndex !== index || !img) return
+    if (img.complete) setHeroReady(true)
+  }
+
   return (
     <main className="home-page home-page--bleed">
       <SiteHeader />
 
       <section className="home-hero-bleed" aria-label="Field Atlas">
-        <div className="home-hero-bleed__media" aria-hidden="true">
+        <div
+          className={`home-hero-bleed__media ${heroReady ? 'is-ready' : ''}`}
+          aria-hidden="true"
+        >
           {homeHeroShots.map((shot, shotIndex) => (
             <img
               key={shot.src}
@@ -99,6 +126,8 @@ export function HomePage() {
               fetchPriority={shotIndex === index ? 'high' : 'low'}
               loading={shotIndex === index ? 'eager' : 'lazy'}
               decoding="async"
+              ref={(img) => markHeroReady(shotIndex, img)}
+              onLoad={(event) => markHeroReady(shotIndex, event.currentTarget)}
             />
           ))}
           <div className="home-hero-bleed__shade" />

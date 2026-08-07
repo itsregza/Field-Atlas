@@ -2047,6 +2047,10 @@ a:focus-visible {
   transform: scale(1);
 }
 
+.home-hero-bleed__media:not(.is-ready) .home-hero-bleed__slide.is-active {
+  opacity: 0;
+}
+
 .home-hero-bleed__shade {
   position: absolute;
   inset: 0;
