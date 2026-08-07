@@ -126,6 +126,7 @@ export function HomePage() {
           <span className="home-hero-bleed__place">{hero.place}</span>
           <h1>Field Atlas</h1>
           <p>Your atlas for the hills. The ultimate guide to the UK's mountains.</p>
+          <p>Site still under development.</p>
           <AtlasSearch
             className="site-search--hero"
             placeholder="Search hikes, multi-day routes, peaks, ranges and users…"
