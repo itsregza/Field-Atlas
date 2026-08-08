@@ -765,7 +765,7 @@ export function PitchingMap({
           </div>
           <span className="eyebrow">{area.name} pitching</span>
           <strong>Reading the ground</strong>
-          <small>Loading peaks, terrain and slope colours…</small>
+          <small>Loading all regions and map data…</small>
         </div>
       )}
       {ready ? (

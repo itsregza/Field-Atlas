@@ -848,8 +848,8 @@ export function UKAreaMap({
             <span />
           </div>
           <span className="eyebrow">{area?.name ?? 'United Kingdom'} terrain</span>
-          <strong>Drawing the high ground</strong>
-          <small>Loading uplands, parks and mountain regions…</small>
+          <strong>Hang tight</strong>
+          <small>Loading all regions and map data…</small>
         </div>
       )}
     </div>
