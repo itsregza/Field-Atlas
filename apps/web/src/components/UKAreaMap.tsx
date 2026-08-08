@@ -44,6 +44,63 @@ const regionFillId = 'area-region-fill'
 const regionOutlineId = 'area-region-outline'
 const peakHitLayers = ['area-peak-clusters', 'area-peak-points']
 
+type PopupAnchor =
+  | 'center'
+  | 'top'
+  | 'bottom'
+  | 'left'
+  | 'right'
+  | 'top-left'
+  | 'top-right'
+  | 'bottom-left'
+  | 'bottom-right'
+
+function peakPopupAnchor(
+  map: TilerMap,
+  coordinates: [number, number],
+): PopupAnchor {
+  const point = map.project(coordinates)
+  const { clientWidth: w, clientHeight: h } = map.getContainer()
+  const edge = 170
+
+  let vertical: 'top' | 'bottom' = point.y < h * 0.45 ? 'top' : 'bottom'
+  if (point.y > h - edge) vertical = 'bottom'
+  if (point.y < edge) vertical = 'top'
+
+  if (point.x < edge) {
+    return vertical === 'top' ? 'top-left' : 'bottom-left'
+  }
+  if (point.x > w - edge) {
+    return vertical === 'top' ? 'top-right' : 'bottom-right'
+  }
+  return vertical
+}
+
+function clampPopupToMap(map: TilerMap, popup: Popup) {
+  requestAnimationFrame(() => {
+    const el = popup.getElement()
+    if (!el) return
+    const mapBox = map.getContainer().getBoundingClientRect()
+    const popBox = el.getBoundingClientRect()
+    const margin = 12
+    let panX = 0
+    let panY = 0
+    if (popBox.left < mapBox.left + margin) {
+      panX = popBox.left - (mapBox.left + margin)
+    } else if (popBox.right > mapBox.right - margin) {
+      panX = popBox.right - (mapBox.right - margin)
+    }
+    if (popBox.top < mapBox.top + margin) {
+      panY = popBox.top - (mapBox.top + margin)
+    } else if (popBox.bottom > mapBox.bottom - margin) {
+      panY = popBox.bottom - (mapBox.bottom - margin)
+    }
+    if (panX || panY) {
+      map.panBy([panX, panY], { duration: 180 })
+    }
+  })
+}
+
 function peakCollection(peaks: AreaPeak[]) {
   return {
     type: 'FeatureCollection' as const,
@@ -266,10 +323,11 @@ export function UKAreaMap({
 
       clearWeatherRoot()
       popup?.remove()
-      popup = new Popup({ offset: 12, closeButton: true })
+      popup = new Popup({ offset: 12, closeButton: true, closeOnClick: false })
         .setLngLat(lngLat)
         .setDOMContent(details)
         .addTo(map)
+      clampPopupToMap(map, popup)
     }
 
     const addAreaMarkers = () => {
@@ -569,10 +627,17 @@ export function UKAreaMap({
           />,
         )
 
-        popup = new Popup({ offset: 16, closeButton: true, maxWidth: '300px' })
+        popup = new Popup({
+          anchor: peakPopupAnchor(map, coordinates),
+          offset: 16,
+          closeButton: true,
+          closeOnClick: false,
+          maxWidth: '300px',
+        })
           .setLngLat(coordinates)
           .setDOMContent(details)
           .addTo(map)
+        clampPopupToMap(map, popup)
         popup.once('close', clearWeatherRoot)
       }
 

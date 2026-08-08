@@ -282,9 +282,10 @@ function ForecastPanel({
   )
 }
 
-function portalHost() {
+function portalHost(compact: boolean) {
+  if (compact) return document.body
   return (
-    document.querySelector('.uk-map-panel, .map-panel, .uk-map-wrap, .map-wrap') ??
+    document.querySelector('.explore-sidebar, .peak-panel, .peak-card') ??
     document.body
   )
 }
@@ -347,6 +348,15 @@ export function PeakWeather({
     root.scrollIntoView({ block: 'start', behavior: 'smooth' })
   }, [open, compact])
 
+  useEffect(() => {
+    if (!open || !compact) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [open, compact])
+
   if (loading) {
     return (
       <div className={`peak-weather ${compact ? 'is-compact' : ''}`}>
@@ -394,7 +404,7 @@ export function PeakWeather({
           />
         </div>
       </div>,
-      portalHost(),
+      portalHost(compact),
     )
 
   return (
@@ -406,7 +416,10 @@ export function PeakWeather({
         className="peak-weather__chip"
         type="button"
         aria-expanded={open}
-        onClick={() => setOpen((value) => !value)}
+        onClick={(event) => {
+          event.stopPropagation()
+          setOpen((value) => !value)
+        }}
       >
         <span className={`peak-weather__icon is-${current.kind}`}>
           <WeatherIcon kind={current.kind} title={current.label} />
