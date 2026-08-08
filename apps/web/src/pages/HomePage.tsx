@@ -286,6 +286,20 @@ export function HomePage() {
               Log in
             </button>
           )}
+          <a
+            href="https://www.instagram.com/fieldatlasuk/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Instagram
+          </a>
+          <a
+            href="https://www.tiktok.com/@fieldatlasuk"
+            target="_blank"
+            rel="noreferrer"
+          >
+            TikTok
+          </a>
         </nav>
       </footer>
     </main>
