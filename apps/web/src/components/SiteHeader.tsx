@@ -203,67 +203,69 @@ export function SiteHeader() {
       </button>
 
       <nav id={menuId} className="site-nav" aria-label="Main navigation">
-        <a className={path === '/' ? 'active' : ''} href="/" onClick={closeMenu}>
-          Home
-        </a>
+        <div className="site-nav__links">
+          <a className={path === '/' ? 'active' : ''} href="/" onClick={closeMenu}>
+            Home
+          </a>
 
-        <NavDropdown
-          label="Maps"
-          active={mapsActive}
-          onNavigate={closeMenu}
-          accordion={menuOpen}
-          menuOpen={menuOpen}
-          path={path}
-          items={[
-            { label: 'UK Map', href: '/map' },
-            { label: 'Pitching Map', href: '/pitching' },
-            { label: 'Bothies', href: '/bothies' },
-          ]}
-        />
+          <NavDropdown
+            label="Maps"
+            active={mapsActive}
+            onNavigate={closeMenu}
+            accordion={menuOpen}
+            menuOpen={menuOpen}
+            path={path}
+            items={[
+              { label: 'UK Map', href: '/map' },
+              { label: 'Pitching Map', href: '/pitching' },
+              { label: 'Bothies', href: '/bothies' },
+            ]}
+          />
 
-        <NavDropdown
-          label="Hiking"
-          active={hikingActive}
-          onNavigate={closeMenu}
-          accordion={menuOpen}
-          menuOpen={menuOpen}
-          path={path}
-          items={[
-            { label: 'Find a hike', href: '/hikes/generator' },
-            { label: 'Unfinished peaks', href: '/hikes/unfinished' },
-            { label: 'Multi-day hikes', href: '/hikes/multi-day' },
-          ]}
-        />
+          <NavDropdown
+            label="Hiking"
+            active={hikingActive}
+            onNavigate={closeMenu}
+            accordion={menuOpen}
+            menuOpen={menuOpen}
+            path={path}
+            items={[
+              { label: 'Find a hike', href: '/hikes/generator' },
+              { label: 'Unfinished peaks', href: '/hikes/unfinished' },
+              { label: 'Multi-day hikes', href: '/hikes/multi-day' },
+            ]}
+          />
 
-        <a
-          className={path === '/forecasts' || path === '/weather' ? 'active' : ''}
-          href="/forecasts"
-          onClick={closeMenu}
-        >
-          Forecasts
-        </a>
-        <a
-          className={
-            path === '/wainwrights' ||
-            path.startsWith('/lists') ||
-            path.startsWith('/checklists') ||
-            path.startsWith('/trackers')
-              ? 'active'
-              : ''
-          }
-          href="/checklists"
-          onClick={(event) => {
-            if (user) {
-              closeMenu()
-              return
+          <a
+            className={path === '/forecasts' || path === '/weather' ? 'active' : ''}
+            href="/forecasts"
+            onClick={closeMenu}
+          >
+            Forecasts
+          </a>
+          <a
+            className={
+              path === '/wainwrights' ||
+              path.startsWith('/lists') ||
+              path.startsWith('/checklists') ||
+              path.startsWith('/trackers')
+                ? 'active'
+                : ''
             }
-            event.preventDefault()
-            closeMenu()
-            openAuth('login', '/checklists')
-          }}
-        >
-          Checklists
-        </a>
+            href="/checklists"
+            onClick={(event) => {
+              if (user) {
+                closeMenu()
+                return
+              }
+              event.preventDefault()
+              closeMenu()
+              openAuth('login', '/checklists')
+            }}
+          >
+            Checklists
+          </a>
+        </div>
 
         <div className="site-nav__actions">
           {user ? (

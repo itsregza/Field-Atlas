@@ -231,6 +231,12 @@
   text-transform: uppercase;
 }
 
+.site-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
 .site-nav a,
 .site-nav span {
   color: var(--muted);
@@ -485,12 +491,16 @@
   .site-header.is-menu-open {
     position: fixed;
     inset: 0;
-    z-index: 100;
-    height: 100dvh;
+    z-index: 200;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     grid-template-rows: auto minmax(0, 1fr);
     grid-template-areas:
       'brand menu'
       'nav nav';
+    align-content: start;
+    height: 100dvh;
+    padding: 10px 14px 0;
     background: var(--paper-light);
     max-height: none;
     overflow: hidden;
@@ -507,19 +517,29 @@
     align-items: stretch;
     gap: 0;
     min-height: 0;
-    padding: 6px 0 0;
+    padding: 0;
     border-top: 1px solid var(--line);
     text-transform: none;
     font-size: 15px;
     font-weight: 500;
     letter-spacing: -0.01em;
-    max-height: none;
+    overflow: hidden;
+  }
+
+  .site-header.is-menu-open .site-nav__links {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 6px 0 0;
     overflow-y: auto;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
   }
 
-  .site-header.is-menu-open .site-nav > a {
+  .site-header.is-menu-open .site-nav__links > a {
     display: flex;
     align-items: center;
     min-height: 46px;
@@ -533,7 +553,7 @@
     color: var(--ink);
   }
 
-  .site-header.is-menu-open .site-nav > a.active {
+  .site-header.is-menu-open .site-nav__links > a.active {
     color: var(--moss);
     font-weight: 650;
   }
@@ -640,16 +660,18 @@
 
   .site-header.is-menu-open .site-nav__actions {
     display: grid;
+    flex-shrink: 0;
     gap: 8px;
-    margin-top: 10px;
-    padding: 14px 16px max(16px, env(safe-area-inset-bottom));
+    margin-top: 0;
+    padding: 14px 16px max(calc(18px + env(safe-area-inset-bottom)), 22px);
     border-top: 1px solid var(--line);
+    background: var(--paper-light);
   }
 
   .site-header.is-menu-open .site-nav__actions .nav-explore,
   .site-header.is-menu-open .site-nav__actions .nav-account {
     width: 100%;
-    min-height: 44px;
+    min-height: 46px;
     height: auto;
     margin: 0;
     padding: 0 16px;
@@ -659,10 +681,11 @@
     font-weight: 650;
     letter-spacing: 0.02em;
     text-transform: none;
+    box-sizing: border-box;
   }
 
   .site-header.is-menu-open .site-nav__actions .nav-account {
-    border-bottom: 0;
+    border: 1px solid var(--line-strong);
     color: var(--ink);
   }
 
@@ -710,15 +733,30 @@
     display: grid;
   }
 
-  .explore-page .site-header,
-  .area-directory .site-header,
-  .area-detail .site-header,
-  .hike-page .site-header,
-  .bothies-page .site-header,
-  .app-shell .site-header {
+  .site-nav__drop-menu {
+    display: none;
+  }
+
+  .explore-page .site-header:not(.is-menu-open),
+  .area-directory .site-header:not(.is-menu-open),
+  .area-detail .site-header:not(.is-menu-open),
+  .hike-page .site-header:not(.is-menu-open),
+  .bothies-page .site-header:not(.is-menu-open),
+  .app-shell .site-header:not(.is-menu-open) {
     position: sticky;
     top: 0;
     z-index: 30;
+  }
+
+  .explore-page .site-header.is-menu-open,
+  .area-directory .site-header.is-menu-open,
+  .area-detail .site-header.is-menu-open,
+  .hike-page .site-header.is-menu-open,
+  .bothies-page .site-header.is-menu-open,
+  .app-shell .site-header.is-menu-open {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
   }
 
   .soft-shell {
@@ -2014,19 +2052,19 @@ a:focus-visible {
   .home-page--bleed .site-header.is-menu-open {
     position: fixed;
     inset: 0;
-    z-index: 100;
+    z-index: 200;
     height: 100dvh;
     grid-template-areas:
       'brand menu'
       'nav nav';
   }
 
-  .home-page--bleed .site-header.is-menu-open .site-nav > a,
+  .home-page--bleed .site-header.is-menu-open .site-nav__links > a,
   .home-page--bleed .site-header.is-menu-open .site-nav__drop--accordion a {
     color: rgb(247 242 230 / 92%);
   }
 
-  .home-page--bleed .site-header.is-menu-open .site-nav > a.active,
+  .home-page--bleed .site-header.is-menu-open .site-nav__links > a.active,
   .home-page--bleed .site-header.is-menu-open .site-nav__drop--accordion a.active {
     color: #f7f2e6;
   }
