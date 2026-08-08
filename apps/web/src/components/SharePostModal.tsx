@@ -7,7 +7,7 @@ import {
 } from '../data/api'
 import { getAllAreaPeaks } from '../data/areaPeaks'
 import { areas } from '../data/areas'
-import { prepareImageFile } from '../data/logs'
+import { preparePostImageFile } from '../data/logs'
 import {
   HikingGlyph,
   PostActivityBadge,
@@ -263,7 +263,7 @@ export function SharePostModal({
     for (const file of files.slice(0, room)) {
       try {
         if (file.type.startsWith('image/')) {
-          const prepared = await prepareImageFile(file)
+          const prepared = await preparePostImageFile(file)
           next.push({
             key: `${Date.now()}-${prepared.name}-${Math.random()}`,
             kind: 'image',

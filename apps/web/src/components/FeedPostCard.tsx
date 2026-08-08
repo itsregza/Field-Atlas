@@ -11,6 +11,7 @@ import {
 } from '../data/api'
 import { loadUser } from '../data/auth'
 import { formatProfileDate } from '../data/profiles'
+import { PhotoLightbox } from './PhotoLightbox'
 import { PostActivityBadge, isPostActivity } from './PostActivity'
 
 function formatWhen(iso: string) {
@@ -52,6 +53,7 @@ export function FeedPostCard({
   const [draft, setDraft] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null)
 
   useEffect(() => {
     setPost(initial)
@@ -163,6 +165,10 @@ export function FeedPostCard({
     .toUpperCase()
   const visibleComments = commentsExpanded ? comments : comments.slice(0, 3)
   const current = media[slide] ?? media[0]
+  const photoAlt =
+    post.peakName
+      ? `Shared photograph from ${post.peakName}`
+      : 'Shared photograph'
 
   return (
     <article className={`feed-card ${compact ? 'is-compact' : ''}`}>
@@ -193,16 +199,13 @@ export function FeedPostCard({
           current.type === 'video' ? (
             <video src={current.url} controls playsInline />
           ) : (
-            <a href={`/posts/${post.id}`}>
-              <img
-                src={current.url}
-                alt={
-                  post.peakName
-                    ? `Shared photograph from ${post.peakName}`
-                    : 'Shared photograph'
-                }
-              />
-            </a>
+            <button
+              type="button"
+              className="feed-card__photo-btn"
+              onClick={() => setLightboxSrc(current.url)}
+            >
+              <img src={current.url} alt={photoAlt} decoding="async" />
+            </button>
           )
         ) : null}
         {media.length > 1 ? (
@@ -365,6 +368,14 @@ export function FeedPostCard({
           </div>
         ) : null}
       </div>
+
+      {lightboxSrc ? (
+        <PhotoLightbox
+          src={lightboxSrc}
+          alt={photoAlt}
+          onClose={() => setLightboxSrc(null)}
+        />
+      ) : null}
     </article>
   )
 }

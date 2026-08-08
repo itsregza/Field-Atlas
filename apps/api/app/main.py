@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any
@@ -20,6 +21,7 @@ from app.storage import UPLOAD_ROOT, ensure_upload_root
 
 # apps/api/app/main.py → apps/web/dist
 WEB_DIST = Path(__file__).resolve().parents[2] / "web" / "dist"
+_POST_PAGE = re.compile(r"^/posts/[0-9a-fA-F-]{36}$")
 
 
 class StripApiPrefixMiddleware(BaseHTTPMiddleware):
@@ -31,6 +33,22 @@ class StripApiPrefixMiddleware(BaseHTTPMiddleware):
             request.scope["path"] = "/"
         elif path.startswith("/api/"):
             request.scope["path"] = path[4:]
+        return await call_next(request)
+
+
+class SpaHtmlMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        if request.method != "GET":
+            return await call_next(request)
+        path = request.scope.get("path") or ""
+        if not _POST_PAGE.match(path):
+            return await call_next(request)
+        accept = (request.headers.get("accept") or "").lower()
+        if "application/json" in accept and "text/html" not in accept:
+            return await call_next(request)
+        index = WEB_DIST / "index.html"
+        if index.is_file():
+            return FileResponse(index)
         return await call_next(request)
 
 
@@ -51,6 +69,7 @@ app = FastAPI(
 )
 
 app.add_middleware(StripApiPrefixMiddleware)
+app.add_middleware(SpaHtmlMiddleware)
 app.add_middleware(
     CORSMiddleware,
     # Dev / mobile tunnels (Expo web, Cloudflare) send varying Origins.

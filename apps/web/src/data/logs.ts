@@ -137,9 +137,49 @@ export async function prepareImage(file: File) {
   return canvas.toDataURL('image/jpeg', 0.78)
 }
 
+async function encodeImage(
+  file: File,
+  maxEdge: number,
+  quality: number,
+  maxBytes: number,
+) {
+  if (!file.type.startsWith('image/')) {
+    throw new Error('Choose an image file.')
+  }
+  if (file.size > maxBytes) {
+    throw new Error('Choose a smaller image.')
+  }
+
+  const source = await createImageBitmap(file)
+  const scale = Math.min(1, maxEdge / source.width, maxEdge / source.height)
+  const canvas = document.createElement('canvas')
+  canvas.width = Math.round(source.width * scale)
+  canvas.height = Math.round(source.height * scale)
+
+  const context = canvas.getContext('2d')
+  if (!context) throw new Error('This browser could not process the image.')
+
+  context.drawImage(source, 0, 0, canvas.width, canvas.height)
+  source.close()
+
+  return canvas.toDataURL('image/jpeg', quality)
+}
+
+export async function preparePostImage(file: File) {
+  return encodeImage(file, 2400, 0.9, 16 * 1024 * 1024)
+}
+
 /** Compress an image to a JPEG File for multipart upload. */
 export async function prepareImageFile(file: File) {
   const dataUrl = await prepareImage(file)
+  const response = await fetch(dataUrl)
+  const blob = await response.blob()
+  const name = file.name.replace(/\.\w+$/, '') || 'photo'
+  return new File([blob], `${name}.jpg`, { type: 'image/jpeg' })
+}
+
+export async function preparePostImageFile(file: File) {
+  const dataUrl = await preparePostImage(file)
   const response = await fetch(dataUrl)
   const blob = await response.blob()
   const name = file.name.replace(/\.\w+$/, '') || 'photo'

@@ -20,7 +20,7 @@ VIDEO_TYPES = {
     "video/quicktime": ".mov",
 }
 
-MAX_IMAGE_BYTES = 2_000_000
+MAX_IMAGE_BYTES = 4_000_000
 MAX_VIDEO_BYTES = 25_000_000
 
 _SAFE_UPLOAD = re.compile(

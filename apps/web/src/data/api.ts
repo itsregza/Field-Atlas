@@ -31,6 +31,7 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
     ...init,
     credentials: 'include',
     headers: {
+      Accept: 'application/json',
       'Content-Type': 'application/json',
       ...(init.headers ?? {}),
     },
