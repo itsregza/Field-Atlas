@@ -280,6 +280,11 @@ export function ProfilePage({
                                 <PostActivityIcon activity={post.activity} />
                               </span>
                             ) : null}
+                            {isSelf && post.hiddenByMe ? (
+                              <span className="account-post-tile__hidden">
+                                Hidden
+                              </span>
+                            ) : null}
                           </a>
                         </li>
                       ))}
@@ -418,6 +423,11 @@ export function ProfilePage({
                                 aria-hidden="true"
                               >
                                 <PostActivityIcon activity={post.activity} />
+                              </span>
+                            ) : null}
+                            {isSelf && post.hiddenByMe ? (
+                              <span className="account-trips-tile__hidden">
+                                Hidden
                               </span>
                             ) : null}
                           </span>

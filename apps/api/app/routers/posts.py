@@ -5,14 +5,14 @@ from typing import Annotated, Any
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, File, HTTPException, Query, UploadFile
-from sqlalchemy import select
+from sqlalchemy import or_, select
 from sqlalchemy.orm import Session
 
 from app.auth import get_optional_user, new_user_id, require_user
 from app.db import get_db
 from app.models import Follow, Post, Profile, User
 from app.routers.social import enrich_posts
-from app.schemas import CreatePostBody, SessionUser
+from app.schemas import CreatePostBody, SessionUser, UpdatePostBody
 from app.storage import ensure_upload_root, is_upload_url, save_upload
 
 router = APIRouter(tags=["posts"])
@@ -61,6 +61,7 @@ def _post_row_dict(
         "height": post.height,
         "hike_id": post.hike_id,
         "hike_name": post.hike_name,
+        "is_hidden": post.is_hidden,
         "created_at": post.created_at,
         "user_id": user_id,
         "handle": handle,
@@ -104,6 +105,7 @@ def feed(
         .join(User, Post.user_id == User.id)
         .join(Profile, Profile.user_id == User.id)
         .where(Profile.is_public.is_(True))
+        .where(or_(Post.is_hidden.is_(False), Post.user_id == user.id))
         .order_by(Post.created_at.desc())
         .limit(limit)
     )
@@ -237,6 +239,8 @@ def get_post(
 
     post, user_row, profile = row
     is_owner = viewer is not None and viewer.id == post.user_id
+    if post.is_hidden and not is_owner:
+        raise HTTPException(status_code=404, detail={"error": "Post not found"})
     if not profile.is_public and not is_owner:
         raise HTTPException(status_code=404, detail={"error": "Post not found"})
 
@@ -250,6 +254,33 @@ def get_post(
         )
     ]
     return {"post": enrich_posts(db, shaped, viewer.id if viewer else None)[0]}
+
+
+@router.patch("/me/posts/{post_id}")
+def update_post(
+    post_id: UUID,
+    body: UpdatePostBody,
+    db: Annotated[Session, Depends(get_db)],
+    user: Annotated[SessionUser, Depends(require_user)],
+) -> dict[str, Any]:
+    existing = db.get(Post, post_id)
+    if not existing or existing.user_id != user.id:
+        raise HTTPException(status_code=404, detail={"error": "Post not found"})
+    existing.is_hidden = body.hidden
+    db.commit()
+    db.refresh(existing)
+
+    profile = db.get(Profile, user.id)
+    shaped = [
+        _post_row_dict(
+            existing,
+            user_id=user.id,
+            handle=profile.handle if profile else "you",
+            name=user.name,
+            avatar_url=profile.avatar_url if profile else None,
+        )
+    ]
+    return {"post": enrich_posts(db, shaped, user.id)[0]}
 
 
 @router.delete("/me/posts/{post_id}")
@@ -282,14 +313,20 @@ def profile_posts(
     if not profile_row or not profile_row.is_public:
         raise HTTPException(status_code=404, detail={"error": "Profile not found"})
 
-    rows = db.execute(
+    is_owner = viewer is not None and viewer.id == profile_row.user_id
+
+    query = (
         select(Post, User, Profile)
         .join(User, Post.user_id == User.id)
         .join(Profile, Profile.user_id == User.id)
         .where(Post.user_id == profile_row.user_id)
         .order_by(Post.created_at.desc())
         .limit(40)
-    ).all()
+    )
+    if not is_owner:
+        query = query.where(Post.is_hidden.is_(False))
+
+    rows = db.execute(query).all()
 
     shaped = [
         _post_row_dict(

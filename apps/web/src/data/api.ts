@@ -4,6 +4,7 @@ import type {
   FeedPost,
   PostComment,
   PublicProfile,
+  UpdatePostBody,
 } from '@field-atlas/shared'
 
 const apiBase = () =>
@@ -228,6 +229,13 @@ export function apiCreatePost(body: CreatePostBody) {
 export function apiDeletePost(id: string) {
   return request<{ ok: boolean }>(`/me/posts/${encodeURIComponent(id)}`, {
     method: 'DELETE',
+  })
+}
+
+export function apiUpdatePost(id: string, body: UpdatePostBody) {
+  return request<{ post: ApiFeedPost }>(`/me/posts/${encodeURIComponent(id)}`, {
+    method: 'PATCH',
+    body: JSON.stringify(body),
   })
 }
 

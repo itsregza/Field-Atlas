@@ -159,7 +159,11 @@ export function SiteHeader() {
       if (event.key === 'Escape') setMenuOpen(false)
     }
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
   }, [menuOpen])
 
   const closeMenu = () => setMenuOpen(false)

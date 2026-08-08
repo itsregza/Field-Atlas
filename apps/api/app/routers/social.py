@@ -87,13 +87,15 @@ def enrich_posts(
     liked_set = set(liked_mine)
 
     result = []
-    for post in mapped:
+    for index, post in enumerate(mapped):
         post_id = UUID(post["id"])
         cleaned = {k: v for k, v in post.items() if v is not None}
         cleaned["likeCount"] = like_map.get(post_id, 0)
         cleaned["likedByMe"] = post_id in liked_set
         cleaned["commentCount"] = comment_map.get(post_id, 0)
-        # Keep required keys even if None-stripped
+        row = rows[index]
+        if viewer_id is not None and row["user_id"] == viewer_id and row.get("is_hidden"):
+            cleaned["hiddenByMe"] = True
         for key in ("id", "body", "imageUrl", "createdAt", "author"):
             cleaned[key] = post[key]
         result.append(cleaned)

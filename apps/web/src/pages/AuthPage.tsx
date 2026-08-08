@@ -294,6 +294,11 @@ export function AccountPage({ section: sectionProp = 'overview' }: { section?: s
                                 <PostActivityIcon activity={post.activity} />
                               </span>
                             ) : null}
+                            {post.hiddenByMe ? (
+                              <span className="account-post-tile__hidden">
+                                Hidden
+                              </span>
+                            ) : null}
                           </a>
                         </li>
                       ))}
@@ -436,6 +441,11 @@ export function AccountPage({ section: sectionProp = 'overview' }: { section?: s
                                 aria-hidden="true"
                               >
                                 <PostActivityIcon activity={post.activity} />
+                              </span>
+                            ) : null}
+                            {post.hiddenByMe ? (
+                              <span className="account-trips-tile__hidden">
+                                Hidden
                               </span>
                             ) : null}
                           </span>

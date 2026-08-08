@@ -149,6 +149,10 @@ class CreatePostBody(BaseModel):
         return cleaned
 
 
+class UpdatePostBody(BaseModel):
+    hidden: bool
+
+
 class CreateCommentBody(BaseModel):
     body: str = Field(min_length=1, max_length=500)
 

@@ -59,7 +59,14 @@ export function PostPage({ postId }: { postId: string }) {
             <span className="account-muted">{error || 'Not found.'}</span>
           </div>
         ) : (
-          <FeedPostCard post={post} expandComments />
+          <FeedPostCard
+            post={post}
+            expandComments
+            onDeleted={() => {
+              window.location.href = backHref
+            }}
+            onUpdated={setPost}
+          />
         )}
       </div>
     </main>

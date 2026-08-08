@@ -483,12 +483,16 @@
   }
 
   .site-header.is-menu-open {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    height: 100dvh;
+    grid-template-rows: auto minmax(0, 1fr);
     grid-template-areas:
       'brand menu'
       'nav nav';
-    z-index: 50;
     background: var(--paper-light);
-    max-height: 100dvh;
+    max-height: none;
     overflow: hidden;
   }
 
@@ -502,13 +506,14 @@
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: 6px 0 max(18px, env(safe-area-inset-bottom));
+    min-height: 0;
+    padding: 6px 0 0;
     border-top: 1px solid var(--line);
     text-transform: none;
     font-size: 15px;
     font-weight: 500;
     letter-spacing: -0.01em;
-    max-height: calc(100dvh - 52px);
+    max-height: none;
     overflow-y: auto;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
@@ -637,7 +642,7 @@
     display: grid;
     gap: 8px;
     margin-top: 10px;
-    padding: 14px 16px max(10px, env(safe-area-inset-bottom));
+    padding: 14px 16px max(16px, env(safe-area-inset-bottom));
     border-top: 1px solid var(--line);
   }
 
@@ -2007,6 +2012,10 @@ a:focus-visible {
   }
 
   .home-page--bleed .site-header.is-menu-open {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    height: 100dvh;
     grid-template-areas:
       'brand menu'
       'nav nav';
@@ -4030,6 +4039,22 @@ button.primary-link:disabled {
 .account-trips-tile__badge svg {
   width: 14px;
   height: 14px;
+}
+
+.account-post-tile__hidden,
+.account-trips-tile__hidden {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  background: rgb(31 36 24 / 42%);
+  color: #fff;
+  font: 700 11px / 1.2 var(--sans);
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+  pointer-events: none;
 }
 
 .account-post-tile img {
@@ -9050,6 +9075,82 @@ button.primary-link:disabled {
   flex-shrink: 0;
 }
 
+.feed-card__hidden-badge {
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--sand) 55%, var(--paper-light));
+  color: var(--muted);
+  font: 700 10px / 1 var(--sans);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.feed-card__menu {
+  position: relative;
+}
+
+.feed-card__menu-btn {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper-light);
+  color: var(--ink);
+  font: 700 14px / 1 var(--sans);
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+.feed-card__menu-btn:hover:not(:disabled) {
+  background: var(--sand);
+}
+
+.feed-card__menu-panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 20;
+  min-width: 168px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-light);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+.feed-card__menu-panel button {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink);
+  font: 600 13px / 1.2 var(--sans);
+  text-align: left;
+  cursor: pointer;
+}
+
+.feed-card__menu-panel button:hover:not(:disabled) {
+  background: var(--sand);
+}
+
+.feed-card__menu-panel button.is-danger {
+  color: #9b2c2c;
+}
+
+.feed-card.is-hidden-by-me .feed-card__photo img,
+.feed-card.is-hidden-by-me .feed-card__photo video {
+  opacity: 0.72;
+}
+
 .post-activity-badge {
   display: inline-flex;
   align-items: center;
@@ -9214,15 +9315,15 @@ button.primary-link:disabled {
   position: fixed;
   inset: 0;
   z-index: 120;
-  display: grid;
-  grid-template-rows: auto 1fr;
+  display: flex;
+  flex-direction: column;
   background: rgb(8 10 7 / 94%);
 }
 
 .photo-lightbox__close {
   position: absolute;
   z-index: 2;
-  top: 12px;
+  top: max(12px, env(safe-area-inset-top));
   right: 12px;
   width: 40px;
   height: 40px;
@@ -9236,21 +9337,25 @@ button.primary-link:disabled {
 }
 
 .photo-lightbox__scroll {
+  flex: 1;
   min-height: 0;
   overflow: auto;
-  display: grid;
-  place-items: center;
-  padding: 56px 12px 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: max(56px, calc(env(safe-area-inset-top) + 44px)) 12px
+    max(24px, env(safe-area-inset-bottom));
   -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
 }
 
 .photo-lightbox__scroll img {
   display: block;
   width: auto;
   height: auto;
-  max-width: none;
+  max-width: min(100%, calc(100vw - 24px));
   max-height: none;
-  touch-action: pinch-zoom;
+  object-fit: contain;
 }
 
 .feed-card__nav {

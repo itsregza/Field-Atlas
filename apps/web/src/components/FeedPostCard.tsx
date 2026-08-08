@@ -1,11 +1,13 @@
-import { useEffect, useMemo, useState, type FormEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
 import {
   apiCreateComment,
   apiDeleteComment,
+  apiDeletePost,
   apiEnabled,
   apiGetComments,
   apiLikePost,
   apiUnlikePost,
+  apiUpdatePost,
   type ApiFeedPost,
   type ApiPostComment,
 } from '../data/api'
@@ -37,10 +39,14 @@ export function FeedPostCard({
   post: initial,
   compact = false,
   expandComments = false,
+  onDeleted,
+  onUpdated,
 }: {
   post: ApiFeedPost
   compact?: boolean
   expandComments?: boolean
+  onDeleted?: () => void
+  onUpdated?: (post: ApiFeedPost) => void
 }) {
   const user = loadUser()
   const [post, setPost] = useState<ApiFeedPost>(initial)
@@ -54,11 +60,31 @@ export function FeedPostCard({
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
+  const isOwner = user?.id === post.author.userId
 
   useEffect(() => {
     setPost(initial)
     setSlide(0)
-  }, [initial.id, initial.likeCount, initial.likedByMe, initial.commentCount])
+  }, [
+    initial.id,
+    initial.likeCount,
+    initial.likedByMe,
+    initial.commentCount,
+    initial.hiddenByMe,
+  ])
+
+  useEffect(() => {
+    if (!menuOpen) return
+    const close = (event: MouseEvent) => {
+      if (!menuRef.current?.contains(event.target as Node)) {
+        setMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', close)
+    return () => document.removeEventListener('mousedown', close)
+  }, [menuOpen])
 
   useEffect(() => {
     if (!expandComments || !apiEnabled()) return
@@ -159,6 +185,39 @@ export function FeedPostCard({
       .finally(() => setBusy(false))
   }
 
+  const removePost = () => {
+    if (busy || !isOwner) return
+    if (!window.confirm('Delete this post? This cannot be undone.')) return
+    setBusy(true)
+    setError('')
+    setMenuOpen(false)
+    void apiDeletePost(post.id)
+      .then(() => {
+        onDeleted?.()
+      })
+      .catch((err) => {
+        setError(err instanceof Error ? err.message : 'Could not delete post.')
+      })
+      .finally(() => setBusy(false))
+  }
+
+  const toggleHidden = () => {
+    if (busy || !isOwner) return
+    const nextHidden = !post.hiddenByMe
+    setBusy(true)
+    setError('')
+    setMenuOpen(false)
+    void apiUpdatePost(post.id, { hidden: nextHidden })
+      .then((result) => {
+        setPost(result.post)
+        onUpdated?.(result.post)
+      })
+      .catch((err) => {
+        setError(err instanceof Error ? err.message : 'Could not update post.')
+      })
+      .finally(() => setBusy(false))
+  }
+
   const authorInitial = (post.author.name || post.author.handle || '?')
     .trim()
     .charAt(0)
@@ -171,7 +230,9 @@ export function FeedPostCard({
       : 'Shared photograph'
 
   return (
-    <article className={`feed-card ${compact ? 'is-compact' : ''}`}>
+    <article
+      className={`feed-card ${compact ? 'is-compact' : ''} ${post.hiddenByMe ? 'is-hidden-by-me' : ''}`}
+    >
       <header className="feed-card__header">
         <a className="feed-card__author" href={`/u/${post.author.handle}`}>
           <span className="feed-card__avatar" aria-hidden="true">
@@ -187,10 +248,48 @@ export function FeedPostCard({
           </span>
         </a>
         <div className="feed-card__header-meta">
+          {post.hiddenByMe ? (
+            <span className="feed-card__hidden-badge">Hidden from others</span>
+          ) : null}
           {isPostActivity(post.activity) ? (
             <PostActivityBadge activity={post.activity} />
           ) : null}
           <time dateTime={post.createdAt}>{formatWhen(post.createdAt)}</time>
+          {isOwner ? (
+            <div className="feed-card__menu" ref={menuRef}>
+              <button
+                type="button"
+                className="feed-card__menu-btn"
+                aria-expanded={menuOpen}
+                aria-haspopup="menu"
+                disabled={busy}
+                onClick={() => setMenuOpen((open) => !open)}
+              >
+                ···
+              </button>
+              {menuOpen ? (
+                <div className="feed-card__menu-panel" role="menu">
+                  <button
+                    type="button"
+                    role="menuitem"
+                    disabled={busy}
+                    onClick={toggleHidden}
+                  >
+                    {post.hiddenByMe ? 'Show to others' : 'Hide from others'}
+                  </button>
+                  <button
+                    type="button"
+                    role="menuitem"
+                    className="is-danger"
+                    disabled={busy}
+                    onClick={removePost}
+                  >
+                    Delete post
+                  </button>
+                </div>
+              ) : null}
+            </div>
+          ) : null}
         </div>
       </header>
 

@@ -136,6 +136,11 @@ export const feedPostSchema = z.object({
   likeCount: z.number().int().nonnegative().default(0),
   likedByMe: z.boolean().default(false),
   commentCount: z.number().int().nonnegative().default(0),
+  hiddenByMe: z.boolean().optional(),
+})
+
+export const updatePostBodySchema = z.object({
+  hidden: z.boolean(),
 })
 
 export const postCommentSchema = z.object({
@@ -163,5 +168,6 @@ export type PublicProfile = z.infer<typeof publicProfileSchema>
 export type PublicCompletion = z.infer<typeof publicCompletionSchema>
 export type CreatePostBody = z.infer<typeof createPostBodySchema>
 export type FeedPost = z.infer<typeof feedPostSchema>
+export type UpdatePostBody = z.infer<typeof updatePostBodySchema>
 export type PostComment = z.infer<typeof postCommentSchema>
 export type CreateCommentBody = z.infer<typeof createCommentBodySchema>

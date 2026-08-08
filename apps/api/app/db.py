@@ -129,6 +129,7 @@ SCHEMA_STATEMENTS = [
     "ALTER TABLE posts ADD COLUMN IF NOT EXISTS route_url text",
     "ALTER TABLE posts ADD COLUMN IF NOT EXISTS route_label text",
     "ALTER TABLE posts ADD COLUMN IF NOT EXISTS activity text",
+    "ALTER TABLE posts ADD COLUMN IF NOT EXISTS is_hidden boolean NOT NULL DEFAULT false",
     """
     CREATE TABLE IF NOT EXISTS peak_ratings (
       user_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
@@ -159,6 +160,9 @@ def ensure_schema() -> None:
             _sqlite_add_column(conn, "posts", "route_url", "route_url text")
             _sqlite_add_column(conn, "posts", "route_label", "route_label text")
             _sqlite_add_column(conn, "posts", "activity", "activity text")
+            _sqlite_add_column(
+                conn, "posts", "is_hidden", "is_hidden boolean NOT NULL DEFAULT 0"
+            )
         return
 
     with engine.begin() as conn:

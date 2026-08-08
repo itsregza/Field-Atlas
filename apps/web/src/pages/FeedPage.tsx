@@ -135,7 +135,22 @@ export function ExplorePage() {
         ) : (
           <div className="soft-feed">
             {posts.map((post) => (
-              <FeedPostCard key={post.id} post={post} />
+              <FeedPostCard
+                key={post.id}
+                post={post}
+                onDeleted={() =>
+                  setPosts((current) =>
+                    current.filter((item) => item.id !== post.id),
+                  )
+                }
+                onUpdated={(updated) =>
+                  setPosts((current) =>
+                    current.map((item) =>
+                      item.id === updated.id ? updated : item,
+                    ),
+                  )
+                }
+              />
             ))}
           </div>
         )}
