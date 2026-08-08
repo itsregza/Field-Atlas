@@ -484,6 +484,16 @@ export function TrackerMap({
   }, [apiKey, area])
 
   useEffect(() => {
+    const el = container.current
+    if (!el) return
+    const observer = new ResizeObserver(() => {
+      map.current?.resize()
+    })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [apiKey, area])
+
+  useEffect(() => {
     if (skipBasemapSwap.current) {
       skipBasemapSwap.current = false
       return
