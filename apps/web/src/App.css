@@ -2543,7 +2543,23 @@ a:focus-visible {
   }
 
   .home-hero-bleed__content {
+    width: calc(100% - 24px);
     padding: 108px 0 64px;
+  }
+
+  .home-hero-bleed .site-search--hero {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .home-hero-bleed .site-search--hero input {
+    min-height: 46px;
+    padding: 0 14px;
+    font-size: 14px;
+  }
+
+  .home-hero-bleed .site-search--hero input::placeholder {
+    font-size: 14px;
   }
 }
 

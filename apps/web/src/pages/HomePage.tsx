@@ -33,8 +33,25 @@ export function HomePage() {
   })
   const hero = homeHeroShots[index] ?? homeHeroShots[0]
   const [heroReady, setHeroReady] = useState(false)
+  const [searchPlaceholder, setSearchPlaceholder] = useState(
+    'Search hikes, multi-day routes, peaks, ranges and users…',
+  )
   const [creditAvatar, setCreditAvatar] = useState<string | null>(null)
   const [creditName, setCreditName] = useState<string | null>(null)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 560px)')
+    const sync = () => {
+      setSearchPlaceholder(
+        mq.matches
+          ? 'Search hikes, peaks, users…'
+          : 'Search hikes, multi-day routes, peaks, ranges and users…',
+      )
+    }
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
 
   useEffect(() => {
     setHeroReady(false)
@@ -158,7 +175,7 @@ export function HomePage() {
           <p>Site still under development.</p>
           <AtlasSearch
             className="site-search--hero"
-            placeholder="Search hikes, multi-day routes, peaks, ranges and users…"
+            placeholder={searchPlaceholder}
           />
           <div className="home-hero-bleed__actions">
             <a className="home-hero-bleed__cta" href="/map">
