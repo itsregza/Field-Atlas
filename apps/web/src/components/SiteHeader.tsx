@@ -104,7 +104,7 @@ function NavDropdown({
         aria-expanded={open}
         aria-haspopup="true"
         aria-controls={menuId}
-        onClick={() => setOpen((value) => !value)}
+        onClick={(event) => event.preventDefault()}
       >
         {label}
       </button>
