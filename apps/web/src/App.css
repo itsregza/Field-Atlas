@@ -489,21 +489,15 @@
   }
 
   .site-header.is-menu-open {
-    position: fixed;
-    inset: 0;
-    z-index: 200;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-rows: auto minmax(0, 1fr);
     grid-template-areas:
       'brand menu'
       'nav nav';
-    align-content: start;
-    height: 100dvh;
-    padding: 10px 14px 0;
+    z-index: 50;
     background: var(--paper-light);
-    max-height: none;
+    max-height: 100dvh;
     overflow: hidden;
+    align-items: stretch;
+    align-content: start;
   }
 
   .site-header.is-menu-open .site-search {
@@ -515,8 +509,11 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    align-self: stretch;
     gap: 0;
+    width: 100%;
     min-height: 0;
+    max-height: calc(100dvh - 58px);
     padding: 0;
     border-top: 1px solid var(--line);
     text-transform: none;
@@ -708,6 +705,8 @@
 
   .site-header.is-menu-open .site-nav__drop-menu {
     position: static;
+    top: auto;
+    left: auto;
     transform: none;
     min-width: 0;
     width: 100%;
@@ -733,30 +732,15 @@
     display: grid;
   }
 
-  .site-nav__drop-menu {
-    display: none;
-  }
-
-  .explore-page .site-header:not(.is-menu-open),
-  .area-directory .site-header:not(.is-menu-open),
-  .area-detail .site-header:not(.is-menu-open),
-  .hike-page .site-header:not(.is-menu-open),
-  .bothies-page .site-header:not(.is-menu-open),
-  .app-shell .site-header:not(.is-menu-open) {
+  .explore-page .site-header,
+  .area-directory .site-header,
+  .area-detail .site-header,
+  .hike-page .site-header,
+  .bothies-page .site-header,
+  .app-shell .site-header {
     position: sticky;
     top: 0;
     z-index: 30;
-  }
-
-  .explore-page .site-header.is-menu-open,
-  .area-directory .site-header.is-menu-open,
-  .area-detail .site-header.is-menu-open,
-  .hike-page .site-header.is-menu-open,
-  .bothies-page .site-header.is-menu-open,
-  .app-shell .site-header.is-menu-open {
-    position: fixed;
-    inset: 0;
-    z-index: 200;
   }
 
   .soft-shell {
@@ -2050,10 +2034,6 @@ a:focus-visible {
   }
 
   .home-page--bleed .site-header.is-menu-open {
-    position: fixed;
-    inset: 0;
-    z-index: 200;
-    height: 100dvh;
     grid-template-areas:
       'brand menu'
       'nav nav';

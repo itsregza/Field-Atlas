@@ -141,7 +141,18 @@ export function SiteHeader() {
   const [user, setUser] = useState<MockUser | null>(() => loadUser())
   const { openAuth } = useAuthModal()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [mobileNav, setMobileNav] = useState(
+    () => window.matchMedia('(max-width: 900px)').matches,
+  )
   const menuId = useId()
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 900px)')
+    const sync = () => setMobileNav(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
 
   useEffect(() => {
     let cancelled = false
@@ -159,11 +170,7 @@ export function SiteHeader() {
       if (event.key === 'Escape') setMenuOpen(false)
     }
     window.addEventListener('keydown', onKey)
-    document.body.style.overflow = 'hidden'
-    return () => {
-      window.removeEventListener('keydown', onKey)
-      document.body.style.overflow = ''
-    }
+    return () => window.removeEventListener('keydown', onKey)
   }, [menuOpen])
 
   const closeMenu = () => setMenuOpen(false)
@@ -212,7 +219,7 @@ export function SiteHeader() {
             label="Maps"
             active={mapsActive}
             onNavigate={closeMenu}
-            accordion={menuOpen}
+            accordion={mobileNav}
             menuOpen={menuOpen}
             path={path}
             items={[
@@ -226,7 +233,7 @@ export function SiteHeader() {
             label="Hiking"
             active={hikingActive}
             onNavigate={closeMenu}
-            accordion={menuOpen}
+            accordion={mobileNav}
             menuOpen={menuOpen}
             path={path}
             items={[
